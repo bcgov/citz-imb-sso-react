@@ -10,7 +10,7 @@
   "scripts": {
     "bundle:dts": "node bundle-dts.js && rollup -c rollup.config.js && node remove-dts.js && rm build/state/*.d.ts",
     "build": "rm -rf build && tsc && npm run bundle:dts && rm tsconfig.tsbuildinfo",
-    "pack": "npm run build && npm cache clean --force && npm pack && mkdir releases && mv *.tgz ./releases/"
+    "pack": "npm i && npm run build && npm cache clean --force && npm pack && mkdir releases && mv *.tgz ./releases/"
   },
   "dependencies": {
     "react": "18.2.0"
