@@ -14,7 +14,7 @@
 
 1. Install package by following the steps at [Installing the Package](#installing-the-package).
 2. Set up the package by following the steps at [Basic Setup Guide](#basic-setup-guide).
-3. For use with [@bcgov/kc-express].
+3. For use with [@bcgov/citz-imb-kc-express].
 4. **BY DEFUALT**, set to work with a proxy pass to the backend using `/api`.
 5. To use without a proxy pass, add optional parameter and property of login(), logout(), and KeycloakProvider for `backendURL`.
 
@@ -40,7 +40,7 @@
 - For running on a NodeJS:20 React 18 app.
 - For Keycloak Gold Standard.
 - Works with Vanilla JavaScript or Typescript 5.
-- For use with [@bcgov/kc-express]
+- For use with [@bcgov/citz-imb-kc-express]
 - **BY DEFUALT**, set to work with a proxy pass to the backend using `/api`.
 - To use without a proxy pass, add optional parameter and property of login(), logout(), and KeycloakProvider for `backendURL`.
 
@@ -55,7 +55,7 @@
 ``` JSON5
 {
   "dependencies": {
-    "@bcgov/kc-react": "https://github.com/bcgov/kc-react/releases/download/v<VERSION>/bcgov-kc-react-<VERSION>.tgz",
+    "@bcgov/kc-react": "https://github.com/bcgov/citz-imb-kc-react/releases/download/v<VERSION>/bcgov-citz-imb-kc-react-<VERSION>.tgz",
     // The rest of your dependencies...
   },
 }
@@ -73,12 +73,12 @@
 
 ## Basic Setup Guide
 
-1. Add import `import { KeycloakProvider } from "@bcgov/kc-react";` and surround your application code with `KeycloakProvider`.
+1. Add import `import { KeycloakProvider } from "@bcgov/citz-imb-kc-react";` and surround your application code with `KeycloakProvider`.
 
 *Example:*
 
 ```JavaScript
-import { KeycloakProvider } from "@bcgov/kc-react";
+import { KeycloakProvider } from "@bcgov/citz-imb-kc-react";
 import App from "./App";
 import React from "react";
 import { createRoot } from "react-dom/client";
@@ -95,7 +95,7 @@ root.render(
 
 2. Adding Login and Logout:
 
-Add import `import { useKeycloak } from "@bcgov/kc-react";` then add the following to the top of your functional component:
+Add import `import { useKeycloak } from "@bcgov/citz-imb-kc-react";` then add the following to the top of your functional component:
 
 ```JavaScript
 const {
@@ -124,7 +124,7 @@ Conditionally render a Login or Logout button:
 
 3. Accessing user state:
 
-To access auth state and functions add import `import { useKeycloak } from "@bcgov/kc-react";` then add the following to the top of your functional component:
+To access auth state and functions add import `import { useKeycloak } from "@bcgov/citz-imb-kc-react";` then add the following to the top of your functional component:
 
 ```JavaScript
 const {
@@ -156,7 +156,7 @@ const callTest = async () => {
 ```
 
 For all user properties reference [SSO Keycloak Wiki - Identity Provider Attribute Mapping].  
-Example IDIR `state.userInfo` object (Typescript Type is `KeycloakUser & KeycloakIdirUser` from `kc-express` package):
+Example IDIR `state.userInfo` object (Typescript Type is `KeycloakUser & KeycloakIdirUser` from `citz-imb-kc-express` package):
 
 ```JSON
 {
@@ -210,13 +210,13 @@ Again, be sure to replace `<backend-service-name>` and `<backend-port>`.
 
 ## Module Exports
 
-These are the functions and types exported by the `@bcgov/kc-react` module.
+These are the functions and types exported by the `@bcgov/citz-imb-kc-react` module.
 
 ```JavaScript
 import {
   KeycloakProvider, // Manages the keycloak service in your react app.
   useKeycloak, // Hook used for authentication and authorization state and functions.
-} from '@bcgov/kc-react';
+} from '@bcgov/citz-imb-kc-react';
 
 ```
 
@@ -226,7 +226,7 @@ import {
 
 ## TypeScript Types
 
-These are the TypeScript types of the `@bcgov/kc-react` module.
+These are the TypeScript types of the `@bcgov/citz-imb-kc-react` module.
 
 ```TypeScript
 const reducer = (state: AuthState, action: AuthAction): AuthState;
@@ -323,6 +323,6 @@ The following applications are currently using this keycloak implementation solu
 
 <!-- Link References -->
 
-[@bcgov/kc-express]: https://github.com/bcgov/kc-express
+[@bcgov/citz-imb-kc-express]: https://github.com/bcgov/citz-imb-kc-express
 [releases]: https://github.com/bcgov/kc-react/releases
 [SSO Keycloak Wiki - Identity Provider Attribute Mapping]: https://github.com/bcgov/sso-keycloak/wiki/Identity-Provider-Attribute-Mapping
