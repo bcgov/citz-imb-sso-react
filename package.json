@@ -1,0 +1,45 @@
+{
+  "name": "@bcgov/citz-imb-kc-react",
+  "version": "0.0.0",
+  "description": "BCGov Pathfinder SSO Keycloak integration for React",
+  "author": "Brady Mitchell <braden.mitchell@gov.bc.ca>",
+  "license": "Apache-2.0",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "bundle:dts": "node bundle-dts.js && rollup -c rollup.config.js && node remove-dts.js && rm build/state/*.d.ts",
+    "build": "rm -rf build && tsc && npm run bundle:dts && rm tsconfig.tsbuildinfo",
+    "pack": "npm run build && npm cache clean --force && npm pack && mkdir releases && mv *.tgz ./releases/"
+  },
+  "dependencies": {
+    "react": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.21",
+    "rollup": "3.29.1",
+    "rollup-plugin-dts": "6.0.2",
+    "typescript": "5.2.2"
+  },
+  "keywords": [
+    "bcgov",
+    "keycloak",
+    "sso",
+    "oidc",
+    "single sign on",
+    "pathfinder",
+    "redhat",
+    "react",
+    "npm"
+  ],
+  "files": [
+    "build/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcgov/citz-imb-kc-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bcgov/citz-imb-kc-react/issues"
+  }
+}

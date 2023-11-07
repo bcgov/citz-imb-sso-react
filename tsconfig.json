@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ESnext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "declaration": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "composite": true,
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "removeComments": true,
+    "jsx": "react"
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
