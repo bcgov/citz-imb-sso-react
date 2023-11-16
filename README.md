@@ -55,7 +55,7 @@
 ``` JSON5
 {
   "dependencies": {
-    "@bcgov/kc-react": "https://github.com/bcgov/citz-imb-kc-react/releases/download/v<VERSION>/bcgov-citz-imb-kc-react-<VERSION>.tgz",
+    "@bcgov/citz-imb-kc-react": "https://github.com/bcgov/citz-imb-kc-react/releases/download/v<VERSION>/bcgov-citz-imb-kc-react-<VERSION>.tgz",
     // The rest of your dependencies...
   },
 }
