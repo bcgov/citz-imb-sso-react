@@ -307,7 +307,7 @@ export interface AuthStateWithDispatch {
 
 ## Authentication Flow
 
-<img src="./assets/flow.png" alt="Flow chart">
+<img src="./assets/flow.PNG" alt="Flow chart">
 
 [Return to Top](#bcgov-sso-keycloak-integration-for-react)
 
