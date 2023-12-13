@@ -324,5 +324,5 @@ The following applications are currently using this keycloak implementation solu
 <!-- Link References -->
 
 [@bcgov/citz-imb-kc-express]: https://github.com/bcgov/citz-imb-kc-express
-[releases]: https://github.com/bcgov/kc-react/releases
+[releases]: https://github.com/bcgov/citz-imb-kc-react/releases
 [SSO Keycloak Wiki - Identity Provider Attribute Mapping]: https://github.com/bcgov/sso-keycloak/wiki/Identity-Provider-Attribute-Mapping
