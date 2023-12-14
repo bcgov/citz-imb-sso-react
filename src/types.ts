@@ -30,6 +30,7 @@ export interface AuthService {
   state: AuthState;
   getAuthorizationHeaderValue: () => string;
   hasRole: (role: string) => boolean;
+  isAuthenticated: boolean;
   refreshToken: (backendURL?: string) => Promise<void>;
   login: (options?: LoginProps) => void;
   logout: (backendURL?: string) => void;
