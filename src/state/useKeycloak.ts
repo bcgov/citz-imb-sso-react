@@ -24,6 +24,9 @@ export const useKeycloak = (): AuthService => {
     const hasRole = (role: string) =>
       state.userInfo?.client_roles?.includes(role) ?? false;
 
+    // Is the user authenticated
+    const isAuthenticated = Boolean(state?.userInfo);
+
     const login = (props?: LoginProps) => {
       const { backendURL = "/api", idpHint } = props;
 
@@ -76,6 +79,7 @@ export const useKeycloak = (): AuthService => {
     return {
       getAuthorizationHeaderValue,
       hasRole,
+      isAuthenticated,
       login,
       logout,
       refreshToken,
