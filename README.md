@@ -99,23 +99,22 @@ Add import `import { useKeycloak } from "@bcgov/citz-imb-kc-react";` then add th
 
 ```JavaScript
 const {
-    state,
+    isAuthenticated,
     login,
     logout,
   } = useKeycloak();
-const user = state?.userInfo;
 ```
 
 Conditionally render a Login or Logout button:
 
 ```JavaScript
-{user ? (
-  <button onClick={() => login({ idpHint: "idir" })}>
-    LOGIN WITH IDIR
-  </button>
-) : (
+{isAuthenticated ? (
   <button onClick={() => logout()}>
     LOGOUT
+  </button>
+) : (
+  <button onClick={() => login({ idpHint: "idir" })}>
+    LOGIN WITH IDIR
   </button>
 )}
 ```
@@ -131,14 +130,28 @@ const {
     state,
     hasRole,
     getAuthorizationHeaderValue,
+    isAuthenticated,
   } = useKeycloak();
+
+// User data object:
 const user = state?.userInfo;
+
+// Is user logged in:
+if (isAuthenticated) console.log(`Hi ${user.display_name}`)
 ```
 
 Check if the user has a role like:
 
 ```JavaScript
-if (hasRole('Admin')) // Do something...
+// User must have 'Admin' role.
+if (hasRole(['Admin'])) // Do something...
+
+// Users must have BOTH 'Member' and 'Commenter' roles.
+// requireAllRoles option is true by default.
+if (hasRole(['Member', 'Commenter'])) // Do something...
+
+// Users must have EITHER 'Member' or 'Verified' role.
+if (hasRole(['Member', 'Verified'], { requireAllRoles: false })) // Do Something...
 ```
 
 Complete an authenticated request like in the example below:
@@ -173,7 +186,7 @@ Example IDIR `state.userInfo` object (Typescript Type is `KeycloakUser & Keycloa
 }
 ```
 
-> **Note**: _'client_roles' is the only property in this list that can be undefined. All other properties if empty will be an empty string. When checking if a user has a role, it is advised to use the hasRole() function._
+> **Note**: _'client_roles' is the only property in this list that can be `undefined`. All other properties if empty will be an empty string. When checking if a user has a role, it is advised to use the hasRole() function from useKeycloak()._
 
 <br />
 
@@ -271,10 +284,15 @@ export type IdentityProvider =
   | BceidIdentityProvider
   | GithubIdentityProvider;
 
+export type HasRoleOptions = {
+  requireAllRoles?: boolean;
+};
+
 export interface AuthService {
   state: AuthState;
   getAuthorizationHeaderValue: () => string;
-  hasRole: (role: string) => boolean;
+  isAuthenticated: boolean;
+  hasRole: (roles: string[], options?: HasRoleOptions) => boolean;
   refreshToken: (backendURL?: string) => Promise<void>;
   login: (options?: LoginProps) => void;
   logout: (backendURL?: string) => void;
