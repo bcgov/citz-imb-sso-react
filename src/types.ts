@@ -26,10 +26,14 @@ export type IdentityProvider =
   | BceidIdentityProvider
   | GithubIdentityProvider;
 
+export type HasRoleOptions = {
+  requireAllRoles?: boolean;
+};
+
 export interface AuthService {
   state: AuthState;
   getAuthorizationHeaderValue: () => string;
-  hasRole: (role: string) => boolean;
+  hasRole: (roles: string[], options?: HasRoleOptions) => boolean;
   isAuthenticated: boolean;
   refreshToken: (backendURL?: string) => Promise<void>;
   login: (options?: LoginProps) => void;

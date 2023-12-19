@@ -1,8 +1,8 @@
 import { useContext, useMemo } from "react";
 
 import { AuthContext } from "../Provider";
-import { decodeJWT } from "../utils";
-import { AuthService, LoginProps } from "../types";
+import { decodeJWT, hasAllRoles, hasAtLeastOneRole } from "../utils";
+import { AuthService, HasRoleOptions, LoginProps } from "../types";
 import { AuthActionType } from "./reducer";
 
 const { LOGOUT, REFRESH_TOKEN } = AuthActionType;
@@ -21,8 +21,27 @@ export const useKeycloak = (): AuthService => {
     const getAuthorizationHeaderValue = () => `Bearer ${state.accessToken}`;
 
     // Return true if the user has the specified role.
-    const hasRole = (role: string) =>
-      state.userInfo?.client_roles?.includes(role) ?? false;
+    const hasRole = (roles: string[], options?: HasRoleOptions) => {
+      const userRoles = state.userInfo?.client_roles;
+
+      // Ensure proper use of function.
+      if (
+        !roles ||
+        !Array.isArray(roles) ||
+        !roles.every((item) => typeof item === "string")
+      )
+        throw new Error(
+          "Error in hasRole function of `citz-imb-kc-react`. Pass roles as an array of strings."
+        );
+
+      // Return false because user does not have any roles
+      if (!userRoles) return false;
+
+      // User must have all roles in roles array unless requireAllRoles === false
+      if (options && options?.requireAllRoles === false)
+        return hasAtLeastOneRole(userRoles, roles);
+      else return hasAllRoles(userRoles, roles);
+    };
 
     // Is the user authenticated
     const isAuthenticated = Boolean(state?.userInfo);
