@@ -1,6 +1,6 @@
 import { useContext, useMemo } from "react";
 
-import { AuthContext } from "../Provider";
+import { AuthContext } from "../components/Provider";
 import { decodeJWT, hasAllRoles, hasAtLeastOneRole } from "../utils";
 import { AuthService, HasRoleOptions, LoginProps } from "../types";
 import { AuthActionType } from "./reducer";
