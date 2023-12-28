@@ -260,18 +260,25 @@ export const initialState: AuthState = {
 };
 
 // PROPS
-export interface KeycloakProviderProps {
-  backendURL?: string;
-  children: ReactNode;
-}
-export interface KeycloakWrapperProps {
-  backendURL?: string;
-  children: ReactNode;
-}
-export interface LoginProps {
+export type KeycloakProviderProps = {
   backendURL?: string;
   idpHint?: IdentityProvider;
-}
+  children: ReactNode;
+  onRefreshExpiry?: Function;
+};
+export type KeycloakWrapperProps = {
+  backendURL?: string;
+  children: ReactNode;
+  onRefreshExpiry?: Function;
+};
+export type LoginProps = {
+  backendURL?: string;
+  idpHint?: IdentityProvider;
+};
+export type RefreshExpiryDialogProps = {
+  isVisible: boolean;
+  loginProps?: LoginProps;
+};
 
 export type IdirIdentityProvider = "idir";
 export type GithubIdentityProvider = "githubbcgov" | "githubpublic";
@@ -288,35 +295,35 @@ export type HasRoleOptions = {
   requireAllRoles?: boolean;
 };
 
-export interface AuthService {
+export type AuthService = {
   state: AuthState;
   getAuthorizationHeaderValue: () => string;
-  isAuthenticated: boolean;
   hasRole: (roles: string[], options?: HasRoleOptions) => boolean;
+  isAuthenticated: boolean;
   refreshToken: (backendURL?: string) => Promise<void>;
   login: (options?: LoginProps) => void;
   logout: (backendURL?: string) => void;
-}
+};
 
-export interface AuthAction {
+export type AuthAction = {
   type: AuthActionType;
   payload?: {
     accessToken?: string;
     idToken?: string;
     userInfo?: Record<string, any>;
   };
-}
+};
 
-export interface AuthState {
+export type AuthState = {
   accessToken?: string;
   idToken?: string;
   userInfo?: Record<string, any>;
-}
+};
 
-export interface AuthStateWithDispatch {
+export type AuthStateWithDispatch = {
   state: AuthState;
   dispatch: Dispatch<AuthAction>;
-}
+};
 ```
 
 [Return to Top](#bcgov-sso-keycloak-integration-for-react)
