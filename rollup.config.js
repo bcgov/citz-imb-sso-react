@@ -1,10 +1,23 @@
-import dts from "rollup-plugin-dts";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import typescript from "@rollup/plugin-typescript";
+import postcss from "rollup-plugin-postcss";
 
-export default {
-  input: "build/bundle.d.ts",
-  output: {
-    file: "build/index.d.ts",
-    format: "es",
+export default [
+  {
+    input: "src/index.ts",
+    output: [
+      {
+        dir: "build",
+        format: "esm",
+        sourcemap: true,
+      },
+    ],
+    plugins: [
+      resolve(),
+      typescript({ outputToFilesystem: true }),
+      commonjs(),
+      postcss({ extensions: [".css"] }),
+    ],
   },
-  plugins: [dts()],
-};
+];
