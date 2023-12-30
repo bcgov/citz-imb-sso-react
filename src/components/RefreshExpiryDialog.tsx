@@ -16,11 +16,13 @@ export const RefreshExpiryDialog = (props: RefreshExpiryDialogProps) => {
 
   return (
     <>
-      <div className="dialog-overlay" />
-      <dialog className="dialog" open={isVisible}>
-        <div className="dialog-content">
-          <p className="dialog-message">Your login session has expired.</p>
-          <button onClick={() => login(loginProps)}>RE-LOGIN</button>
+      <div className="kcr_dialog-overlay" />
+      <dialog className="kcr_dialog" open={isVisible}>
+        <div className="kcr_dialog-content">
+          <p className="kcr_dialog-message">Your login session has expired.</p>
+          <button className="kcr_button" onClick={() => login(loginProps)}>
+            RE-LOGIN
+          </button>
         </div>
       </dialog>
     </>
