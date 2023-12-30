@@ -13,11 +13,12 @@ export default [
         sourcemap: true,
       },
     ],
+    external: ["react", "react-dom"],
     plugins: [
       resolve(),
-      typescript({ outputToFilesystem: true }),
       commonjs(),
       postcss({ extensions: [".css"] }),
+      typescript({ tsconfig: "./tsconfig.json", outputToFilesystem: true }),
     ],
   },
 ];
