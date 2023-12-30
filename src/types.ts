@@ -39,9 +39,10 @@ export type HasRoleOptions = {
 
 export type AuthService = {
   state: AuthState;
+  isAuthenticated: boolean;
+  user?: Record<string, any>;
   getAuthorizationHeaderValue: () => string;
   hasRole: (roles: string[], options?: HasRoleOptions) => boolean;
-  isAuthenticated: boolean;
   refreshToken: (backendURL?: string) => Promise<void>;
   login: (options?: LoginProps) => void;
   logout: (backendURL?: string) => void;

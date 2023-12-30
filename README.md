@@ -127,17 +127,14 @@ To access auth state and functions add import `import { useKeycloak } from "@bcg
 
 ```JavaScript
 const {
-    state,
+    user,
     hasRole,
     getAuthorizationHeaderValue,
     isAuthenticated,
   } = useKeycloak();
 
-// User data object:
-const user = state?.userInfo;
-
 // Is user logged in:
-if (isAuthenticated) console.log(`Hi ${user.display_name}`)
+if (isAuthenticated) console.log(`Hi ${user?.display_name}`);
 ```
 
 Check if the user has a role like:
@@ -297,9 +294,10 @@ export type HasRoleOptions = {
 
 export type AuthService = {
   state: AuthState;
+  isAuthenticated: boolean;
+  user?: Record<string, any>;
   getAuthorizationHeaderValue: () => string;
   hasRole: (roles: string[], options?: HasRoleOptions) => boolean;
-  isAuthenticated: boolean;
   refreshToken: (backendURL?: string) => Promise<void>;
   login: (options?: LoginProps) => void;
   logout: (backendURL?: string) => void;
