@@ -25,13 +25,14 @@
 ## Table of Contents
 
 - [General Information](#general-information)
-
 - [Installing the Package](#installing-the-package) - **Start Here!**
 - [Basic Setup Guide](#basic-setup-guide) - Setting up after installing.
-
+   - [Provider](#provider) - Provides Keycloak functionality to app.
+   - [Login & Logout](#login--logout) - Allow users to login and logout.
+   - [User State & Protected API Calls](#user-state--protected-api-calls) - Get user data and make requests to protected routes.
+   - [Proxy Pass](#proxy-pass) - Set up proxy pass to make requests to backend more robust and simple.
 - [Module Exports](#module-exports) - Functions and Types available from the module.
 - [TypeScript Types](#typescript-types) - Available TypeScript types.
-
 - [Authentication Flow](#authentication-flow) - How it works.
 - [Applications using Keycloak Solution](#applications-using-keycloak-solution) - See an example of how to use.
 
@@ -73,6 +74,8 @@
 
 ## Basic Setup Guide
 
+### Provider
+
 1. Add import `import { KeycloakProvider } from "@bcgov/citz-imb-kc-react";` and surround your application code with `KeycloakProvider`.
 
 *Example:*
@@ -92,6 +95,8 @@ root.render(
   </React.StrictMode>
 );
 ```
+
+### Login & Logout
 
 2. Adding Login and Logout:
 
@@ -121,7 +126,9 @@ Conditionally render a Login or Logout button:
 
 <br />
 
-3. Accessing user state:
+### User State & Protected API Calls
+
+3. Accessing user state and making protected API calls:
 
 To access auth state and functions add import `import { useKeycloak } from "@bcgov/citz-imb-kc-react";` then add the following to the top of your functional component:
 
@@ -186,6 +193,8 @@ Example IDIR `state.userInfo` object (Typescript Type is `KeycloakUser & Keycloa
 > **Note**: _'client_roles' is the only property in this list that can be `undefined`. All other properties if empty will be an empty string. When checking if a user has a role, it is advised to use the hasRole() function from useKeycloak()._
 
 <br />
+
+### Proxy Pass
 
 4. Setting up proxy pass:
 
