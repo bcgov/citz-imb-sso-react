@@ -391,14 +391,14 @@ import {
   IdirIdentityProvider, // Used for more efficient login.
   GithubIdentityProvider, // Used for more efficient login.
   BceidIdentityProvider, // Used for more efficient login.
-  IdentityProvider, // Used for more efficient login.
+  IdentityProvider, // Combined type for identity providers.
   HasRoleOptions, // Optional options parameter for hasRole function of useKeycloak().
   AuthService, // Type for useKeycloak().
   AuthState, // Type for state of useKeycloak().
-  KeycloakIdirUser, // IDIR user object.
-  KeycloakBCeIDUser, // BCeID user object.
-  KeycloakGithubUser, // GitHub user object.
-  KeycloakUser, // User object.
+  KeycloakUser, // Base user type.
+  KeycloakIdirUser, // User types specific to Idir users.
+  KeycloakBCeIDUser, // User types specific to BCeID users.
+  KeycloakGithubUser, // User types specific to Github users.
 } from '@bcgov/citz-imb-kc-react';
 ```
 
