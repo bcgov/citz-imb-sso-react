@@ -4,7 +4,6 @@ import { AuthContext } from "../context";
 import { decodeJWT, hasAllRoles, hasAtLeastOneRole } from "../utils";
 import { AuthService, HasRoleOptions, LoginProps } from "../types";
 import { AuthActionType } from "./reducer";
-import { object } from "prop-types";
 
 const { LOGOUT, REFRESH_TOKEN } = AuthActionType;
 
@@ -95,7 +94,7 @@ export const useKeycloak = (): AuthService => {
         // Re-call refreshToken 15 seconds before expiry.
         setTimeout(() => refreshToken(), (expires_in - 15) * 1000);
       } catch (error) {
-        console.error(error);
+        // Do not console log because error will occur on first load when user has not logged in yet.
       }
     };
 
