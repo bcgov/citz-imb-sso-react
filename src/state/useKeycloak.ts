@@ -1,9 +1,10 @@
 import { useContext, useMemo } from "react";
 
-import { AuthContext } from "../components/Provider";
+import { AuthContext } from "../context";
 import { decodeJWT, hasAllRoles, hasAtLeastOneRole } from "../utils";
 import { AuthService, HasRoleOptions, LoginProps } from "../types";
 import { AuthActionType } from "./reducer";
+import { object } from "prop-types";
 
 const { LOGOUT, REFRESH_TOKEN } = AuthActionType;
 
@@ -31,7 +32,7 @@ export const useKeycloak = (): AuthService => {
         !roles.every((item) => typeof item === "string")
       )
         throw new Error(
-          "Error in hasRole function of `citz-imb-kc-react`. Pass roles as an array of strings."
+          "Error: hasRole function of `citz-imb-kc-react`. Pass roles as an array of strings."
         );
 
       // Return false because user does not have any roles
@@ -78,8 +79,11 @@ export const useKeycloak = (): AuthService => {
         if (!response.ok) return;
 
         // Get tokens.
-        const { access_token, id_token, expires_in } = await response.json();
-        if (!access_token || !id_token) return;
+        const data = await response.json();
+        if (!data) return;
+
+        const { access_token, id_token, expires_in } = data;
+        if (!access_token || !id_token || !expires_in) return;
 
         const userInfo = decodeJWT(access_token);
 
@@ -98,11 +102,12 @@ export const useKeycloak = (): AuthService => {
     return {
       getAuthorizationHeaderValue,
       hasRole,
-      isAuthenticated,
       login,
       logout,
       refreshToken,
       state,
+      isAuthenticated,
+      user: state?.userInfo,
     };
   }, [state]);
 };

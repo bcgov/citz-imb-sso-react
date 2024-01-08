@@ -5,26 +5,44 @@
   "author": "Brady Mitchell <braden.mitchell@gov.bc.ca>",
   "license": "Apache-2.0",
   "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "types": "build/bundle.d.ts",
   "type": "module",
+  "//": [
+    "THIS IS A COMMENT: Explaination of below scripts.",
+    "'build' will compile all src code into a bundle in build/ directory.",
+    "'build:dts' is part of 'build' and it bundles the typescipt declarations into a single bundle.d.ts file.",
+    "'clean:prebuild' is part of build and it removes directories and files before the build.",
+    "'clean:postbuild' is part of build and it removes directories and files after the build.",
+    "'pack' is used to package the code before a release."
+  ],
   "scripts": {
-    "bundle:dts": "node bundle-dts.js && rollup -c rollup.config.js && node remove-dts.js && rm build/**/*.d.ts",
-    "build": "rm -rf build && tsc && npm run bundle:dts && rm tsconfig.tsbuildinfo",
+    "build": "npm run clean:prebuild && rollup -c rollup.config.js && npm run build:dts && npm run clean:postbuild",
+    "build:dts": "node scripts/remove-css-imports && rollup -c rollupdts.config.js && node scripts/remove-dts-files",
+    "clean:prebuild": "rm -rf .rollup.cache build tsconfig.tsbuildinfo",
+    "clean:postbuild": "node scripts/remove-empty-dirs && rm -rf .rollup.cache tsconfig.tsbuildinfo",
     "pack": "npm i && npm run build && npm cache clean --force && npm pack && mkdir releases && mv *.tgz ./releases/"
   },
   "dependencies": {
     "react": "18.2.0"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "25.0.7",
+    "@rollup/plugin-multi-entry": "6.0.1",
+    "@rollup/plugin-node-resolve": "15.2.3",
+    "@rollup/plugin-typescript": "11.1.5",
     "@types/react": "18.2.21",
-    "rollup": "3.29.1",
     "rollup-plugin-dts": "6.0.2",
+    "rollup-plugin-postcss": "4.0.2",
+    "tslib": "2.6.2",
     "typescript": "5.2.2"
   },
   "keywords": [
     "bcgov",
+    "citz",
+    "imb",
     "keycloak",
     "sso",
+    "css",
     "oidc",
     "single sign on",
     "pathfinder",

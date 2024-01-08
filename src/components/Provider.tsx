@@ -1,15 +1,9 @@
-import React, { Context, createContext, useReducer, useState } from "react";
-import { AuthStateWithDispatch, KeycloakProviderProps } from "../types";
+import React, { useReducer, useState } from "react";
+import { KeycloakProviderProps } from "../types";
 import { initialState, reducer } from "../state/reducer";
 import { KeycloakWrapper } from "./Wrapper";
 import { RefreshExpiryDialog } from "./RefreshExpiryDialog";
-
-// Create an initial context with initialState.
-export const AuthContext: Context<AuthStateWithDispatch> =
-  createContext<AuthStateWithDispatch>({
-    state: initialState,
-    dispatch: () => {},
-  });
+import { AuthContext } from "../context";
 
 /**
  * Provides a keycloak authentication context to its children.

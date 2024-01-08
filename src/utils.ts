@@ -12,7 +12,7 @@ export const decodeJWT = (jwt: string) => {
   try {
     return JSON.parse(decodedData);
   } catch (error) {
-    console.error("Failed to parse JWT:", error);
+    console.error("Error: Failed to parse JWT:", error);
   }
 };
 

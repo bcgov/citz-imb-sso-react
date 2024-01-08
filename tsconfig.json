@@ -7,7 +7,7 @@
     "outDir": "./build",
     "rootDir": "./src",
     "composite": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "esModuleInterop": true,
     "removeComments": true,
     "jsx": "react"
