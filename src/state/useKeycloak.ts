@@ -2,7 +2,12 @@ import { useContext, useMemo } from "react";
 
 import { AuthContext } from "../context";
 import { decodeJWT, hasAllRoles, hasAtLeastOneRole } from "../utils";
-import { AuthService, HasRoleOptions, LoginProps } from "../types";
+import {
+  AuthService,
+  HasRoleOptions,
+  KeycloakIdirUser,
+  LoginProps,
+} from "../types";
 import { AuthActionType } from "./reducer";
 
 const { LOGOUT, REFRESH_TOKEN } = AuthActionType;

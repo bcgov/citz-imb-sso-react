@@ -548,6 +548,7 @@ export type KeycloakUser = {
 The following applications are currently using this keycloak implementation solution:
 
 [SET](https://github.com/bcgov/citz-imb-salary-estimate-tool) - Salary Estimation Tool
+[PLAY](https://github.com/bcgov/citz-imb-playground) - CITZ IMB Package Testing App
 
 [Return to Top](#bcgov-sso-keycloak-integration-for-react)
 
