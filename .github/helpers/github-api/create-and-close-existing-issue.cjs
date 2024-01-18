@@ -1,8 +1,8 @@
-import {
+const {
   createIssue,
   closeIssue,
   findIssueByTitle,
-} from "./github-api-requests";
+} = require("./github-api-requests.cjs");
 
 /**
  * FILE DOES NOT NEED TO BE EDITED.
@@ -27,4 +27,4 @@ const createAndCloseExistingIssue = async (packageJsonPath, issueBody) => {
   await createIssue(issueTitle, decodeURIComponent(issueBody));
 };
 
-export default createAndCloseExistingIssue;
+module.exports = createAndCloseExistingIssue;
