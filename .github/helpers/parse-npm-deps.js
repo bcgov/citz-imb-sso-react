@@ -1,5 +1,5 @@
-const https = require("https");
-const path = require("path");
+import https from "https";
+import path from "path";
 
 const LOCAL_TEST = false;
 const TEST_PACKAGEJSON_PATHS = ["src/frontend", "src/backend"];

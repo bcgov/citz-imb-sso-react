@@ -41,7 +41,7 @@
 
 const { GITHUB_TOKEN, GITHUB_REPOSITORY } = process.env;
 const [GITHUB_OWNER, GITHUB_REPO] = GITHUB_REPOSITORY.split("/");
-const { Octokit } = require("@octokit/rest");
+import { Octokit } from "@octokit/rest";
 
 // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
 const octokit = new Octokit({ auth: GITHUB_TOKEN });
@@ -106,7 +106,7 @@ async function findIssueByTitle(title, state = "open") {
   return null; // Return null if no issue found.
 }
 
-module.exports = {
+export default {
   createIssue,
   closeIssue,
   findIssueByTitle,

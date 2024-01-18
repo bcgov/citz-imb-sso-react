@@ -1,8 +1,8 @@
-const path = require("path");
-const outdatedDeps = require(path.resolve(
+import path from "path";
+import outdatedDeps from path.resolve(
   __dirname,
   `../../outdatedDeps.json`
-));
+);
 
 const LOCAL_TEST = false;
 const TEST_PACKAGEJSON_PATHS = ["src/frontend", "src/backend"];
