@@ -1,6 +1,6 @@
-import path from "path";
-import createAndCloseExistingIssue from "./github-api/create-and-close-existing-issue";
-import outputText from path.resolve(__dirname, `../../outputText.json`);
+const path = require("path");
+const createAndCloseExistingIssue = require("./github-api/create-and-close-existing-issue");
+const outputText = require(path.resolve(__dirname, `../../outputText.json`));
 
 /**
  * THIS FILE DOES NOT REQUIRE ANY EDITING.

@@ -63,7 +63,7 @@ jobs:
       - name: Run NPM DEP Check Node.js script
         id: check_versions
         run: |
-          node .github/helpers/parse-npm-deps.cjs > outdatedDeps.json
+          node .github/helpers/parse-npm-deps > outdatedDeps.json
 
       # Upload the output as an artifact.
       - name: Upload output
@@ -100,7 +100,7 @@ jobs:
       - name: Run NPM DEP Check Node.js script
         id: check_versions
         run: |
-          node .github/helpers/create-npm-dep-report.js > outputText.json
+          node .github/helpers/create-npm-dep-report > outputText.json
 
       # Upload the output as an artifact.
       - name: Upload output
