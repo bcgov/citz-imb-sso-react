@@ -31,6 +31,7 @@
    - [Login & Logout](#login--logout) - Allow users to login and logout.
    - [User State & Protected API Calls](#user-state--protected-api-calls) - Get user data and make requests to protected routes.
    - [Proxy Pass](#proxy-pass) - Set up proxy pass to make requests to backend more robust and simple.
+   - [Not Using A Proxy Pass](#not-using-a-proxy-pass) - Set up without a proxy pass, just using backend url.
 - [Additional Setup Guide](#additional-setup-guide) - More advanced options for package configuration.
    - [Custom Refresh Expiry Function](#custom-refresh-expiry-function) - Function called when refresh token expires.
 - [Directory Structure](#directory-structure) - How the repo is designed.
@@ -93,7 +94,7 @@ import { createRoot } from "react-dom/client";
 const root = createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
-    <KeycloakProvider>
+    <KeycloakProvider idpHint="idir">
         <App />
     </KeycloakProvider>
   </React.StrictMode>
@@ -167,7 +168,20 @@ if (hasRole(['Member', 'Verified'], { requireAllRoles: false })) // Do Something
 
 Complete an authenticated request like in the example below:
 
+Both functions come from `useKeycloak`.
+
 ```JavaScript
+// NEW way:
+// Using fetchProtectedRoute, which is a wrapper for Node Fetch API.
+const callTest = async () => {
+  const response = await fetchProtectedRoute("/api/test", { 
+    method: "GET" 
+  });
+  return await response.json();
+};
+
+// OLD way:
+// Using getAuthorizationHeaderValue function.
 const callTest = async () => {
     const response = await fetch("/api/test", {
       method: "GET",
@@ -230,6 +244,23 @@ location /api/ {
 ```
 
 Again, be sure to replace `<backend-service-name>` and `<backend-port>`.
+
+<br />
+
+### Not Using A Proxy Pass
+
+5. If you are not using a proxy pass, you will need to set `backendUrl` and `idpHint` props on `KeycloakProvider` component and `login` function.
+
+Even if you are using a proxy, `idpHint` is always recommended.
+
+```JavaScript
+// Example usage:
+<KeycloakProvider backendURL="http://localhost:3000" idpHint="idir">
+</KeycloakProvider>
+
+// Example usage: 
+login({ backendURL: "http://localhost:3000", idpHint: "idir" });
+```
 
 [Return to Top](#bcgov-sso-keycloak-integration-for-react)
 
@@ -544,6 +575,7 @@ export type AuthService = {
   isAuthenticated: boolean;
   user?: KeycloakUser;
   getAuthorizationHeaderValue: () => string;
+  fetchProtectedRoute: (url: string, options?: any) => Promise<Response>;
   hasRole: (roles: string[], options?: HasRoleOptions) => boolean;
   refreshToken: (backendURL?: string) => Promise<void>;
   login: (options?: LoginProps) => void;

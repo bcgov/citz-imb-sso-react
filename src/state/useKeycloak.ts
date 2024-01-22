@@ -2,12 +2,7 @@ import { useContext, useMemo } from "react";
 
 import { AuthContext } from "../context";
 import { decodeJWT, hasAllRoles, hasAtLeastOneRole } from "../utils";
-import {
-  AuthService,
-  HasRoleOptions,
-  KeycloakIdirUser,
-  LoginProps,
-} from "../types";
+import { AuthService, HasRoleOptions, LoginProps } from "../types";
 import { AuthActionType } from "./reducer";
 
 const { LOGOUT, REFRESH_TOKEN } = AuthActionType;
@@ -24,6 +19,12 @@ export const useKeycloak = (): AuthService => {
   return useMemo(() => {
     // Return Authorization Header value for Keycloak requests.
     const getAuthorizationHeaderValue = () => `Bearer ${state.accessToken}`;
+
+    // Return a wrapper for the Node Fetch API with authorization header set.
+    const fetchProtectedRoute = (url: string, options: any = {}) => {
+      options.headers["Authorization"] = getAuthorizationHeaderValue();
+      return fetch(url, options);
+    };
 
     // Return true if the user has the specified role.
     const hasRole = (roles: string[], options?: HasRoleOptions) => {
@@ -105,6 +106,7 @@ export const useKeycloak = (): AuthService => {
 
     return {
       getAuthorizationHeaderValue,
+      fetchProtectedRoute,
       hasRole,
       login,
       logout,

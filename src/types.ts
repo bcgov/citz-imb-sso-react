@@ -42,6 +42,7 @@ export type AuthService = {
   isAuthenticated: boolean;
   user?: KeycloakUser;
   getAuthorizationHeaderValue: () => string;
+  fetchProtectedRoute: (url: string, options?: any) => Promise<Response>;
   hasRole: (roles: string[], options?: HasRoleOptions) => boolean;
   refreshToken: (backendURL?: string) => Promise<void>;
   login: (options?: LoginProps) => void;
