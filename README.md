@@ -417,7 +417,6 @@ Here is the `RefreshExpiryDialog` css classes:
 |   |   └── dep-report.json5                # Configure options for NPM Dep Report.
 |   ├── helpers/
 |   |   ├── github-api/                     # Functions to access the GitHub API.
-|   |   ├── bump-version.js                 # Bumps package.json version.
 |   |   ├── create-npm-dep-report-issues.js # Creates GitHub Issues for Npm Dep Reports.
 |   |   ├── create-npm-dep-report.js        # Creates text bodies for Npm Dep Reports.
 |   |   ├── parse-json5-config.js           # Parses json5 files for GitHub actions output.
@@ -425,7 +424,11 @@ Here is the `RefreshExpiryDialog` css classes:
 |   ├── workflows/
 |   |   ├── npm-dep-report.yaml             # Reports on new package versions.
 |   |   └── releases.yaml                   # Creates a new GitHub Release.
+├── .husky/
+|   └── post-commit                         # Script that runs after a git commit.
 ├── scripts/
+|   ├── bump-version.mjs                    # Bumps version in package.json file.
+|   ├── post-commit-version-change.mjs      # Bumps version when post-commit is run.
 |   ├── remove-css-imports.js               # Removes css imports from TypeScript declaration files from the build.
 |   ├── remove-dts-files.js                 # Removes TypeScript declaration files from the build.
 |   └── remove-empty-dirs.js                # Removes empty directories from the build.
@@ -442,6 +445,7 @@ Here is the `RefreshExpiryDialog` css classes:
 |   ├── types.ts                            # TypeScript types.
 |   └── utils.ts                            # Utility functions.
 ├── package.json                            # Package config and dependencies.
+├── .npmrc                                  # NPM config.
 ├── rollup.config.js                        # Builds and compiles TypeScript files into JavaScript.
 ├── rollupdts.config.js                     # Builds and compiles TypeScript declartion files.
 ```
