@@ -1,5 +1,6 @@
-import { Dispatch, ReactNode } from "react";
-import { AuthActionType } from "./state/reducer";
+/* eslint-disable no-unused-vars */
+import { Dispatch, ReactNode } from 'react';
+import { AuthActionType } from './state/reducer';
 
 // PROPS
 export type KeycloakProviderProps = {
@@ -22,12 +23,9 @@ export type RefreshExpiryDialogProps = {
   loginProps?: LoginProps;
 };
 
-export type IdirIdentityProvider = "idir";
-export type GithubIdentityProvider = "githubbcgov" | "githubpublic";
-export type BceidIdentityProvider =
-  | "bceidbasic"
-  | "bceidbusiness"
-  | "bceidboth";
+export type IdirIdentityProvider = 'idir';
+export type GithubIdentityProvider = 'githubbcgov' | 'githubpublic';
+export type BceidIdentityProvider = 'bceidbasic' | 'bceidbusiness' | 'bceidboth';
 export type IdentityProvider =
   | IdirIdentityProvider
   | BceidIdentityProvider
@@ -42,7 +40,7 @@ export type AuthService = {
   isAuthenticated: boolean;
   user?: KeycloakUser;
   getAuthorizationHeaderValue: () => string;
-  fetchProtectedRoute: (url: string, options?: any) => Promise<Response>;
+  fetchProtectedRoute: (url: string, options?: RequestInit) => Promise<Response>;
   hasRole: (roles: string[], options?: HasRoleOptions) => boolean;
   refreshToken: (backendURL?: string) => Promise<void>;
   login: (options?: LoginProps) => void;
@@ -76,10 +74,7 @@ export type BaseKeycloakUser = {
   display_name: string;
   client_roles?: string[];
   scope?: string;
-  identity_provider:
-    | IdirIdentityProvider
-    | BceidIdentityProvider
-    | GithubIdentityProvider;
+  identity_provider: IdirIdentityProvider | BceidIdentityProvider | GithubIdentityProvider;
 };
 
 export type KeycloakIdirUser = {

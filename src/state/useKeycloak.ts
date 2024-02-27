@@ -1,9 +1,9 @@
-import { useContext, useMemo } from "react";
+import { useContext, useMemo } from 'react';
 
-import { AuthContext } from "../context";
-import { decodeJWT, hasAllRoles, hasAtLeastOneRole } from "../utils";
-import { AuthService, HasRoleOptions, LoginProps } from "../types";
-import { AuthActionType } from "./reducer";
+import { AuthContext } from '../context';
+import { decodeJWT, hasAllRoles, hasAtLeastOneRole } from '../utils';
+import { AuthService, HasRoleOptions, LoginProps } from '../types';
+import { AuthActionType } from './reducer';
 
 const { LOGOUT, REFRESH_TOKEN } = AuthActionType;
 
@@ -21,8 +21,8 @@ export const useKeycloak = (): AuthService => {
     const getAuthorizationHeaderValue = () => `Bearer ${state.accessToken}`;
 
     // Return a wrapper for the Node Fetch API with authorization header set.
-    const fetchProtectedRoute = (url: string, options: any = {}) => {
-      options.headers["Authorization"] = getAuthorizationHeaderValue();
+    const fetchProtectedRoute = (url: string, options: RequestInit = {}) => {
+      options.headers['Authorization'] = getAuthorizationHeaderValue();
       return fetch(url, options);
     };
 
@@ -31,21 +31,16 @@ export const useKeycloak = (): AuthService => {
       const userRoles = state.userInfo?.client_roles;
 
       // Ensure proper use of function.
-      if (
-        !roles ||
-        !Array.isArray(roles) ||
-        !roles.every((item) => typeof item === "string")
-      )
+      if (!roles || !Array.isArray(roles) || !roles.every((item) => typeof item === 'string'))
         throw new Error(
-          "Error: hasRole function of `citz-imb-kc-react`. Pass roles as an array of strings."
+          'Error: hasRole function of `citz-imb-kc-react`. Pass roles as an array of strings.',
         );
 
       // Return false because user does not have any roles
       if (!userRoles) return false;
 
       // User must have all roles in roles array unless requireAllRoles === false
-      if (options && options?.requireAllRoles === false)
-        return hasAtLeastOneRole(userRoles, roles);
+      if (options && options?.requireAllRoles === false) return hasAtLeastOneRole(userRoles, roles);
       else return hasAllRoles(userRoles, roles);
     };
 
@@ -53,31 +48,27 @@ export const useKeycloak = (): AuthService => {
     const isAuthenticated = Boolean(state?.userInfo);
 
     const login = (props?: LoginProps) => {
-      const { backendURL = "/api", idpHint } = props;
+      const { backendURL = '/api', idpHint } = props;
 
       // Redirect to login route.
-      window.location.href = `${backendURL}/auth/login${
-        idpHint ? `?idp=${idpHint}` : ""
-      }`;
+      window.location.href = `${backendURL}/auth/login${idpHint ? `?idp=${idpHint}` : ''}`;
     };
 
     const logout = (backendURL?: string) => {
       dispatch({ type: LOGOUT });
 
       // Redirect to logout route.
-      window.location.href = `${backendURL ?? "/api"}/auth/logout?id_token=${
-        state?.idToken
-      }`;
+      window.location.href = `${backendURL ?? '/api'}/auth/logout?id_token=${state?.idToken}`;
     };
 
     // Get a new access token using the refresh token.
     const refreshToken = async (backendURL?: string) => {
-      const url = `${backendURL ?? "/api"}/auth/token`;
+      const url = `${backendURL ?? '/api'}/auth/token`;
 
       try {
         const response = await fetch(url, {
-          method: "POST",
-          credentials: "include",
+          method: 'POST',
+          credentials: 'include',
         });
 
         // Exit if response isn't 200.
