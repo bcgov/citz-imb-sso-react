@@ -1,9 +1,9 @@
-import React, { useReducer, useState } from "react";
-import { KeycloakProviderProps } from "../types";
-import { initialState, reducer } from "../state/reducer";
-import { KeycloakWrapper } from "./Wrapper";
-import { RefreshExpiryDialog } from "./RefreshExpiryDialog";
-import { AuthContext } from "../context";
+import React, { useReducer, useState } from 'react';
+import { KeycloakProviderProps } from '../types';
+import { initialState, reducer } from '../state/reducer';
+import { KeycloakWrapper } from './Wrapper';
+import { RefreshExpiryDialog } from './RefreshExpiryDialog';
+import { AuthContext } from '../context';
 
 /**
  * Provides a keycloak authentication context to its children.
@@ -25,17 +25,12 @@ export const KeycloakProvider = (props: KeycloakProviderProps) => {
       <KeycloakWrapper
         backendURL={backendURL}
         onRefreshExpiry={
-          onRefreshExpiry
-            ? () => onRefreshExpiry()
-            : () => setIsExpiryDialogVisible(true)
+          onRefreshExpiry ? () => onRefreshExpiry() : () => setIsExpiryDialogVisible(true)
         }
       >
         {children}
       </KeycloakWrapper>
-      <RefreshExpiryDialog
-        loginProps={{ backendURL, idpHint }}
-        isVisible={isExpiryDialogVisible}
-      />
+      <RefreshExpiryDialog loginProps={{ backendURL, idpHint }} isVisible={isExpiryDialogVisible} />
     </AuthContext.Provider>
   );
 };

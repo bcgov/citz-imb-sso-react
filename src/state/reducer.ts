@@ -1,9 +1,10 @@
-import { AuthAction, AuthState } from "../types";
+/* eslint-disable no-unused-vars */
+import { AuthAction, AuthState } from '../types';
 
 // Defines the possible types of authentication actions.
 export enum AuthActionType {
-  LOGOUT = "LOGOUT",
-  REFRESH_TOKEN = "REFRESH_TOKEN",
+  LOGOUT = 'LOGOUT',
+  REFRESH_TOKEN = 'REFRESH_TOKEN',
 }
 
 // Initial authentication state.
@@ -31,6 +32,6 @@ export const reducer = (state: AuthState, action: AuthAction): AuthState => {
         userInfo: action.payload?.userInfo,
       };
     default:
-      throw new Error("Invalid AuthActionType in Keycloak reducer");
+      throw new Error('Invalid AuthActionType in Keycloak reducer');
   }
 };

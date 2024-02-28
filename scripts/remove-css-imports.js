@@ -1,5 +1,5 @@
-import { readdirSync, readFileSync, writeFileSync, statSync } from "fs";
-import { resolve, join } from "path";
+import { readdirSync, readFileSync, writeFileSync, statSync } from 'fs';
+import { resolve, join } from 'path';
 
 /**
  * Removes all imports of *.css files in *.d.ts files.
@@ -7,7 +7,7 @@ import { resolve, join } from "path";
  * the bundling process for declaration files can't handle css imports.
  */
 
-const buildDir = resolve("build");
+const buildDir = resolve('build');
 
 const processDirectory = (directory) => {
   const files = readdirSync(directory);
@@ -18,15 +18,13 @@ const processDirectory = (directory) => {
 
     if (fileStat.isDirectory()) {
       processDirectory(filePath); // Recursively inspect the directory
-    } else if (file.endsWith(".d.ts")) {
-      let fileContent = readFileSync(filePath, "utf-8");
+    } else if (file.endsWith('.d.ts')) {
+      let fileContent = readFileSync(filePath, 'utf-8');
       // Remove lines that import CSS files
       fileContent = fileContent
-        .split("\n")
-        .filter(
-          (line) => !(line.trim().startsWith("import") && line.includes(".css"))
-        )
-        .join("\n");
+        .split('\n')
+        .filter((line) => !(line.trim().startsWith('import') && line.includes('.css')))
+        .join('\n');
 
       // Write the cleaned file content back to the file
       writeFileSync(filePath, fileContent);

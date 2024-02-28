@@ -1,7 +1,7 @@
-import React from "react";
-import "./RefreshExpiryDialog.css";
-import { LoginProps } from "../types";
-import { useKeycloak } from "../state/useKeycloak";
+import React from 'react';
+import './RefreshExpiryDialog.css';
+import { LoginProps } from '../types';
+import { useKeycloak } from '../state/useKeycloak';
 
 type RefreshExpiryDialogProps = {
   isVisible: boolean;
