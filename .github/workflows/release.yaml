@@ -43,6 +43,7 @@ jobs:
             echo "Version in package.json (${{ steps.package_version.outputs.VERSION }}) matches the latest tag (${{ steps.latest_tag.outputs.TAG }})."
             echo "You must update the version with 'npm run bump' before a release can be made."
             exit 1
+          fi
           
   create_release:
     runs-on: ubuntu-latest
