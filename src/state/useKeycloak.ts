@@ -48,7 +48,7 @@ export const useKeycloak = (): AuthService => {
     const isAuthenticated = Boolean(state?.userInfo);
 
     const login = (props?: LoginProps) => {
-      const { backendURL = '/api', idpHint } = props;
+      const { backendURL = '/api', idpHint = false } = props;
 
       // Redirect to login route.
       window.location.href = `${backendURL}/auth/login${idpHint ? `?idp=${idpHint}` : ''}`;
