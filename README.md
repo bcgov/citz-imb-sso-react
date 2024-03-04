@@ -513,12 +513,16 @@ const KeycloakProvider = (props: KeycloakProviderProps): React.JSX.Element;
 
 // Defines the possible types of authentication actions.
 export enum AuthActionType {
-  LOGOUT = "LOGOUT",
-  REFRESH_TOKEN = "REFRESH_TOKEN",
+  LOGOUT = 'LOGOUT',
+  ATTEMPT_LOGIN = 'ATTEMPT_LOGIN',
+  REFRESH_TOKEN = 'REFRESH_TOKEN',
+  UNAUTHORIZED = 'UNAUTHORIZED',
 }
 
 // Initial authentication state.
 export const initialState: AuthState = {
+  isLoggingIn: false,
+  isAuthenticated: false,
   accessToken: undefined,
   idToken: undefined,
   userInfo: undefined,
@@ -563,6 +567,7 @@ export type HasRoleOptions = {
 export type AuthService = {
   state: AuthState;
   isAuthenticated: boolean;
+  isLoggingIn: boolean;
   user?: KeycloakUser;
   getAuthorizationHeaderValue: () => string;
   fetchProtectedRoute: (url: string, options?: any) => Promise<Response>;
@@ -582,6 +587,8 @@ export type AuthAction = {
 };
 
 export type AuthState = {
+  isLoggedIn: boolean;
+  isAuthenticated: boolean;
   accessToken?: string;
   idToken?: string;
   userInfo?: KeycloakUser;
