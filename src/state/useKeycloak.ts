@@ -5,7 +5,7 @@ import { decodeJWT, hasAllRoles, hasAtLeastOneRole } from '../utils';
 import { AuthService, HasRoleOptions, LoginProps } from '../types';
 import { AuthActionType } from './reducer';
 
-const { LOGOUT, REFRESH_TOKEN } = AuthActionType;
+const { ATTEMPT_LOGIN, LOGOUT, UNAUTHORIZED, REFRESH_TOKEN } = AuthActionType;
 
 /**
  * A custom hook that provides authentication-related functionality to other components.
@@ -45,10 +45,12 @@ export const useKeycloak = (): AuthService => {
     };
 
     // Is the user authenticated
-    const isAuthenticated = Boolean(state?.userInfo);
+    const isAuthenticated = Boolean(state?.isAuthenticated);
+    const isLoggingIn = Boolean(state?.isLoggingIn);
 
     const login = (props?: LoginProps) => {
       const { backendURL = '/api', idpHint } = props ?? {};
+      dispatch({ type: ATTEMPT_LOGIN });
 
       // Redirect to login route.
       window.location.href = `${backendURL}/auth/login${idpHint ? `?idp=${idpHint}` : ''}`;
@@ -72,7 +74,10 @@ export const useKeycloak = (): AuthService => {
         });
 
         // Exit if response isn't 200.
-        if (!response.ok) return;
+        if (!response.ok) {
+          if (response.status === 401) dispatch({ type: UNAUTHORIZED });
+          return;
+        }
 
         // Get tokens.
         const data = await response.json();
@@ -104,6 +109,7 @@ export const useKeycloak = (): AuthService => {
       refreshToken,
       state,
       isAuthenticated,
+      isLoggingIn,
       user: state?.userInfo,
     };
   }, [state]);
