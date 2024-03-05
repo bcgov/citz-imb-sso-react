@@ -38,6 +38,7 @@ export type HasRoleOptions = {
 export type AuthService = {
   state: AuthState;
   isAuthenticated: boolean;
+  isLoggingIn: boolean;
   user?: KeycloakUser;
   getAuthorizationHeaderValue: () => string;
   fetchProtectedRoute: (url: string, options?: RequestInit) => Promise<Response>;
@@ -57,6 +58,8 @@ export type AuthAction = {
 };
 
 export type AuthState = {
+  isLoggingIn: boolean;
+  isAuthenticated: boolean;
   accessToken?: string;
   idToken?: string;
   userInfo?: KeycloakUser;
