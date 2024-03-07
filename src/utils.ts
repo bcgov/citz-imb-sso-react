@@ -26,7 +26,7 @@ export const hasAllRoles = (userRoles: string[], requiredRoles: string[]) =>
 export const hasAtLeastOneRole = (userRoles: string[], requiredRoles: string[]) =>
   requiredRoles.some((role) => userRoles.includes(role));
 
-//
+// Combine properties of each user type into a single object
 export const normalizeUser = (userInfo: CombinedKeycloakUser): KeycloakUser => {
   const {
     name = '',
