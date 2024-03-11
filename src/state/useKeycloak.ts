@@ -1,6 +1,6 @@
 import { useContext, useMemo } from 'react';
 import { AuthContext } from '../context';
-import { decodeJWT, hasAllRoles, hasAtLeastOneRole } from '../utils';
+import { decodeJWT, hasAllRoles, hasAtLeastOneRole, normalizeUser } from '../utils';
 import { AuthService, HasRoleOptions, LoginProps } from '../types';
 import { AuthActionType } from './reducer';
 
@@ -62,6 +62,9 @@ export const useKeycloak = (): AuthService => {
       window.location.href = `${backendURL ?? '/api'}/auth/logout?id_token=${state?.idToken}`;
     };
 
+    // Normalize user info
+    const user = normalizeUser(state?.userInfo);
+
     // Get a new access token using the refresh token.
     const refreshToken = async (backendURL?: string) => {
       const url = `${backendURL ?? '/api'}/auth/token`;
@@ -109,7 +112,7 @@ export const useKeycloak = (): AuthService => {
       state,
       isAuthenticated,
       isLoggingIn,
-      user: state?.userInfo,
+      user,
     };
   }, [state]);
 };

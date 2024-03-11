@@ -178,27 +178,30 @@ const callTest = async () => {
     return await response.json();
   };
 ```
+User state can be accessed through `user` from `useKeycloak()` hook, or `state?.userInfo` from `state` of `useKeycloak()` hook. It is preferred that you use `user` state as it is a normalized object that combines properties of users from different identity providers into a single user object.
 
-For all user properties reference [SSO Keycloak Wiki - Identity Provider Attribute Mapping].  
-Example IDIR `user` object (Typescript Type is `KeycloakUser & KeycloakIdirUser`):
+Example `user` object from `useKeycloak()` hook (Typescript Type is `KeycloakUser`):
 
 ```JSON
 {
-  "idir_user_guid": "W7802F34D2390EFA9E7JK15923770279",
-  "identity_provider": "idir",
-  "idir_username": "JOHNDOE",
-  "name": "Doe, John CITZ:EX",
+  "guid": "W7802F34D2390EFA9E7JK15923770279",
   "preferred_username": "a7254c34i2755fea9e7ed15918356158@idir",
-  "given_name": "John",
-  "display_name": "Doe, John CITZ:EX",
-  "family_name": "Doe",
+  "username": "JOHNDOE",
   "email": "john.doe@gov.bc.ca",
-  "client_roles": ["Admin"]
+  "name": "Doe, John CITZ:EX",
+  "display_name": "Doe, John CITZ:EX",
+  "first_name": "John",
+  "last_name": "Doe",
+  "client_roles": ["Admin"],
+  "scope": "openid idir email profile azureidir",
+  "identity_provider": "idir"
 }
 ```
 
+For all user properties of `state?.userInfo` which is of type `CombinedKeycloakUser`, reference [SSO Keycloak Wiki - Identity Provider Attribute Mapping].  
+
 > [!Note*] 
-> _'client_roles' is the only property in this list that can be `undefined`. All other properties if empty will be an empty string. When checking if a user has a role, it is advised to use the hasRole() function from useKeycloak()._
+> _'client_roles' when used in `state?.userInfo` can be `undefined`. When checking if a user has a role, it is advised to use the `hasRole()` function from `useKeycloak()` or using the `user` object._
 
 <br />
 
@@ -491,7 +494,8 @@ import {
   HasRoleOptions, // Optional options parameter for hasRole function of useKeycloak().
   AuthService, // Type for useKeycloak().
   AuthState, // Type for state of useKeycloak().
-  KeycloakUser, // Base user type.
+  KeycloakUser, // Normalized user info for all identity providers.
+  CombinedKeycloakUser, // All user info from SSO.
   KeycloakIdirUser, // User types specific to Idir users.
   KeycloakBCeIDUser, // User types specific to BCeID users.
   KeycloakGithubUser, // User types specific to Github users.
@@ -582,7 +586,7 @@ export type AuthAction = {
   payload?: {
     accessToken?: string;
     idToken?: string;
-    userInfo?: KeycloakUser;
+    userInfo?: CombinedKeycloakUser;
   };
 };
 
@@ -591,7 +595,7 @@ export type AuthState = {
   isAuthenticated: boolean;
   accessToken?: string;
   idToken?: string;
-  userInfo?: KeycloakUser;
+  userInfo?: CombinedKeycloakUser;
 };
 
 export type AuthStateWithDispatch = {
@@ -635,10 +639,17 @@ export type KeycloakGithubUser = {
   last_name?: string;
 };
 
-export type KeycloakUser = BaseKeycloakUser &
+export type CombinedKeycloakUser = BaseKeycloakUser &
   KeycloakIdirUser &
   KeycloakBCeIDUser &
   KeycloakGithubUser;
+
+export type KeycloakUser = BaseKeycloakUser & {
+  guid: string;
+  username: string;
+  first_name: string;
+  last_name: string;
+};
 ```
 
 [Return to Top](#bcgov-sso-keycloak-integration-for-react)

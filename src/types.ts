@@ -53,7 +53,7 @@ export type AuthAction = {
   payload?: {
     accessToken?: string;
     idToken?: string;
-    userInfo?: KeycloakUser;
+    userInfo?: CombinedKeycloakUser;
   };
 };
 
@@ -62,7 +62,7 @@ export type AuthState = {
   isAuthenticated: boolean;
   accessToken?: string;
   idToken?: string;
-  userInfo?: KeycloakUser;
+  userInfo?: CombinedKeycloakUser;
 };
 
 export type AuthStateWithDispatch = {
@@ -103,7 +103,14 @@ export type KeycloakGithubUser = {
   last_name?: string;
 };
 
-export type KeycloakUser = BaseKeycloakUser &
+export type CombinedKeycloakUser = BaseKeycloakUser &
   KeycloakIdirUser &
   KeycloakBCeIDUser &
   KeycloakGithubUser;
+
+export type KeycloakUser = BaseKeycloakUser & {
+  guid: string;
+  username: string;
+  first_name: string;
+  last_name: string;
+};
