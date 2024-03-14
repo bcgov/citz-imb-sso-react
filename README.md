@@ -1,4 +1,4 @@
-# BCGov SSO Keycloak Integration for React
+# BCGov SSO Integration for React
 
 [![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](Redirect-URL)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -15,9 +15,9 @@
 
 1. Install package by following the steps at [Installing the Package](#installing-the-package).
 2. Set up the package by following the steps at [Basic Setup Guide](#basic-setup-guide).
-3. For use with [@bcgov/citz-imb-kc-express].
+3. For use with [@bcgov/citz-imb-sso-express].
 4. **BY DEFUALT**, set to work with a proxy pass to the backend using `/api`.
-5. To use without a proxy pass, add optional parameter and property of login(), logout(), and KeycloakProvider for `backendURL`.
+5. To use without a proxy pass, add optional parameter and property of login(), logout(), and SSOProvider for `backendURL`.
 
 </details>
 
@@ -28,7 +28,7 @@
 - [General Information](#general-information)
 - [Installing the Package](#installing-the-package) - **Start Here!**
 - [Basic Setup Guide](#basic-setup-guide) - Setting up after installing.
-   - [Provider](#provider) - Provides Keycloak functionality to app.
+   - [Provider](#provider) - Provides SSO functionality to app.
    - [Login & Logout](#login--logout) - Allow users to login and logout.
    - [User State & Protected API Calls](#user-state--protected-api-calls) - Get user data and make requests to protected routes.
    - [Proxy Pass](#proxy-pass) - Set up proxy pass to make requests to backend more robust and simple.
@@ -40,16 +40,15 @@
 - [Module Exports](#module-exports) - Functions and Types available from the module.
 - [TypeScript Types](#typescript-types) - Available TypeScript types.
 - [Authentication Flow](#authentication-flow) - How it works.
-- [Applications using Keycloak Solution](#applications-using-keycloak-solution) - See an example of how to use.
 
 ## General Information
 
 - For running on a NodeJS:20 React 18 app.
-- For Keycloak Gold Standard.
+- For [CSS] SSO Gold Standard with usecase set as `Browser Login & Service Account`.
 - Works with Vanilla JavaScript or Typescript 5.
-- For use with [@bcgov/citz-imb-kc-express]
+- For use with [@bcgov/citz-imb-sso-express]
 - **BY DEFUALT**, set to work with a proxy pass to the backend using `/api`.
-- To use without a proxy pass, add optional parameter and property of login(), logout(), and KeycloakProvider for `backendURL`.
+- To use without a proxy pass, add optional parameter and property of login(), logout(), and SSOProvider for `backendURL`.
 
 ---
 
@@ -57,9 +56,9 @@
 
 ## Installing the Package
 
-Run `npm install @bcgov/citz-imb-kc-react` or select a specific version tag from [NPM Package].
+Run `npm install @bcgov/citz-imb-sso-react` or select a specific version tag from [NPM Package].
 
-[Return to Top](#bcgov-sso-keycloak-integration-for-react)
+[Return to Top](#bcgov-sso-integration-for-react)
 
 <br />
 
@@ -67,12 +66,12 @@ Run `npm install @bcgov/citz-imb-kc-react` or select a specific version tag from
 
 ### Provider
 
-1. Add import `import { KeycloakProvider } from "@bcgov/citz-imb-kc-react";` and surround your application code with `KeycloakProvider`.
+1. Add import for `SSOProvider` and surround your application code with it.
 
 *Example:*
 
 ```JavaScript
-import { KeycloakProvider } from "@bcgov/citz-imb-kc-react";
+import { SSOProvider } from "@bcgov/citz-imb-sso-react";
 import App from "./App";
 import React from "react";
 import { createRoot } from "react-dom/client";
@@ -80,28 +79,28 @@ import { createRoot } from "react-dom/client";
 const root = createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
-    <KeycloakProvider idpHint="idir">
+    <SSOProvider idpHint="idir">
         <App />
-    </KeycloakProvider>
+    </SSOProvider>
   </React.StrictMode>
 );
 ```
 
 > [!NOTE]
-> KeycloakProvider has optional props 'backendURL', 'idpHint', and 'onRefreshExpiry'.
+> SSOProvider has optional props 'backendURL', 'idpHint', and 'onRefreshExpiry'.
 
 ### Login & Logout
 
 2. Adding Login and Logout:
 
-Add import `import { useKeycloak } from "@bcgov/citz-imb-kc-react";` then add the following to the top of your functional component:
+Add import `import { useSSO } from "@bcgov/citz-imb-sso-react";` then add the following to the top of your functional component:
 
 ```JavaScript
 const {
     isAuthenticated,
     login,
     logout,
-  } = useKeycloak();
+  } = useSSO();
 ```
 
 Conditionally render a Login or Logout button:
@@ -124,7 +123,7 @@ Conditionally render a Login or Logout button:
 
 3. Accessing user state and making protected API calls:
 
-To access auth state and functions add import `import { useKeycloak } from "@bcgov/citz-imb-kc-react";` then add the following to the top of your functional component:
+To access auth state and functions add import `import { useSSO } from "@bcgov/citz-imb-sso-react";` then add the following to the top of your functional component:
 
 ```JavaScript
 const {
@@ -132,7 +131,7 @@ const {
     hasRole,
     getAuthorizationHeaderValue,
     isAuthenticated,
-  } = useKeycloak();
+  } = useSSO();
 
 // Is user logged in:
 if (isAuthenticated) console.log(`Hi ${user?.display_name}`);
@@ -154,7 +153,7 @@ if (hasRole(['Member', 'Verified'], { requireAllRoles: false })) // Do Something
 
 Complete an authenticated request like in the example below:
 
-Both functions come from `useKeycloak`.
+Both functions come from `useSSO()`.
 
 ```JavaScript
 // NEW way:
@@ -178,9 +177,9 @@ const callTest = async () => {
     return await response.json();
   };
 ```
-User state can be accessed through `user` from `useKeycloak()` hook, or `state?.userInfo` from `state` of `useKeycloak()` hook. It is preferred that you use `user` state as it is a normalized object that combines properties of users from different identity providers into a single user object.
+User state can be accessed through `user` from `useSSO()` hook, or `state?.userInfo` from `state` of `useSSO()` hook. It is preferred that you use `user` state as it is a normalized object that combines properties of users from different identity providers into a single user object.
 
-Example `user` object from `useKeycloak()` hook (Typescript Type is `KeycloakUser`):
+Example `user` object from `useSSO()` hook (Typescript Type is `SSOUser`):
 
 ```JSON
 {
@@ -198,10 +197,10 @@ Example `user` object from `useKeycloak()` hook (Typescript Type is `KeycloakUse
 }
 ```
 
-For all user properties of `state?.userInfo` which is of type `CombinedKeycloakUser`, reference [SSO Keycloak Wiki - Identity Provider Attribute Mapping].  
+For all user properties of `state?.userInfo` which is of type `CombinedSSOUser`, reference [SSO Keycloak Wiki - Identity Provider Attribute Mapping].  
 
 > [!Note*] 
-> _'client_roles' when used in `state?.userInfo` can be `undefined`. When checking if a user has a role, it is advised to use the `hasRole()` function from `useKeycloak()` or using the `user` object._
+> _'client_roles' when used in `state?.userInfo` can be `undefined`. When checking if a user has a role, it is advised to use the `hasRole()` function from `useSSO()` or using the `user` object._
 
 <br />
 
@@ -238,20 +237,20 @@ Again, be sure to replace `<backend-service-name>` and `<backend-port>`.
 
 ### Not Using A Proxy Pass
 
-5. If you are not using a proxy pass, you will need to set `backendUrl` and `idpHint` props on `KeycloakProvider` component and `login` function.
+5. If you are not using a proxy pass, you will need to set `backendUrl` and `idpHint` props on `SSOProvider` component and `login` function.
 
 Even if you are using a proxy, `idpHint` is always recommended.
 
 ```JavaScript
 // Example usage:
-<KeycloakProvider backendURL="http://localhost:3000" idpHint="idir">
-</KeycloakProvider>
+<SSOProvider backendURL="http://localhost:3000" idpHint="idir">
+</SSOProvider>
 
 // Example usage: 
 login({ backendURL: "http://localhost:3000", idpHint: "idir" });
 ```
 
-[Return to Top](#bcgov-sso-keycloak-integration-for-react)
+[Return to Top](#bcgov-sso-integration-for-react)
 
 <br />
 
@@ -261,12 +260,12 @@ login({ backendURL: "http://localhost:3000", idpHint: "idir" });
 
 1. Setting a custom function for when the refresh token expires:
 
-**BY DEFUALT**, when a refresh token expires, the user will be prompted to re-login by the RefreshExpiryDialog. This can be swapped out for a custom solution by adding a `onRefreshExpiry` prop to `KeycloakProvider`.
+**BY DEFUALT**, when a refresh token expires, the user will be prompted to re-login by the RefreshExpiryDialog. This can be swapped out for a custom solution by adding a `onRefreshExpiry` prop to `SSOProvider`.
 
 *Example:*
 
 ```JavaScript
-import { KeycloakProvider } from "@bcgov/citz-imb-kc-react";
+import { SSOProvider } from "@bcgov/citz-imb-sso-react";
 import App from "./App";
 import React from "react";
 import { createRoot } from "react-dom/client";
@@ -278,16 +277,16 @@ const customTokenExpiry = () => {
 const root = createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
-    <KeycloakProvider onRefreshExpiry={() => customTokenExpiry()}>
+    <SSOProvider onRefreshExpiry={() => customTokenExpiry()}>
         <App />
-    </KeycloakProvider>
+    </SSOProvider>
   </React.StrictMode>
 );
 ```
 
 Here's how the built in `RefreshExpiryDialog` works:
 
-Within `KeycloakProvider` is the following functionality:
+Within `SSOProvider` is the following functionality:
 
 ```JavaScript
 // State to track if the dialog should be visible.
@@ -314,11 +313,11 @@ const RefreshExpiryDialog = (props: RefreshExpiryDialogProps) => {
 
   return (
     <>
-      <div className="kcr_dialog-overlay" />
-      <dialog className="kcr_dialog" open={isVisible}>
-        <div className="kcr_dialog-content">
-          <p className="kcr_dialog-message">Your login session has expired.</p>
-          <button className="kcr_button" onClick={() => login(loginProps)}>
+      <div className="ssor_dialog-overlay" />
+      <dialog className="ssor_dialog" open={isVisible}>
+        <div className="ssor_dialog-content">
+          <p className="ssor_dialog-message">Your login session has expired.</p>
+          <button className="ssor_button" onClick={() => login(loginProps)}>
             RE-LOGIN
           </button>
         </div>
@@ -331,7 +330,7 @@ const RefreshExpiryDialog = (props: RefreshExpiryDialogProps) => {
 Here is the `RefreshExpiryDialog` css classes:
 
 ```CSS
-.kcr_dialog-overlay {
+.ssor_dialog-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -341,7 +340,7 @@ Here is the `RefreshExpiryDialog` css classes:
   z-index: 999; /* Ensure it's below the dialog and above other elements */
 }
 
-.kcr_dialog {
+.ssor_dialog {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -358,14 +357,14 @@ Here is the `RefreshExpiryDialog` css classes:
   justify-content: center;
 }
 
-.kcr_dialog-content {
+.ssor_dialog-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.kcr_dialog-message {
+.ssor_dialog-message {
   font-size: 1.25em;
   font-weight: 700;
   color: #656565;
@@ -374,7 +373,7 @@ Here is the `RefreshExpiryDialog` css classes:
   margin-bottom: 20px;
 }
 
-.kcr_button {
+.ssor_button {
   background-color: #234075;
   color: white;
   border: none;
@@ -387,12 +386,12 @@ Here is the `RefreshExpiryDialog` css classes:
   transition: background-color 0.3s ease;
 }
 
-.kcr_button:hover {
+.ssor_button:hover {
   background-color: #1b325c;
 }
 ```
 
-[Return to Top](#bcgov-sso-keycloak-integration-for-react)
+[Return to Top](#bcgov-sso-integration-for-react)
 
 <br />
 
@@ -412,8 +411,6 @@ Here is the `RefreshExpiryDialog` css classes:
 |   ├── workflows/
 |   |   ├── npm-dep-report.yaml             # Reports on new package versions.
 |   |   └── releases.yaml                   # Creates a new GitHub Release.
-├── .husky/
-|   └── post-commit                         # Script that runs after a git commit.
 ├── scripts/
 |   ├── bump-version.mjs                    # Bumps version in package.json file.
 |   ├── post-commit-version-change.mjs      # Bumps version when post-commit is run.
@@ -427,7 +424,7 @@ Here is the `RefreshExpiryDialog` css classes:
 |   |   └── Wrapper.tsx                     # Provides auth services such as refresh token tracking.
 |   ├── state/
 |   |   ├── reducer.ts                      # Manages auth state from context.
-|   |   └── useKeycloak.ts                  # Functions using auth state.
+|   |   └── useSSO.ts                       # Functions using auth state.
 |   ├── context.ts                          # React Context for storing auth data.
 |   ├── index.ts                            # Export functions for the package.
 |   ├── types.ts                            # TypeScript types.
@@ -438,7 +435,7 @@ Here is the `RefreshExpiryDialog` css classes:
 ├── rollupdts.config.js                     # Builds and compiles TypeScript declartion files.
 ```
 
-[Return to Top](#bcgov-sso-keycloak-integration-for-react)
+[Return to Top](#bcgov-sso-integration-for-react)
 
 <br />
 
@@ -469,51 +466,51 @@ $ npm run clean:postbuild
 $ npm run pack
 ```
 
-[Return to Top](#bcgov-sso-keycloak-integration-for-react)
+[Return to Top](#bcgov-sso-integration-for-react)
 
 <br />
 
 ## Module Exports
 
-These are the functions and types exported by the `@bcgov/citz-imb-kc-react` module.
+These are the functions and types exported by the `@bcgov/citz-imb-sso-react` module.
 
 ```JavaScript
 import {
-  KeycloakProvider, // Manages the keycloak service in your react app.
-  useKeycloak, // Hook used for authentication and authorization state and functions.
-} from '@bcgov/citz-imb-kc-react';
+  SSOProvider, // Manages the sso service in your react app.
+  useSSO, // Hook used for authentication and authorization state and functions.
+} from '@bcgov/citz-imb-sso-react';
 
 // TypeScript Types:
 import {
-  KeycloakProviderProps, // Props for KeycloakProvider component.
-  LoginProps, // Props for login function of useKeycloak().
+  SSOProviderProps, // Props for SSOProvider component.
+  LoginProps, // Props for login function of useSSO().
   IdirIdentityProvider, // Used for more efficient login.
   GithubIdentityProvider, // Used for more efficient login.
   BceidIdentityProvider, // Used for more efficient login.
   IdentityProvider, // Combined type for identity providers.
-  HasRoleOptions, // Optional options parameter for hasRole function of useKeycloak().
-  AuthService, // Type for useKeycloak().
-  AuthState, // Type for state of useKeycloak().
-  KeycloakUser, // Normalized user info for all identity providers.
-  CombinedKeycloakUser, // All user info from SSO.
-  KeycloakIdirUser, // User types specific to Idir users.
-  KeycloakBCeIDUser, // User types specific to BCeID users.
-  KeycloakGithubUser, // User types specific to Github users.
-} from '@bcgov/citz-imb-kc-react';
+  HasRoleOptions, // Optional options parameter for hasRole function of useSSO().
+  AuthService, // Type for useSSO().
+  AuthState, // Type for state of useSSO().
+  SSOUser, // Normalized user info for all identity providers.
+  CombinedSSOUser, // All user info from SSO.
+  SSOIdirUser, // User types specific to Idir users.
+  SSOBCeIDUser, // User types specific to BCeID users.
+  SSOGithubUser, // User types specific to Github users.
+} from '@bcgov/citz-imb-sso-react';
 ```
 
-[Return to Top](#bcgov-sso-keycloak-integration-for-react)
+[Return to Top](#bcgov-sso-integration-for-react)
 
 <br />
 
 ## TypeScript Types
 
-These are the TypeScript types of the `@bcgov/citz-imb-kc-react` module.
+These are the TypeScript types of the `@bcgov/citz-imb-sso-react` module.
 
 ```TypeScript
 const reducer = (state: AuthState, action: AuthAction): AuthState;
-const useKeycloak = (): AuthService;
-const KeycloakProvider = (props: KeycloakProviderProps): React.JSX.Element;
+const useSSO = (): AuthService;
+const SSOProvider = (props: SSOProviderProps): React.JSX.Element;
 
 // Defines the possible types of authentication actions.
 export enum AuthActionType {
@@ -533,13 +530,13 @@ export const initialState: AuthState = {
 };
 
 // PROPS
-export type KeycloakProviderProps = {
+export type SSOProviderProps = {
   backendURL?: string;
   idpHint?: IdentityProvider;
   children: ReactNode;
   onRefreshExpiry?: Function;
 };
-export type KeycloakWrapperProps = {
+export type SSOWrapperProps = {
   backendURL?: string;
   children: ReactNode;
   onRefreshExpiry?: Function;
@@ -572,7 +569,7 @@ export type AuthService = {
   state: AuthState;
   isAuthenticated: boolean;
   isLoggingIn: boolean;
-  user?: KeycloakUser;
+  user?: SSOUser;
   getAuthorizationHeaderValue: () => string;
   fetchProtectedRoute: (url: string, options?: any) => Promise<Response>;
   hasRole: (roles: string[], options?: HasRoleOptions) => boolean;
@@ -586,7 +583,7 @@ export type AuthAction = {
   payload?: {
     accessToken?: string;
     idToken?: string;
-    userInfo?: CombinedKeycloakUser;
+    userInfo?: CombinedSSOUser;
   };
 };
 
@@ -595,7 +592,7 @@ export type AuthState = {
   isAuthenticated: boolean;
   accessToken?: string;
   idToken?: string;
-  userInfo?: CombinedKeycloakUser;
+  userInfo?: CombinedSSOUser;
 };
 
 export type AuthStateWithDispatch = {
@@ -603,7 +600,7 @@ export type AuthStateWithDispatch = {
   dispatch: Dispatch<AuthAction>;
 };
 
-export type BaseKeycloakUser = {
+export type BaseSSOUser = {
   name?: string;
   preferred_username: string;
   email: string;
@@ -616,20 +613,20 @@ export type BaseKeycloakUser = {
     | GithubIdentityProvider;
 };
 
-export type KeycloakIdirUser = {
+export type SSOIdirUser = {
   idir_user_guid?: string;
   idir_username?: string;
   given_name?: string;
   family_name?: string;
 };
 
-export type KeycloakBCeIDUser = {
+export type SSOBCeIDUser = {
   bceid_user_guid?: string;
   bceid_username?: string;
   bceid_business_name?: string;
 };
 
-export type KeycloakGithubUser = {
+export type SSOGithubUser = {
   github_id?: string;
   github_username?: string;
   orgs?: string;
@@ -639,12 +636,12 @@ export type KeycloakGithubUser = {
   last_name?: string;
 };
 
-export type CombinedKeycloakUser = BaseKeycloakUser &
-  KeycloakIdirUser &
-  KeycloakBCeIDUser &
-  KeycloakGithubUser;
+export type CombinedSSOUser = BaseSSOUser &
+  SSOIdirUser &
+  SSOBCeIDUser &
+  SSOGithubUser;
 
-export type KeycloakUser = BaseKeycloakUser & {
+export type SSOUser = BaseSSOUser & {
   guid: string;
   username: string;
   first_name: string;
@@ -652,7 +649,7 @@ export type KeycloakUser = BaseKeycloakUser & {
 };
 ```
 
-[Return to Top](#bcgov-sso-keycloak-integration-for-react)
+[Return to Top](#bcgov-sso-integration-for-react)
 
 <br />
 
@@ -660,22 +657,12 @@ export type KeycloakUser = BaseKeycloakUser & {
 
 <img src="./assets/flow.PNG" alt="Flow chart">
 
-[Return to Top](#bcgov-sso-keycloak-integration-for-react)
-
-<br />
-
-## Applications using Keycloak Solution
-
-The following applications are currently using this keycloak implementation solution:
-
-[SET](https://github.com/bcgov/citz-imb-salary-estimate-tool) - Salary Estimation Tool
-[PLAY](https://github.com/bcgov/citz-imb-playground) - CITZ IMB Package Testing App
-
-[Return to Top](#bcgov-sso-keycloak-integration-for-react)
+[Return to Top](#bcgov-sso-integration-for-react)
 
 <!-- Link References -->
 
-[@bcgov/citz-imb-kc-express]: https://github.com/bcgov/citz-imb-kc-express
-[NPM Package]: https://www.npmjs.com/package/@bcgov/citz-imb-kc-react
-[releases]: https://github.com/bcgov/citz-imb-kc-react/releases
+[@bcgov/citz-imb-sso-express]: https://github.com/bcgov/citz-imb-sso-express
+[NPM Package]: https://www.npmjs.com/package/@bcgov/citz-imb-sso-react
+[releases]: https://github.com/bcgov/citz-imb-sso-react/releases
+[CSS]: https://bcgov.github.io/sso-requests
 [SSO Keycloak Wiki - Identity Provider Attribute Mapping]: https://github.com/bcgov/sso-keycloak/wiki/Identity-Provider-Attribute-Mapping
