@@ -11,12 +11,12 @@ const { ATTEMPT_LOGIN, LOGOUT, UNAUTHORIZED, REFRESH_TOKEN } = AuthActionType;
  * @returns {AuthService} - An object containing authentication-related functions
  * and the current authentication state.
  */
-export const useKeycloak = (): AuthService => {
+export const useSSO = (): AuthService => {
   const { state, dispatch } = useContext(AuthContext);
 
   // Use useMemo to memoize the returned object and prevent unnecessary re-renders.
   return useMemo(() => {
-    // Return Authorization Header value for Keycloak requests.
+    // Return Authorization Header value for SSO requests.
     const getAuthorizationHeaderValue = () => `Bearer ${state.accessToken}`;
 
     // Return a wrapper for the Node Fetch API with authorization header set.
@@ -32,7 +32,7 @@ export const useKeycloak = (): AuthService => {
       // Ensure proper use of function.
       if (!roles || !Array.isArray(roles) || !roles.every((item) => typeof item === 'string'))
         throw new Error(
-          'Error: hasRole function of `citz-imb-kc-react`. Pass roles as an array of strings.',
+          'Error: hasRole function of `citz-imb-sso-react`. Pass roles as an array of strings.',
         );
 
       // Return false because user does not have any roles

@@ -307,7 +307,7 @@ Here is the `RefreshExpiryDialog` component:
 ```JavaScript
 const RefreshExpiryDialog = (props: RefreshExpiryDialogProps) => {
   const { isVisible, loginProps } = props;
-  const { login } = useKeycloak();
+  const { login } = useSSO();
 
   if (!isVisible) return null;
 

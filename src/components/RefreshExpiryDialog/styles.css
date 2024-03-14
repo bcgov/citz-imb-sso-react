@@ -1,4 +1,4 @@
-.kcr_dialog-overlay {
+.ssor_dialog-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -8,7 +8,7 @@
   z-index: 999; /* Ensure it's below the dialog and above other elements */
 }
 
-.kcr_dialog {
+.ssor_dialog {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -25,14 +25,14 @@
   justify-content: center;
 }
 
-.kcr_dialog-content {
+.ssor_dialog-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.kcr_dialog-message {
+.ssor_dialog-message {
   font-size: 1.25em;
   font-weight: 700;
   color: #656565;
@@ -41,7 +41,7 @@
   margin-bottom: 20px;
 }
 
-.kcr_button {
+.ssor_button {
   background-color: #234075;
   color: white;
   border: none;
@@ -54,6 +54,6 @@
   transition: background-color 0.3s ease;
 }
 
-.kcr_button:hover {
+.ssor_button:hover {
   background-color: #1b325c;
 }

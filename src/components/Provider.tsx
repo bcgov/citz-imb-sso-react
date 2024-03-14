@@ -1,19 +1,19 @@
 import React, { useReducer, useState } from 'react';
-import { KeycloakProviderProps } from '../types';
+import { SSOProviderProps } from '../types';
 import { initialState, reducer } from '../state/reducer';
-import { KeycloakWrapper } from './Wrapper';
+import { SSOWrapper } from './Wrapper';
 import { RefreshExpiryDialog } from './RefreshExpiryDialog';
 import { AuthContext } from '../context';
 
 /**
- * Provides a keycloak authentication context to its children.
- * @param {KeycloakProviderProps} props
- * @property {ReactNode} props.children - The children components to be wrapped with the authentication context.
- * @property {string} props.backendURL - (optional) Specify backend api url, default = '/api'.
- * @property {IdentityProvider} props.idpHint - (optional) Identity provider to improve login.
- * @property {Function} props.onRefreshExpiry - (optional) Function to call when refresh token expires.
+ * Provides a sso authentication context to its children.
+ * @param {SSOProviderProps} props - See properties below.
+ * @property {ReactNode} children - The children components to be wrapped with the authentication context.
+ * @property {string} backendURL - (optional) Specify backend api url, default = '/api'.
+ * @property {IdentityProvider} idpHint - (optional) Identity provider to improve login.
+ * @property {Function} onRefreshExpiry - (optional) Function to call when refresh token expires.
  */
-export const KeycloakProvider = (props: KeycloakProviderProps) => {
+export const SSOProvider = (props: SSOProviderProps) => {
   const { children, backendURL, idpHint, onRefreshExpiry } = props;
   const [isExpiryDialogVisible, setIsExpiryDialogVisible] = useState(false);
 
@@ -22,14 +22,14 @@ export const KeycloakProvider = (props: KeycloakProviderProps) => {
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
-      <KeycloakWrapper
+      <SSOWrapper
         backendURL={backendURL}
         onRefreshExpiry={
           onRefreshExpiry ? () => onRefreshExpiry() : () => setIsExpiryDialogVisible(true)
         }
       >
         {children}
-      </KeycloakWrapper>
+      </SSOWrapper>
       <RefreshExpiryDialog loginProps={{ backendURL, idpHint }} isVisible={isExpiryDialogVisible} />
     </AuthContext.Provider>
   );
