@@ -1,4 +1,4 @@
-import { CombinedSSOUser, SSOUser } from './types';
+import { OriginalSSOUser, SSOUser } from './types';
 
 /**
  * Decodes a JSON Web Token (JWT) and returns the payload object.
@@ -27,7 +27,7 @@ export const hasAtLeastOneRole = (userRoles: string[], requiredRoles: string[]) 
   requiredRoles.some((role) => userRoles.includes(role));
 
 // Combine properties of each user type into a single object
-export const normalizeUser = (userInfo: CombinedSSOUser): SSOUser => {
+export const normalizeUser = (userInfo: OriginalSSOUser): SSOUser => {
   const {
     name = '',
     preferred_username,
@@ -75,6 +75,7 @@ export const normalizeUser = (userInfo: CombinedSSOUser): SSOUser => {
     client_roles,
     scope,
     identity_provider,
+    originalData: userInfo,
   };
 
   return user;

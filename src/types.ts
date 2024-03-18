@@ -53,7 +53,7 @@ export type AuthAction = {
   payload?: {
     accessToken?: string;
     idToken?: string;
-    userInfo?: CombinedSSOUser;
+    userInfo?: OriginalSSOUser;
   };
 };
 
@@ -62,7 +62,7 @@ export type AuthState = {
   isAuthenticated: boolean;
   accessToken?: string;
   idToken?: string;
-  userInfo?: CombinedSSOUser;
+  userInfo?: OriginalSSOUser;
 };
 
 export type AuthStateWithDispatch = {
@@ -103,11 +103,12 @@ export type SSOGithubUser = {
   last_name?: string;
 };
 
-export type CombinedSSOUser = BaseSSOUser & SSOIdirUser & SSOBCeIDUser & SSOGithubUser;
+export type OriginalSSOUser = BaseSSOUser & SSOIdirUser & SSOBCeIDUser & SSOGithubUser;
 
 export type SSOUser = BaseSSOUser & {
   guid: string;
   username: string;
   first_name: string;
   last_name: string;
+  originalData: OriginalSSOUser;
 };
