@@ -48,6 +48,6 @@ export const reducer = (state: AuthState, action: AuthAction): AuthState => {
         isAuthenticated: false,
       };
     default:
-      throw new Error('Invalid AuthActionType in Keycloak reducer');
+      throw new Error('Invalid AuthActionType in SSO reducer');
   }
 };

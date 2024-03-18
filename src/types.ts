@@ -3,13 +3,13 @@ import { Dispatch, ReactNode } from 'react';
 import { AuthActionType } from './state/reducer';
 
 // PROPS
-export type KeycloakProviderProps = {
+export type SSOProviderProps = {
   backendURL?: string;
   idpHint?: IdentityProvider;
   children: ReactNode;
   onRefreshExpiry?: Function;
 };
-export type KeycloakWrapperProps = {
+export type SSOWrapperProps = {
   backendURL?: string;
   children: ReactNode;
   onRefreshExpiry?: Function;
@@ -39,7 +39,7 @@ export type AuthService = {
   state: AuthState;
   isAuthenticated: boolean;
   isLoggingIn: boolean;
-  user?: KeycloakUser;
+  user?: SSOUser;
   getAuthorizationHeaderValue: () => string;
   fetchProtectedRoute: (url: string, options?: RequestInit) => Promise<Response>;
   hasRole: (roles: string[], options?: HasRoleOptions) => boolean;
@@ -53,7 +53,7 @@ export type AuthAction = {
   payload?: {
     accessToken?: string;
     idToken?: string;
-    userInfo?: CombinedKeycloakUser;
+    userInfo?: CombinedSSOUser;
   };
 };
 
@@ -62,7 +62,7 @@ export type AuthState = {
   isAuthenticated: boolean;
   accessToken?: string;
   idToken?: string;
-  userInfo?: CombinedKeycloakUser;
+  userInfo?: CombinedSSOUser;
 };
 
 export type AuthStateWithDispatch = {
@@ -70,7 +70,7 @@ export type AuthStateWithDispatch = {
   dispatch: Dispatch<AuthAction>;
 };
 
-export type BaseKeycloakUser = {
+export type BaseSSOUser = {
   name?: string;
   preferred_username: string;
   email: string;
@@ -80,20 +80,20 @@ export type BaseKeycloakUser = {
   identity_provider: IdirIdentityProvider | BceidIdentityProvider | GithubIdentityProvider;
 };
 
-export type KeycloakIdirUser = {
+export type SSOIdirUser = {
   idir_user_guid?: string;
   idir_username?: string;
   given_name?: string;
   family_name?: string;
 };
 
-export type KeycloakBCeIDUser = {
+export type SSOBCeIDUser = {
   bceid_user_guid?: string;
   bceid_username?: string;
   bceid_business_name?: string;
 };
 
-export type KeycloakGithubUser = {
+export type SSOGithubUser = {
   github_id?: string;
   github_username?: string;
   orgs?: string;
@@ -103,12 +103,9 @@ export type KeycloakGithubUser = {
   last_name?: string;
 };
 
-export type CombinedKeycloakUser = BaseKeycloakUser &
-  KeycloakIdirUser &
-  KeycloakBCeIDUser &
-  KeycloakGithubUser;
+export type CombinedSSOUser = BaseSSOUser & SSOIdirUser & SSOBCeIDUser & SSOGithubUser;
 
-export type KeycloakUser = BaseKeycloakUser & {
+export type SSOUser = BaseSSOUser & {
   guid: string;
   username: string;
   first_name: string;

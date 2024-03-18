@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { useKeycloak } from '../state/useKeycloak';
-import { KeycloakWrapperProps } from '../types';
+import { useSSO } from '../state/useSSO';
+import { SSOWrapperProps } from '../types';
 
-export const KeycloakWrapper = (props: KeycloakWrapperProps) => {
+export const SSOWrapper = (props: SSOWrapperProps) => {
   const { children, backendURL, onRefreshExpiry = () => {} } = props;
 
-  const { refreshToken, isAuthenticated } = useKeycloak();
+  const { refreshToken, isAuthenticated } = useSSO();
 
   // Initialize token and userInfo state after login or refresh.
   useEffect(() => {
