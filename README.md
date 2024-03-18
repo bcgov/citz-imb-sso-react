@@ -177,7 +177,7 @@ const callTest = async () => {
     return await response.json();
   };
 ```
-User state can be accessed through `user` from `useSSO()` hook, or `state?.userInfo` from `state` of `useSSO()` hook. It is preferred that you use `user` state as it is a normalized object that combines properties of users from different identity providers into a single user object.
+User state can be accessed through `user` from the `useSSO()` hook. The `user` object is a normalized object that combines properties of users from different identity providers into a single user object.
 
 Example `user` object from `useSSO()` hook (Typescript Type is `SSOUser`):
 
@@ -193,14 +193,15 @@ Example `user` object from `useSSO()` hook (Typescript Type is `SSOUser`):
   "last_name": "Doe",
   "client_roles": ["Admin"],
   "scope": "openid idir email profile azureidir",
-  "identity_provider": "idir"
+  "identity_provider": "idir",
+  "originalData": { /* ... (original user data from sso) */ }
 }
 ```
 
-For all user properties of `state?.userInfo` which is of type `CombinedSSOUser`, reference [SSO Keycloak Wiki - Identity Provider Attribute Mapping].  
+For all user properties of `user.originalData` which is of type `OriginalSSOUser`, reference [SSO Keycloak Wiki - Identity Provider Attribute Mapping].  
 
 > [!Note*] 
-> _'client_roles' when used in `state?.userInfo` can be `undefined`. When checking if a user has a role, it is advised to use the `hasRole()` function from `useSSO()` or using the `user` object._
+> _When checking if a user has a role, it is advised to use the `hasRole()` function from `useSSO()`._
 
 <br />
 
@@ -492,7 +493,7 @@ import {
   AuthService, // Type for useSSO().
   AuthState, // Type for state of useSSO().
   SSOUser, // Normalized user info for all identity providers.
-  CombinedSSOUser, // All user info from SSO.
+  OriginalSSOUser, // All user info from SSO.
   SSOIdirUser, // User types specific to Idir users.
   SSOBCeIDUser, // User types specific to BCeID users.
   SSOGithubUser, // User types specific to Github users.
@@ -583,7 +584,7 @@ export type AuthAction = {
   payload?: {
     accessToken?: string;
     idToken?: string;
-    userInfo?: CombinedSSOUser;
+    userInfo?: OriginalSSOUser;
   };
 };
 
@@ -592,7 +593,7 @@ export type AuthState = {
   isAuthenticated: boolean;
   accessToken?: string;
   idToken?: string;
-  userInfo?: CombinedSSOUser;
+  userInfo?: OriginalSSOUser;
 };
 
 export type AuthStateWithDispatch = {
@@ -636,7 +637,7 @@ export type SSOGithubUser = {
   last_name?: string;
 };
 
-export type CombinedSSOUser = BaseSSOUser &
+export type OriginalSSOUser = BaseSSOUser &
   SSOIdirUser &
   SSOBCeIDUser &
   SSOGithubUser;
@@ -646,6 +647,7 @@ export type SSOUser = BaseSSOUser & {
   username: string;
   first_name: string;
   last_name: string;
+  originalData: OriginalSSOUser;
 };
 ```
 
