@@ -8,6 +8,7 @@ export type SSOProviderProps = {
   idpHint?: IdentityProvider;
   children: ReactNode;
   onRefreshExpiry?: Function;
+  overrideShowRefreshExpiryDialog?: boolean;
 };
 export type SSOWrapperProps = {
   backendURL?: string;

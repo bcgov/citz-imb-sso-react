@@ -12,9 +12,10 @@ import { AuthContext } from '../context';
  * @property {string} backendURL - (optional) Specify backend api url, default = '/api'.
  * @property {IdentityProvider} idpHint - (optional) Identity provider to improve login.
  * @property {Function} onRefreshExpiry - (optional) Function to call when refresh token expires.
+ * @property {boolean} overrideShowRefreshExpiryDialog - (optional) Show RefreshExpiryDialog.
  */
 export const SSOProvider = (props: SSOProviderProps) => {
-  const { children, backendURL, idpHint, onRefreshExpiry } = props;
+  const { children, backendURL, idpHint, onRefreshExpiry, overrideShowRefreshExpiryDialog } = props;
   const [isExpiryDialogVisible, setIsExpiryDialogVisible] = useState(false);
 
   // Initialize the authentication state and dispatch function using the reducer.
@@ -30,7 +31,10 @@ export const SSOProvider = (props: SSOProviderProps) => {
       >
         {children}
       </SSOWrapper>
-      <RefreshExpiryDialog loginProps={{ backendURL, idpHint }} isVisible={isExpiryDialogVisible} />
+      <RefreshExpiryDialog
+        loginProps={{ backendURL, idpHint }}
+        isVisible={overrideShowRefreshExpiryDialog ? true : isExpiryDialogVisible}
+      />
     </AuthContext.Provider>
   );
 };
