@@ -32,7 +32,7 @@ export type IdentityProvider =
   | BceidIdentityProvider
   | GithubIdentityProvider;
 
-export type HasRoleOptions = {
+export type HasRolesOptions = {
   requireAllRoles?: boolean;
 };
 
@@ -43,7 +43,7 @@ export type AuthService = {
   user?: SSOUser;
   getAuthorizationHeaderValue: () => string;
   fetchProtectedRoute: (url: string, options?: RequestInit) => Promise<Response>;
-  hasRole: (roles: string[], options?: HasRoleOptions) => boolean;
+  hasRoles: (roles: string[], options?: HasRolesOptions) => boolean;
   refreshToken: (backendURL?: string) => Promise<void>;
   login: (options?: LoginProps) => void;
   logout: (backendURL?: string) => void;
