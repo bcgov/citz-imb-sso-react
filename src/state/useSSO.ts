@@ -1,7 +1,7 @@
 import { useContext, useMemo } from 'react';
 import { AuthContext } from '../context';
 import { decodeJWT, hasAllRoles, hasAtLeastOneRole, normalizeUser } from '../utils';
-import { AuthService, HasRoleOptions, LoginProps } from '../types';
+import { AuthService, HasRolesOptions, LoginProps } from '../types';
 import { AuthActionType } from './reducer';
 
 const { ATTEMPT_LOGIN, LOGOUT, UNAUTHORIZED, REFRESH_TOKEN } = AuthActionType;
@@ -26,13 +26,13 @@ export const useSSO = (): AuthService => {
     };
 
     // Return true if the user has the specified role.
-    const hasRole = (roles: string[], options?: HasRoleOptions) => {
+    const hasRoles = (roles: string[], options?: HasRolesOptions) => {
       const userRoles = state.userInfo?.client_roles;
 
       // Ensure proper use of function.
       if (!roles || !Array.isArray(roles) || !roles.every((item) => typeof item === 'string'))
         throw new Error(
-          'Error: hasRole function of `citz-imb-sso-react`. Pass roles as an array of strings.',
+          'Error: hasRoles function of `citz-imb-sso-react`. Pass roles as an array of strings.',
         );
 
       // Return false because user does not have any roles
@@ -105,7 +105,7 @@ export const useSSO = (): AuthService => {
     return {
       getAuthorizationHeaderValue,
       fetchProtectedRoute,
-      hasRole,
+      hasRoles,
       login,
       logout,
       refreshToken,
