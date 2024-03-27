@@ -63,7 +63,7 @@ export const useSSO = (): AuthService => {
     };
 
     // Normalize user info
-    const user = normalizeUser(state?.userInfo);
+    const user = state?.userInfo ? normalizeUser(state.userInfo) : undefined;
 
     // Get a new access token using the refresh token.
     const refreshToken = async (backendURL?: string) => {
