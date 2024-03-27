@@ -25,11 +25,11 @@ export const SSOWrapper = (props: SSOWrapperProps) => {
       // Update the URL.
       url.search = params.toString();
       window.history.replaceState({}, '', url.toString());
-    }
 
-    // Call refreshToken if user is not authenticated.
-    if (!isAuthenticated) setTimeout(() => refreshToken(backendURL), 500);
-  });
+      // Call refreshToken if user is not authenticated.
+      if (!isAuthenticated) setTimeout(() => refreshToken(backendURL), 500);
+    }
+  }, []);
 
   return <>{children}</>;
 };
