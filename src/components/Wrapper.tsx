@@ -19,6 +19,8 @@ export const SSOWrapper = (props: SSOWrapperProps) => {
       const refresh_expires_in = Number(params.get('refresh_expires_in'));
       setTimeout(() => onRefreshExpiry(), 1000 * refresh_expires_in);
 
+      console.info('SSO React: Retrieving user details.');
+
       // Remove search param.
       params.delete('refresh_expires_in');
 
@@ -29,7 +31,7 @@ export const SSOWrapper = (props: SSOWrapperProps) => {
       // Call refreshToken if user is not authenticated.
       if (!isAuthenticated) setTimeout(() => refreshToken(backendURL), 500);
     }
-  }, []);
+  }, [window.location.href]);
 
   return <>{children}</>;
 };
