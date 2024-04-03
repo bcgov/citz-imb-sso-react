@@ -1,6 +1,6 @@
 {
   "name": "@bcgov/citz-imb-sso-react",
-  "version": "1.0.0-alpha2",
+  "version": "1.0.0-alpha3",
   "description": "BCGov SSO integration for React",
   "author": "CITZ IMB Common Code <citz.codemvp@gov.bc.ca>",
   "license": "Apache-2.0",
@@ -19,6 +19,7 @@
     "bump:major": "node scripts/bump-version.mjs major"
   },
   "dependencies": {
+    "@bcgov/bc-sans": "2.1.0",
     "react": "18.2.0"
   },
   "devDependencies": {

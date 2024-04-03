@@ -1,10 +1,12 @@
+@import '@bcgov/bc-sans/css/BC_Sans.css';
+
 .ssor_dialog-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Translucent grey */
+  background-color: rgba(97, 97, 97, 0.5); /* Translucent grey */
   z-index: 999; /* Ensure it's below the dialog and above other elements */
 }
 
@@ -13,11 +15,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 1px solid #484848;
-  border-radius: 5px;
-  padding: 40px;
+  border-radius: 8px;
+  padding: 30px;
   background-color: #fff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: BC Sans, Calibri, Arial, sans-serif;
+  font-size: 16px;
+  color: #292929;
+  box-shadow: 0 8px 20px rgba(41, 41, 41, 0.5);
   z-index: 1000;
   display: flex;
   flex-direction: column;
