@@ -9,6 +9,7 @@ export type SSOProviderProps = {
   children: ReactNode;
   onRefreshExpiry?: Function;
   overrideShowRefreshExpiryDialog?: boolean;
+  postLoginRedirectURL?: string;
 };
 export type SSOWrapperProps = {
   backendURL?: string;
@@ -18,6 +19,7 @@ export type SSOWrapperProps = {
 export type LoginProps = {
   backendURL?: string;
   idpHint?: IdentityProvider;
+  postLoginRedirectURL?: string;
 };
 export type RefreshExpiryDialogProps = {
   isVisible: boolean;

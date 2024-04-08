@@ -14,17 +14,28 @@ export const SSOWrapper = (props: SSOWrapperProps) => {
     // Work with query parameters.
     const params = new URLSearchParams(url.search);
 
-    if (params.has('refresh_expires_in')) {
+    if (params.has('refresh_expires_in') && params.has('post_login_redirect_url')) {
       // Handle expiring refresh token.
       const refresh_expires_in = Number(params.get('refresh_expires_in'));
       setTimeout(() => onRefreshExpiry(), 1000 * refresh_expires_in);
 
       console.info('SSO React: Retrieving user details.');
 
-      // Remove search param.
-      params.delete('refresh_expires_in');
+      // Redirect url.
+      const post_login_redirect_url = params.get('post_login_redirect_url');
 
       // Update the URL.
+      if (post_login_redirect_url.startsWith('/')) {
+        // Relative path.
+        const newUrl = `${url.origin}${post_login_redirect_url}?pre_refresh=true`;
+        window.location.href = newUrl;
+      } else {
+        // Absolute path.
+        window.location.href = `${post_login_redirect_url}?pre_refresh=true`;
+      }
+    } else if (params.has('pre_refresh')) {
+      // Update the URL.
+      params.delete('pre_refresh');
       url.search = params.toString();
       window.history.replaceState({}, '', url.toString());
 
