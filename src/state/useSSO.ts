@@ -48,11 +48,22 @@ export const useSSO = (): AuthService => {
     const isLoggingIn = Boolean(state?.isLoggingIn);
 
     const login = (props?: LoginProps) => {
-      const { backendURL = '/api', idpHint } = props ?? {};
+      const {
+        backendURL = '/api',
+        idpHint,
+        postLoginRedirectURL = window.location.href,
+      } = props ?? {};
+
+      // Create search params string.
+      const queryParams = new URLSearchParams();
+      queryParams.append('post_login_redirect_url', postLoginRedirectURL);
+      if (idpHint) queryParams.append('idp', idpHint);
+
+      // Update state.
       dispatch({ type: ATTEMPT_LOGIN });
 
       // Redirect to login route.
-      window.location.href = `${backendURL}/auth/login${idpHint ? `?idp=${idpHint}` : ''}`;
+      window.location.href = `${backendURL}/auth/login?${queryParams.toString()}`;
     };
 
     const logout = (backendURL?: string) => {

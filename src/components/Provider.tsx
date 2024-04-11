@@ -9,13 +9,21 @@ import { AuthContext } from '../context';
  * Provides a sso authentication context to its children.
  * @param {SSOProviderProps} props - See properties below.
  * @property {ReactNode} children - The children components to be wrapped with the authentication context.
- * @property {string} backendURL - (optional) Specify backend api url, default = '/api'.
- * @property {IdentityProvider} idpHint - (optional) Identity provider to improve login.
- * @property {Function} onRefreshExpiry - (optional) Function to call when refresh token expires.
- * @property {boolean} overrideShowRefreshExpiryDialog - (optional) Show RefreshExpiryDialog.
+ * @property {string} [backendURL] - Specify backend api url, default = '/api'.
+ * @property {IdentityProvider} [idpHint] - Identity provider to improve login.
+ * @property {Function} [onRefreshExpiry] - Function to call when refresh token expires.
+ * @property {boolean} [overrideShowRefreshExpiryDialog] - Show RefreshExpiryDialog.
+ * @property {string} [postLoginRedirectURL] - Redirect url after login.
  */
 export const SSOProvider = (props: SSOProviderProps) => {
-  const { children, backendURL, idpHint, onRefreshExpiry, overrideShowRefreshExpiryDialog } = props;
+  const {
+    children,
+    backendURL,
+    idpHint,
+    onRefreshExpiry,
+    overrideShowRefreshExpiryDialog,
+    postLoginRedirectURL,
+  } = props;
   const [isExpiryDialogVisible, setIsExpiryDialogVisible] = useState(false);
 
   // Initialize the authentication state and dispatch function using the reducer.
@@ -32,7 +40,7 @@ export const SSOProvider = (props: SSOProviderProps) => {
         {children}
       </SSOWrapper>
       <RefreshExpiryDialog
-        loginProps={{ backendURL, idpHint }}
+        loginProps={{ backendURL, idpHint, postLoginRedirectURL }}
         isVisible={overrideShowRefreshExpiryDialog ? true : isExpiryDialogVisible}
       />
     </AuthContext.Provider>
