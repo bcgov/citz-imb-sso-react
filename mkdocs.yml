@@ -5,10 +5,12 @@ repo_url: "https://github.com/bcgov/citz-imb-sso-react"
 edit_uri: edit/main/docs
 nav:
     - Introduction: index.md
-    - Getting started: getting-started.md
-    - Configuration: configuration.md
-    - Tips and tricks: tips-and-tricks.md
-    - About us: about-us.md
+    - Getting Started:
+      - Installing the Package: docs/Getting-Started/Installing-the-Package.md
+      - Quick Start Guide: docs/Getting-Started/Quick-Start-Guide.md
+    - Proxy Pass:
+      - Setting Up a Proxy Pass: docs/Proxy-Pass/Setting-Up-a-Proxy-Pass.md
+      - Not Using a Proxy Pass: docs/Proxy-Pass/Not-Using-a-Proxy-Pass.md
 plugins:
     - techdocs-core
     - git-revision-date-localized
