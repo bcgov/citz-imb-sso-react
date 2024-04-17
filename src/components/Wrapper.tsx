@@ -27,22 +27,17 @@ export const SSOWrapper = (props: SSOWrapperProps) => {
       // Update the URL.
       if (post_login_redirect_url.startsWith('/')) {
         // Relative path.
-        const newUrl = `${url.origin}${post_login_redirect_url}?pre_refresh=true`;
+        const newUrl = `${url.origin}${post_login_redirect_url}`;
         window.location.href = newUrl;
       } else {
         // Absolute path.
-        window.location.href = `${post_login_redirect_url}?pre_refresh=true`;
+        window.location.href = `${post_login_redirect_url}`;
       }
-    } else if (params.has('pre_refresh')) {
-      // Update the URL.
-      params.delete('pre_refresh');
-      url.search = params.toString();
-      window.history.replaceState({}, '', url.toString());
-
+    } else {
       // Call refreshToken if user is not authenticated.
       if (!isAuthenticated) setTimeout(() => refreshToken(backendURL), 500);
     }
-  }, [window.location.href]);
+  }, []);
 
   return <>{children}</>;
 };
