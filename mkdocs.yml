@@ -1,16 +1,31 @@
 site_name: "CITZ IMB SSO React Helper Developer's Guide"
 site_description: "This npm package offers an integration solution for React applications requiring authentication through the B.C. government's Single Sign-On SSO (CSS) service. It abstracts the complexity of handling SSO protocols manually. By using this package, developers can quickly implement authentication and authorization in their React applications to meet B.C. government security standards."
-docs_dir: "docs"
+docs_dir: "techdocs/docs"
 repo_url: "https://github.com/bcgov/citz-imb-sso-react"
-edit_uri: edit/main/docs
+edit_uri: edit/main/techdocs/docs
 nav:
     - Introduction: index.md
     - Getting Started:
-      - Installing the Package: docs/Getting-Started/Installing-the-Package.md
-      - Quick Start Guide: docs/Getting-Started/Quick-Start-Guide.md
-    - Proxy Pass:
-      - Setting Up a Proxy Pass: docs/Proxy-Pass/Setting-Up-a-Proxy-Pass.md
-      - Not Using a Proxy Pass: docs/Proxy-Pass/Not-Using-a-Proxy-Pass.md
+      - Installing the Package: Getting-Started/Installing-the-Package.md
+      - Quick Start Guide: Getting-Started/Quick-Start-Guide.md
+    - Using the Package:
+      - Calling a Protected Route: using-the-package/calling-a-protected-route.md
+      - Getting User Information: using-the-package/getting-user-information.md
+      - Proxy Pass:
+        - Setting Up a Proxy Pass: using-the-package/Proxy-Pass/Setting-Up-a-Proxy-Pass.md
+        - Not Using a Proxy Pass: using-the-package/Proxy-Pass/Not-Using-a-Proxy-Pass.md
+      - Custom Session Expiry Function: using-the-package/custom-session-expiry-function.md
+      - Module Exports: using-the-package/module-exports.md
+      - TypeScript Types: using-the-package/typescript-types.md
+      - SSO Integration Settings: using-the-package/sso-integration-settings.md
+    - Support Documents/ Information:
+      - Directory Structure: support-documents-information/directory-structure.md
+      - Authentication Flow: support-documents-information/directory-structure.md
+      - Scripts: support-documents-information/scripts.md
+      - Publishing a New Release Version: support-documents-information/publishing-new-release-version.md
+    - Purpose and Benefits of this Package: purpose-and-benefits.md
+
+
 plugins:
     - techdocs-core
     - git-revision-date-localized
