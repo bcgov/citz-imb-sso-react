@@ -15,31 +15,12 @@ This npm package offers an integration solution for React applications requiring
 
 ## Additional Information
 
-> [!IMPORTANT] 
+> Important
+>
 > These packages complement, rather than replicate, Common Hosted Single Sign-On ([CSS]) or it's [example apps].  
 > They allow our own applications to integrate with the Common Hosted Single Sign-On ([CSS]) Service, providing us access to it's user management capabilities.  
 > They are developed and maintained by the [CITZ IMB Common Code] team, separate from the Common Hosted Single Sign-On ([CSS]) team.  
 
-> [!TIP]
+> Tip
+>
 > If you don't have an SSO integration check out [SSO Integration Settings].
-
-
-## Links
-
-For more information on this package please refer to our Wiki page in our repository. 
-
-- [Introduction](https://github.com/bcgov/citz-imb-sso-react/wiki/01-Introduction)
-- [Installing the Package](https://github.com/bcgov/citz-imb-sso-react/wiki/02-Installing-the-Package)
-- [Quick Start Guide](https://github.com/bcgov/citz-imb-sso-react/wiki/03-Quick-Start-Guide)
-- [Calling a Protected Route](https://github.com/bcgov/citz-imb-sso-react/wiki/04-Calling-a-Protected-Route)
-- [Getting User Information](https://github.com/bcgov/citz-imb-sso-react/wiki/05-Getting-User-Information)
-- [Setting Up a Proxy Pass](https://github.com/bcgov/citz-imb-sso-react/wiki/06-Setting-Up-a-Proxy-Pass)
-- [Not Using a Proxy Pass](https://github.com/bcgov/citz-imb-sso-react/wiki/07-Not-Using-a-Proxy-Pass)
-- [Custom Session Expiry Function](https://github.com/bcgov/citz-imb-sso-react/wiki/08-Custom-Session-Expiry-Function)
-- [Module Exports](https://github.com/bcgov/citz-imb-sso-react/wiki/09-Module-Exports)
-- [TypeScript Types](https://github.com/bcgov/citz-imb-sso-react/wiki/10-TypeScript-Types)
-- [Authentication Flow](https://github.com/bcgov/citz-imb-sso-react/wiki/11-Authentication-Flow)
-- [SSO Integration Settings](https://github.com/bcgov/citz-imb-sso-react/wiki/12-SSO-Integration-Settings)
-- [Directory Structure](https://github.com/bcgov/citz-imb-sso-react/wiki/01-Introduction#:~:text=13%20Directory%20Structure)
-- [Scripts](https://github.com/bcgov/citz-imb-sso-react/wiki/14-Scripts)
-
