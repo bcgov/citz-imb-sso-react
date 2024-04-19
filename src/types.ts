@@ -12,14 +12,14 @@ export type SSOProviderProps = {
   postLoginRedirectURL?: string;
 };
 export type SSOWrapperProps = {
-  backendURL?: string;
+  backendURL?: string | undefined;
   children: ReactNode;
   onRefreshExpiry?: Function;
 };
 export type LoginProps = {
-  backendURL?: string;
-  idpHint?: IdentityProvider;
-  postLoginRedirectURL?: string;
+  backendURL?: string | undefined;
+  idpHint?: IdentityProvider | undefined;
+  postLoginRedirectURL?: string | undefined;
 };
 export type RefreshExpiryDialogProps = {
   isVisible: boolean;
@@ -38,13 +38,17 @@ export type HasRolesOptions = {
   requireAllRoles?: boolean;
 };
 
+export interface CustomRequestInit extends RequestInit {
+  headers?: Record<string, string>;
+}
+
 export type AuthService = {
   state: AuthState;
   isAuthenticated: boolean;
   isLoggingIn: boolean;
-  user?: SSOUser;
+  user?: SSOUser | undefined;
   getAuthorizationHeaderValue: () => string;
-  fetchProtectedRoute: (url: string, options?: RequestInit) => Promise<Response>;
+  fetchProtectedRoute: (url: string, options?: CustomRequestInit) => Promise<Response>;
   hasRoles: (roles: string[], options?: HasRolesOptions) => boolean;
   refreshToken: (backendURL?: string) => Promise<void>;
   login: (options?: LoginProps) => void;
@@ -63,9 +67,9 @@ export type AuthAction = {
 export type AuthState = {
   isLoggingIn: boolean;
   isAuthenticated: boolean;
-  accessToken?: string;
-  idToken?: string;
-  userInfo?: OriginalSSOUser;
+  accessToken?: string | undefined;
+  idToken?: string | undefined;
+  userInfo?: OriginalSSOUser | undefined;
 };
 
 export type AuthStateWithDispatch = {
