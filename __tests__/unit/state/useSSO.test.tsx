@@ -93,6 +93,26 @@ describe('useSSO', () => {
     expect(result.current.hasRoles(['superuser', 'guest'], { requireAllRoles: false })).toBe(false);
   });
 
+  // Test case: invalid role param
+  it('throws error with invalid roles param', () => {
+    const { result } = renderHook(() => useSSO());
+
+    // Use try-catch block to handle the error
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let error: any;
+    try {
+      result.current.hasRoles(['superuser', 2] as string[]);
+    } catch (err) {
+      error = err;
+    }
+
+    // Expect an error to be thrown
+    expect(error).toBeDefined();
+    expect(error.message).toBe(
+      'Error: hasRoles function of `citz-imb-sso-react`. Pass roles as an array of strings.',
+    );
+  });
+
   // Test case: verify that the hook provides essential authentication functions and correct initial state
   it('provides authentication-related functions and state', () => {
     render(<TestComponent />);
