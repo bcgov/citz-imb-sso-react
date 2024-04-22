@@ -1,0 +1,10 @@
+version: 1
+data_management_roles:
+  product_owner: Laura Benson
+product_information:
+  ministry: CITZ
+  product_acronym: 
+  product_description: This npm package offers an integration solution for React applications requiring authentication through the B.C. government's Single Sign-On SSO (CSS) service. It abstracts the complexity of handling SSO protocols manually. By using this package, developers can quickly implement authentication and authorization in their React applications to meet B.C. government security standards.
+  product_name: citz-imb-sso-react
+product_technology_information:
+  hosting_platforms: Private-Cloud-Openshift
