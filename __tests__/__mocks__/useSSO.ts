@@ -1,10 +1,11 @@
 import { AuthService } from '@/types';
+import { mockOriginalSSOUserIDIR, mockSSOUserIDIR } from './user';
 
 // Function to create a mock AuthService with default or provided values
 export const createUseSSOMock = (overrides: Partial<AuthService> = {}): AuthService => ({
   isAuthenticated: false,
   isLoggingIn: false,
-  user: undefined,
+  user: mockSSOUserIDIR,
   login: jest.fn(),
   logout: jest.fn(),
   refreshToken: jest.fn(),
@@ -16,7 +17,7 @@ export const createUseSSOMock = (overrides: Partial<AuthService> = {}): AuthServ
     isLoggingIn: false,
     accessToken: '',
     idToken: '',
-    userInfo: undefined,
+    userInfo: mockOriginalSSOUserIDIR,
   },
   ...overrides,
 });
