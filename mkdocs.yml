@@ -6,12 +6,12 @@ edit_uri: edit/main/techdocs/docs
 nav:
     - Introduction: index.md
     - Getting Started:
-      - Installing the Package: Getting-Started/Installing-the-Package.md
-      - Quick Start Guide: Getting-Started/Quick-Start-Guide.md
-      - SSO Integration Settings: using-the-package/sso-integration-settings.md
+      - Installing the Package: getting-started/installing-the-package.md
+      - Quick Start Guide: getting-started/quick-start-guide.md
+      - SSO Integration Settings: getting-started/sso-integration-settings.md
       - Proxy Pass:
-        - Setting Up a Proxy Pass: using-the-package/Proxy-Pass/Setting-Up-a-Proxy-Pass.md
-        - Not Using a Proxy Pass: using-the-package/Proxy-Pass/Not-Using-a-Proxy-Pass.md
+        - Setting Up a Proxy Pass: getting-started/proxy-ass/setting-up-a-proxy-pass.md
+        - Not Using a Proxy Pass: getting-started/proxy-pass/not-using-a-proxy-pass.md
     - Using the Package:
       - Calling a Protected Route: using-the-package/calling-a-protected-route.md
       - Getting User Information: using-the-package/getting-user-information.md
