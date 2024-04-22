@@ -1,7 +1,7 @@
 import { useContext, useMemo } from 'react';
 import { AuthContext } from '../context';
 import { decodeJWT, hasAllRoles, hasAtLeastOneRole, normalizeUser } from '../utils';
-import { AuthService, HasRolesOptions, LoginProps } from '../types';
+import { AuthService, CustomRequestInit, HasRolesOptions, LoginProps } from '../types';
 import { AuthActionType } from './reducer';
 
 const { ATTEMPT_LOGIN, LOGOUT, UNAUTHORIZED, REFRESH_TOKEN } = AuthActionType;
@@ -20,7 +20,8 @@ export const useSSO = (): AuthService => {
     const getAuthorizationHeaderValue = () => `Bearer ${state.accessToken}`;
 
     // Return a wrapper for the Node Fetch API with authorization header set.
-    const fetchProtectedRoute = (url: string, options: RequestInit = {}) => {
+    const fetchProtectedRoute = (url: string, options: CustomRequestInit = {}) => {
+      options.headers = options.headers || {};
       options.headers['Authorization'] = getAuthorizationHeaderValue();
       return fetch(url, options);
     };

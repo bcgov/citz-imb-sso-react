@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSSO } from '../state/useSSO';
 import { SSOWrapperProps } from '../types';
 
@@ -25,7 +25,7 @@ export const SSOWrapper = (props: SSOWrapperProps) => {
       const post_login_redirect_url = params.get('post_login_redirect_url');
 
       // Update the URL.
-      if (post_login_redirect_url.startsWith('/')) {
+      if (post_login_redirect_url?.startsWith('/')) {
         // Relative path.
         const newUrl = `${url.origin}${post_login_redirect_url}`;
         window.location.href = newUrl;

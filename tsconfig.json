@@ -2,21 +2,42 @@
   "compilerOptions": {
     "target": "ESnext",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "moduleResolution": "Bundler",
+    "isolatedModules": true,
+    "resolveJsonModule": true,
     "declaration": true,
     "outDir": "./build",
-    "rootDir": "./src",
+    "rootDir": ".",
+    "baseUrl": ".",
     "composite": true,
     "sourceMap": true,
     "esModuleInterop": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "exactOptionalPropertyTypes": true,
     "removeComments": true,
-    "jsx": "react"
+    "jsx": "react-jsx",
+    "types": [
+      "@testing-library/jest-dom",
+      "jest",
+      "node"
+    ],
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
+    "src",
+    "__tests__"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "build",
+    "coverage"
   ]
 }

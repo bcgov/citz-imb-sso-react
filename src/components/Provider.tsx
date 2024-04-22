@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import { useReducer, useState } from 'react';
 import { SSOProviderProps } from '../types';
 import { initialState, reducer } from '../state/reducer';
 import { SSOWrapper } from './Wrapper';

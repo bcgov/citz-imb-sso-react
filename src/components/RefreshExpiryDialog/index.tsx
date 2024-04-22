@@ -1,5 +1,5 @@
 import './styles.css';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RefreshExpiryDialogProps } from '../../types';
 import { useSSO } from '../../state/useSSO';
 
