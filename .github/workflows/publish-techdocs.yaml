@@ -7,13 +7,13 @@ on:
         branches: [ main ]
         paths:
             - "mkdocs.yml"
-            - "docs/*"
+            - "techdocs/docs/*"
             - "catalog-info.yaml"
     pull_request:
         branches: [ main ]
         paths:
             - "mkdocs.yml"
-            - "docs/*"
+            - "techdocs/docs/*"
             - "catalog-info.yaml"
 
 jobs:
