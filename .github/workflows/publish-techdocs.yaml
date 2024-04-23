@@ -4,11 +4,6 @@ on:
     workflow_dispatch:
     release:
       types: [released]
-        branches: [ main ]
-        paths:
-            - "mkdocs.yml"
-            - "techdocs/docs/*"
-            - "catalog-info.yaml"
     pull_request:
         branches: [ main ]
         paths:
