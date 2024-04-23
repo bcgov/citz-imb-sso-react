@@ -209,9 +209,7 @@ describe('useSSO', () => {
       } as Response),
     );
 
-    const { result } = renderHook(() => useSSO(), {
-      wrapper: SSOProvider,
-    });
+    const { result } = renderHook(() => useSSO());
 
     act(() => {
       result.current.refreshToken();
