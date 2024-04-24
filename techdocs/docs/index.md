@@ -17,6 +17,7 @@ This npm package offers an integration solution for connecting React application
 > They are developed and maintained by the [CITZ IMB Common Code] team, separate from the Common Hosted Single Sign-On ([CSS]) team.  
 > See why we made these packages at [Purpose and Benefits of This Package].
 
+<br />
 
 > ### `Tip`
 > If you don't have an SSO integration check out [SSO Integration Settings].

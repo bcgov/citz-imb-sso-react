@@ -1,5 +1,5 @@
 site_name: 'CITZ IMB SSO React (NPM Package)'
-site_description: "This npm package offers an integration solution for connecting React applications requiring authentication to the B.C. government's Single Sign-On (CSS) service. It abstracts the complexity of handling SSO protocols manually. By using this package, developers can quickly implement authentication and authorization in their React applications to meet B.C. government security standards."
+site_description: "An npm package that offers an integration solution for connecting React applications requiring authentication to the B.C. government's Single Sign-On service."
 docs_dir: 'techdocs/docs'
 repo_url: 'https://github.com/bcgov/citz-imb-sso-react'
 edit_uri: edit/main/techdocs/docs
