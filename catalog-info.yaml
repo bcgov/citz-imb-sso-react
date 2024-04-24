@@ -1,11 +1,11 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: citz-imb-sso-react-helper-developers-guide
-  title: CITZ IMB SSO React Helper Developer's Guide
-  description: This npm package offers an integration solution for React
-    applications requiring authentication through the B.C. government's Single
-    Sign-On SSO (CSS) service. It abstracts the complexity of handling SSO
+  name: citz-imb-sso-react-npm-package
+  title: CITZ IMB SSO React (NPM Package)
+  description: This npm package offers an integration solution for connecting React
+    applications requiring authentication to the B.C. government's Single
+    Sign-On (CSS) service. It abstracts the complexity of handling SSO
     protocols manually. By using this package, developers can quickly implement
     authentication and authorization in their React applications to meet B.C.
     government security standards.
