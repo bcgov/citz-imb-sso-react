@@ -1,11 +1,11 @@
-# `TypeScript Types`
+# TypeScript Types
 
 These are the TypeScript types available within the package.
 
 ```TypeScript
 declare const useSSO: () => AuthService;
 
-type AuthService = {
+type AuthService = { // Type returned by useSSO().
     state: AuthState;
     isAuthenticated: boolean;
     isLoggingIn: boolean;
@@ -26,30 +26,19 @@ type AuthState = {
     userInfo?: OriginalSSOUser;
 };
 
-type SSOProviderProps = {
-    backendURL?: string;
-    idpHint?: IdentityProvider;
+type SSOProviderProps = { // Login related props are used by the default Refresh Expiry dialog.
+    backendURL?: string; // URL to the backend when not using a proxy pass, or different from /api
+    idpHint?: IdentityProvider; // Improves login process.
     children: ReactNode;
-    onRefreshExpiry?: Function;
-    overrideShowRefreshExpiryDialog?: boolean;
-    postLoginRedirectURL?: string;
-};
-
-type SSOWrapperProps = {
-    backendURL?: string;
-    children: ReactNode;
-    onRefreshExpiry?: Function;
+    onRefreshExpiry?: Function; // Custom function to run when refresh token expires.
+    overrideShowRefreshExpiryDialog?: boolean; // Used for testing the refresh expiry dialog by forcing it to show.
+    postLoginRedirectURL?: string; // URL to redirect to after login.
 };
 
 type LoginProps = {
-    backendURL?: string;
-    idpHint?: IdentityProvider;
-    postLoginRedirectURL?: string;
-};
-
-type RefreshExpiryDialogProps = {
-    isVisible: boolean;
-    loginProps?: LoginProps;
+    backendURL?: string; // URL to the backend when not using a proxy pass, or different from /api
+    idpHint?: IdentityProvider; // Improves login process.
+    postLoginRedirectURL?: string; // URL to redirect to after login.
 };
 
 type IdirIdentityProvider = 'idir';
@@ -58,7 +47,17 @@ type BceidIdentityProvider = 'bceidbasic' | 'bceidbusiness' | 'bceidboth';
 type IdentityProvider = IdirIdentityProvider | BceidIdentityProvider | GithubIdentityProvider;
 
 type HasRolesOptions = {
-    requireAllRoles?: boolean;
+    requireAllRoles?: boolean; // Set to false to not require user to have all roles in the roles array.
+};
+
+type BaseSSOUser = {
+    name?: string;
+    preferred_username: string; // Use this or guid as a unique identifier when saving users to a database.
+    email: string;
+    display_name: string;
+    client_roles?: string[]; // Preferred you use hasRoles function instead of this.
+    scope?: string;
+    identity_provider: IdirIdentityProvider | BceidIdentityProvider | GithubIdentityProvider;
 };
 
 type SSOUser = BaseSSOUser & {
@@ -66,20 +65,10 @@ type SSOUser = BaseSSOUser & {
     username: string;
     first_name: string;
     last_name: string;
-    originalData: OriginalSSOUser;
+    originalData: OriginalSSOUser; // User data before it was normalized.
 };
 
 type OriginalSSOUser = BaseSSOUser & SSOIdirUser & SSOBCeIDUser & SSOGithubUser;
-
-type BaseSSOUser = {
-    name?: string;
-    preferred_username: string;
-    email: string;
-    display_name: string;
-    client_roles?: string[];
-    scope?: string;
-    identity_provider: IdirIdentityProvider | BceidIdentityProvider | GithubIdentityProvider;
-};
 
 type SSOIdirUser = {
     idir_user_guid?: string;

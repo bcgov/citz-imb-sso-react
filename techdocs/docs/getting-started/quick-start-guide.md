@@ -1,6 +1,8 @@
-# `Quick Start Guide`
+# Quick Start Guide
 
-### `1. Add SSO Provider` 
+Set up in 3 steps.
+
+### 1. Add SSO Provider
 
 Add import for `SSOProvider` and surround your react application code with it.
 
@@ -22,20 +24,15 @@ root.render(
 );
 ```
 
->  #### Note
->
+> ### `Note`
 > SSOProvider has optional props `backendURL`, `idpHint`, `onRefreshExpiry`, and `postLoginRedirectURL`.  
-> `backendURL` is only needed if you are not using a proxy pass to the backend with `/api`.  
-> `idpHint` is a login prop of type `IdentityProvider`, and it directs the user to a login page specifically for a certain identity provider.  
-> `onRefreshExpiry` is a custom function that runs when the user's refresh token expires.  
-> `postLoginRedirectURL` is a login prop that redirects the user to a different url after login.  
-> The login props above are used by the modal that pops up when your refresh token expires.
+> See TypeScript Type SSOProviderProps for more details on usage.
 
 ---
 
 <br />
 
-### `2. Add Login and Logout` 
+### 2. Add Login and Logout
 
 Add import for `useSSO` then add the following to the top of your React functional component:
 
@@ -61,14 +58,17 @@ Conditionally render a Login or Logout button:
 )}
 ```
 
+> ### `Note`
+> login() has optional props `backendURL`, `idpHint`, and `postLoginRedirectURL`.  
+> See TypeScript Type LoginProps for more details on usage.
+
 ---
 
 <br />
 
-### `3. Proxy pass`
+### 3. Proxy pass
 
-> #### Important Note
->
+> ### `Important`
 > This package is set up to use a proxy pass to the backend by default using `/api`.  
 > This means that all traffic to `<frontend url>/api` will be directed to `<backend_url>`.  
 > If your application is not using a proxy pass, or is using a different proxy follow the steps below.

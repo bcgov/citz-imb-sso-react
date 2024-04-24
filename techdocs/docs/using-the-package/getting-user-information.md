@@ -1,6 +1,6 @@
-# `Getting User Information`
+# Getting User Information
 
-## `Checking if the user has a role`
+## Checking if the user has a role
 
 You can check if the user has a role or roles with the `hasRoles` function which can be accessed from the `useSSO` hook.
 
@@ -19,8 +19,7 @@ if (hasRoles(['Member', 'Commenter'])) // Do something...
 if (hasRoles(['Member', 'Verified'], { requireAllRoles: false })) // Do Something...
 ```
 
-> Note 
->
+> ### `Note` 
 > By default, all roles in the array will be required.  
 > If you wish to require only one of a list of roles, add the options parameter with `requireAllRoles` property set to `false`.
 
@@ -28,7 +27,7 @@ if (hasRoles(['Member', 'Verified'], { requireAllRoles: false })) // Do Somethin
 
 <br />
 
-## `Getting user data such as name and email`
+## Getting user data such as name and email
 
 Access user information from the `user` object (of type `SSOUser`) which can be accessed from the `useSSO` hook.
 
@@ -56,8 +55,7 @@ const { user } = useSSO();
 }
 ```
 
-> Note
->
+> ### `Note`
 > This user data has been normalized from the `user.originalData` data provided by SSO.  
 > For all properties of `user.originalData` which is of type `OriginalSSOUser`, reference [SSO Keycloak Wiki - Identity Provider Attribute Mapping].  
 

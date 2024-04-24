@@ -1,10 +1,10 @@
-# `SSO Integration Settings`
+# SSO Integration Settings
 
 In order to use these packages you must first have an SSO integration from the Common Hosted Single Sign-On ([CSS]) Service.
 
-If you're looking for the `SSO_CLIENT_ID`, `SSO_CLIENT_SECRET`, or `SSO_AUTH_SERVER_URL` values, you will find them as part of the `Technical Details` tab in your SSO integration dashboard.
+If you're looking for the `SSO_CLIENT_ID`, `SSO_CLIENT_SECRET`, or `SSO_AUTH_SERVER_URL` values for your `@bcgov/citz-imb-sso-express` package, you will find them as part of the `Technical Details` tab in your SSO integration dashboard.
 
-## `Requirements:`
+## Requirements:
 
 - The `Usecase` must be set to `Browser Login and Service Account`.
 - Set the `Redirect URIs` for `Development`, and `Test` environments as the `FRONTEND_URL` and `BACKEND_URL` env values followed by `/*`.

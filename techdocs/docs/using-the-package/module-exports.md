@@ -1,10 +1,10 @@
-# `Module Exports`
+# Module Exports
 
 These are the functions and types exported by the package.
 
 ```JavaScript
 import {
-  SSOProvider, // Manages the sso service in your react app.
+  SSOProvider, // Manages the sso service state in your react app.
   useSSO, // Hook used for authentication and authorization state and functions.
 } from '@bcgov/citz-imb-sso-react';
 
