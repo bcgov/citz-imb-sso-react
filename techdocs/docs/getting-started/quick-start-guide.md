@@ -68,7 +68,7 @@ Conditionally render a Login or Logout button:
 
 ### 3. Proxy pass
 
-!!! note "Important"
+!!! info "Important"
     This package is set up to use a proxy pass to the backend by default using `/api`.  
     This means that all traffic to `<frontend url>/api` will be directed to `<backend_url>`.  
     If your application is not using a proxy pass, or is using a different proxy follow the steps below.

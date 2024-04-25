@@ -1,6 +1,6 @@
 # Not Using a Proxy Pass
 
-> ### `Important`
+!!! info "Important"
 > This package is set up to use a proxy pass to the backend by default using `/api`.  
 > This means that all traffic to `<frontend url>/api` will be directed to `<backend_url>`.  
 
