@@ -19,9 +19,9 @@ if (hasRoles(['Member', 'Commenter'])) // Do something...
 if (hasRoles(['Member', 'Verified'], { requireAllRoles: false })) // Do Something...
 ```
 
-> ### `Note` 
-> By default, all roles in the array will be required.  
-> If you wish to require only one of a list of roles, add the options parameter with `requireAllRoles` property set to `false`.
+!!! note "Note"
+    By default, all roles in the array will be required.  
+    If you wish to require only one of a list of roles, add the options parameter with `requireAllRoles` property set to `false`.
 
 ---
 
@@ -55,9 +55,9 @@ const { user } = useSSO();
 }
 ```
 
-> ### `Note`
-> This user data has been normalized from the `user.originalData` data provided by SSO.  
-> For all properties of `user.originalData` which is of type `OriginalSSOUser`, reference [SSO Keycloak Wiki - Identity Provider Attribute Mapping].  
+!!! note "Note"
+    This user data has been normalized from the `user.originalData` data provided by SSO.  
+    For all properties of `user.originalData` which is of type `OriginalSSOUser`, reference [SSO Keycloak Wiki - Identity Provider Attribute Mapping].  
 
 <!-- Link References -->
 [SSO Keycloak Wiki - Identity Provider Attribute Mapping]: https://github.com/bcgov/sso-keycloak/wiki/Identity-Provider-Attribute-Mapping

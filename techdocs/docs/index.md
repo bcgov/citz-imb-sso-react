@@ -11,16 +11,16 @@ This npm package offers an integration solution for connecting React application
 
 <br />
 
-> ### `Important`
-> These packages complement, rather than replicate, Common Hosted Single Sign-On ([CSS]) or it's [example apps].  
-> They allow our own applications to integrate with the Common Hosted Single Sign-On ([CSS]) Service, providing us access to it's user management capabilities.  
-> They are developed and maintained by the [CITZ IMB Common Code] team, separate from the Common Hosted Single Sign-On ([CSS]) team.  
-> See why we made these packages at [Purpose and Benefits of This Package].
+!!! note "Important"
+    These packages complement, rather than replicate, Common Hosted Single Sign-On ([CSS]) or it's [example apps].  
+    They allow our own applications to integrate with the Common Hosted Single Sign-On ([CSS]) Service, providing us access to it's user management capabilities.  
+    They are developed and maintained by the [CITZ IMB Common Code] team, separate from the Common Hosted Single Sign-On ([CSS]) team.  
+    See why we made these packages at [Purpose and Benefits of This Package].
 
 <br />
 
-> ### `Tip`
-> If you don't have an SSO integration check out [SSO Integration Settings].
+!!! note "Tip"
+    If you don't have an SSO integration check out [SSO Integration Settings].
 
 <!-- Link References -->
 [CSS]: https://bcgov.github.io/sso-requests

@@ -24,9 +24,9 @@ root.render(
 );
 ```
 
-> ### `Note`
-> SSOProvider has optional props `backendURL`, `idpHint`, `onRefreshExpiry`, and `postLoginRedirectURL`.  
-> See TypeScript Type SSOProviderProps for more details on usage.
+!!! note "Note"
+    SSOProvider has optional props `backendURL`, `idpHint`, `onRefreshExpiry`, and `postLoginRedirectURL`.  
+    See TypeScript Type SSOProviderProps for more details on usage.
 
 ---
 
@@ -58,9 +58,9 @@ Conditionally render a Login or Logout button:
 )}
 ```
 
-> ### `Note`
-> login() has optional props `backendURL`, `idpHint`, and `postLoginRedirectURL`.  
-> See TypeScript Type LoginProps for more details on usage.
+!!! note "Note"
+    login() has optional props `backendURL`, `idpHint`, and `postLoginRedirectURL`.  
+    See TypeScript Type LoginProps for more details on usage.
 
 ---
 
@@ -68,10 +68,10 @@ Conditionally render a Login or Logout button:
 
 ### 3. Proxy pass
 
-> ### `Important`
-> This package is set up to use a proxy pass to the backend by default using `/api`.  
-> This means that all traffic to `<frontend url>/api` will be directed to `<backend_url>`.  
-> If your application is not using a proxy pass, or is using a different proxy follow the steps below.
+!!! note "Important"
+    This package is set up to use a proxy pass to the backend by default using `/api`.  
+    This means that all traffic to `<frontend url>/api` will be directed to `<backend_url>`.  
+    If your application is not using a proxy pass, or is using a different proxy follow the steps below.
 
 To set up a proxy using `vite` and `nginx` see [Setting Up a Proxy Pass](https://github.com/bcgov/citz-imb-sso-react/techdocs/docs/Getting-Started/Proxy-Pass/Setting-Up-a-Proxy-Pass.md).
 
