@@ -19,7 +19,7 @@ This npm package offers an integration solution for connecting React application
 
 <br />
 
-!!! note "Tip"
+!!! tip "Tip"
     If you don't have an SSO integration check out [SSO Integration Settings].
 
 <!-- Link References -->
