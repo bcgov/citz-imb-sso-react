@@ -14,6 +14,7 @@ import { AuthContext } from '../context';
  * @property {Function} [onRefreshExpiry] - Function to call when refresh token expires.
  * @property {boolean} [overrideShowRefreshExpiryDialog] - Show RefreshExpiryDialog.
  * @property {string} [postLoginRedirectURL] - Redirect url after login.
+ * @property {number} [refreshExpiresInOffset] - Offset for when onRefreshExpiry is called (seconds).
  */
 export const SSOProvider = (props: SSOProviderProps) => {
   const {
@@ -23,6 +24,7 @@ export const SSOProvider = (props: SSOProviderProps) => {
     onRefreshExpiry,
     overrideShowRefreshExpiryDialog,
     postLoginRedirectURL,
+    refreshExpiresInOffset,
   } = props;
   const [isExpiryDialogVisible, setIsExpiryDialogVisible] = useState(false);
 
@@ -36,6 +38,7 @@ export const SSOProvider = (props: SSOProviderProps) => {
         onRefreshExpiry={
           onRefreshExpiry ? () => onRefreshExpiry() : () => setIsExpiryDialogVisible(true)
         }
+        refreshExpiresInOffset={refreshExpiresInOffset}
       >
         {children}
       </SSOWrapper>

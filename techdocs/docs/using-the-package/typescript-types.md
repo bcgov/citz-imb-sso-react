@@ -33,6 +33,7 @@ type SSOProviderProps = { // Login related props are used by the default Refresh
     onRefreshExpiry?: Function; // Custom function to run when refresh token expires.
     overrideShowRefreshExpiryDialog?: boolean; // Used for testing the refresh expiry dialog by forcing it to show.
     postLoginRedirectURL?: string; // URL to redirect to after login.
+    refreshExpiresInOffset?: number; // Offset for when onRefreshExpiry is called (seconds).
 };
 
 type LoginProps = {

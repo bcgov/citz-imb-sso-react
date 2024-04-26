@@ -10,11 +10,13 @@ export type SSOProviderProps = {
   onRefreshExpiry?: Function;
   overrideShowRefreshExpiryDialog?: boolean;
   postLoginRedirectURL?: string;
+  refreshExpiresInOffset?: number;
 };
 export type SSOWrapperProps = {
   backendURL?: string | undefined;
   children: ReactNode;
   onRefreshExpiry?: Function;
+  refreshExpiresInOffset?: number | undefined;
 };
 export type LoginProps = {
   backendURL?: string | undefined;
