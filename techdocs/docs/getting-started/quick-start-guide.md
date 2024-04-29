@@ -73,7 +73,7 @@ Conditionally render a Login or Logout button:
     This means that all traffic to `<frontend url>/api` will be directed to `<backend_url>`.  
     If your application is not using a proxy pass, or is using a different proxy follow the steps below.
 
-To set up a proxy using `vite` and `nginx` see [Setting Up a Proxy Pass](/docs/default/component/citz-imb-sso-react-npm-package/getting-started/proxy-pass/setting-up-a-proxy-pass.md).
+To set up a proxy using `vite` and `nginx` see [Setting Up a Proxy Pass](./proxy-pass/setting-up-a-proxy-pass.md).
 
-To set up the package to work without a proxy pass or to work with a proxy pass different from `/api` see [Not Using a Proxy Pass](/techdocs/docs/getting-started/proxy-pass/not-using-a-proxy-pass.md).
+To set up the package to work without a proxy pass or to work with a proxy pass different from `/api` see [Not Using a Proxy Pass](../getting-started/proxy-pass/not-using-a-proxy-pass.md).
 
