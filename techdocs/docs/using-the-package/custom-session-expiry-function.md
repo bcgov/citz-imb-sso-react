@@ -1,8 +1,8 @@
 # Custom Refresh Expiry Function
 
-> ### `Note`
-> By default, when a refresh token expires, the user will be prompted to re-log or continue their session by the `RefreshExpiryDialog`.  
-> This can be swapped out for a custom solution by adding a `onRefreshExpiry` prop to `SSOProvider`.
+!!! note "Note"
+    By default, when a refresh token expires, the user will be prompted to re-log or continue their session by the `RefreshExpiryDialog`.  
+    This can be swapped out for a custom solution by adding a `onRefreshExpiry` prop to `SSOProvider`.
 
 #### `Example`
 

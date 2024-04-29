@@ -8,10 +8,10 @@ We created these packages to integrate with the Common Hosted Single Sign-On ([C
 
 <br />
 
-> ### `Important`
-> These packages complement, rather than replicate, Common Hosted Single Sign-On ([CSS]) or it's [example apps].  
-> They allow our own applications to integrate with the Common Hosted Single Sign-On ([CSS]) Service, providing us access to it's user management capabilities.  
-> They are developed and maintained by the [CITZ IMB Common Code] team, separate from the Common Hosted Single Sign-On ([CSS]) team.  
+!!! warning "Important"
+    These packages complement, rather than replicate, Common Hosted Single Sign-On ([CSS]) or it's [example apps].  
+    They allow our own applications to integrate with the Common Hosted Single Sign-On ([CSS]) Service, providing us access to it's user management capabilities.  
+    They are developed and maintained by the [CITZ IMB Common Code] team, separate from the Common Hosted Single Sign-On ([CSS]) team.  
 
 ---
 
@@ -21,8 +21,8 @@ We created these packages to integrate with the Common Hosted Single Sign-On ([C
 
 To boost security, efficiency, and maintainability in our React/Express applications, we've created custom npm packages for seamless integration with the Common Hosted Single Sign-On ([CSS]) Service, leveraging its user management capabilities.
 
-> ### `Note`
-> Our packages are intentionally designed to cater specifically to the unique requirements of our products in CITZ. We place a particular emphasis on addressing the needs of CITZ IMB products initially.
+!!! note "Note"
+    Our packages are intentionally designed to cater specifically to the unique requirements of our products in CITZ. We place a particular emphasis on addressing the needs of CITZ IMB products initially.
 
 <br />
 
