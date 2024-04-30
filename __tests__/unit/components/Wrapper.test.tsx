@@ -1,6 +1,6 @@
 import { render, act } from '@testing-library/react';
 import { createUseSSOMock, mockUseSSO, resetUseSSOMock } from '../../__mocks__';
-import { SSOProvider, useSSO } from '@/index';
+import { SSOProvider, SSOWrapper, useSSO } from '@/index';
 
 // This component is used to test the useSSO hook by providing a context and UI elements for interaction.
 function TestComponent() {
@@ -51,7 +51,7 @@ describe('SSOWrapper', () => {
 
     // Expect window.location.href to be set with the correct URL
     expect(window.location.href).toContain(
-      '/api/auth/login?post_login_redirect_url=http%3A%2F%2Flocalhost',
+      '/api/auth/login?post_login_redirect_url=http%3A%2F%2Flocalhost&idp=idir',
     );
   });
 
@@ -77,14 +77,14 @@ describe('SSOWrapper', () => {
 
     // Expect window.location.href to be set with the correct URL
     expect(window.location.href).toContain(
-      '/api/auth/login?post_login_redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fredirect&idp=idir',
+      '/api/auth/login?post_login_redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fredirect%3Frefresh_expires_in%3D300&idp=idir',
     );
   });
 
-  // Test case: login function with params
-  it('calls login with parameters and redirects correctly', () => {
+  // Test case: login function with params and redirect doesnt start with /
+  it('calls login with parameters and redirects correctly, and redirect doesnt start with /', () => {
     const mockLocation = {
-      href: 'http://localhost:3000?refresh_expires_in=300&post_login_redirect_url=http://localhost:4000',
+      href: 'http://localhost:3000?refresh_expires_in=300&post_login_redirect_url=http://localhost:3000/redirect',
       assign: jest.fn(),
     };
 
@@ -103,7 +103,28 @@ describe('SSOWrapper', () => {
 
     // Expect window.location.href to be set with the correct URL
     expect(window.location.href).toContain(
-      '/api/auth/login?post_login_redirect_url=http%3A%2F%2Flocalhost%3A4000&idp=idir',
+      '/api/auth/login?post_login_redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fredirect%3Frefresh_expires_in%3D300&idp=idir',
     );
+  });
+
+  // Test case: onRefreshExpiry prop is not defined
+  it('does not throw error when onRefreshExpiry prop is not defined', () => {
+    const mockLocation = {
+      href: 'http://localhost:3000?refresh_expires_in=300&post_login_redirect_url=/redirect',
+      assign: jest.fn(),
+    };
+
+    Object.defineProperty(window, 'location', {
+      value: mockLocation,
+      writable: true,
+    });
+
+    // Render the component without onRefreshExpiry prop
+    render(
+      <SSOWrapper backendURL="http://example.com">
+        <div>Test</div>
+      </SSOWrapper>,
+    );
+    // No need to assert anything, just ensure it doesn't throw
   });
 });
