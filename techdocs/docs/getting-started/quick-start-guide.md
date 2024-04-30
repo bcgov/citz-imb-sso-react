@@ -60,7 +60,7 @@ Conditionally render a Login or Logout button:
 
 !!! note "Note"
     login() has optional props `backendURL`, `idpHint`, and `postLoginRedirectURL`.  
-    See TypeScript Type LoginProps for more details on usage.
+    See [TypeScript Type](../using-the-package/typescript-types.md) LoginProps for more details on usage.
 
 ---
 
