@@ -9,7 +9,7 @@ describe('SSOProvider', () => {
   beforeEach(() => {
     // Mock window.location
     const mockLocation = {
-      href: 'http://localhost:3000?refresh_expires_in=1&post_login_redirect_url=/redirect',
+      href: 'http://localhost:3000?refresh_expires_in=1',
       assign: jest.fn(),
     };
 
@@ -17,6 +17,9 @@ describe('SSOProvider', () => {
       value: mockLocation,
       writable: true,
     });
+
+    // Mock window.history.replaceState
+    jest.spyOn(window.history, 'replaceState').mockImplementation(() => {});
   });
 
   // Test case: calls setIsExpiryDialogVisible when onRefreshExpiry is not specified
@@ -45,12 +48,12 @@ describe('SSOProvider', () => {
   });
 
   // Test case: calls onRefreshExpiry when onRefreshExpiry is specified
-  it('calls onRefreshExpiry when onRefreshExpiry isspecified', () => {
+  it('calls onRefreshExpiry when onRefreshExpiry is specified', () => {
     jest.useFakeTimers(); // Mock the timers
 
     const onRefreshExpiryMock = jest.fn();
 
-    // Render the SSOProvider without the onRefreshExpiry prop
+    // Render the SSOProvider with the onRefreshExpiry prop
     render(
       <SSOProvider onRefreshExpiry={onRefreshExpiryMock}>
         <MockChildComponent />
@@ -62,7 +65,7 @@ describe('SSOProvider', () => {
       jest.runAllTimers();
     });
 
-    // Expect setTimeout to have been called
+    // Expect onRefreshExpiry to have been called
     expect(onRefreshExpiryMock).toHaveBeenCalled();
 
     jest.useRealTimers(); // Restore the real timers

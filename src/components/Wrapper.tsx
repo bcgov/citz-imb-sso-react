@@ -5,7 +5,7 @@ import { SSOWrapperProps } from '../types';
 export const SSOWrapper = (props: SSOWrapperProps) => {
   const { children, backendURL, onRefreshExpiry = () => {}, refreshExpiresInOffset = 0 } = props;
 
-  const { refreshToken, isAuthenticated } = useSSO();
+  const { refreshToken, setIsLoggingIn, isAuthenticated } = useSSO();
 
   // Initialize token and userInfo state after login or refresh.
   useEffect(() => {
@@ -18,6 +18,8 @@ export const SSOWrapper = (props: SSOWrapperProps) => {
       // POST LOGIN - refresh_expires_in & post_login_redirect_url are set.
       const post_login_redirect_url = params.get('post_login_redirect_url');
       const refresh_expires_in = Number(params.get('refresh_expires_in'));
+
+      setIsLoggingIn();
 
       // Update the URL.
       if (post_login_redirect_url?.startsWith('/')) {

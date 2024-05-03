@@ -48,6 +48,10 @@ export const useSSO = (): AuthService => {
     const isAuthenticated = Boolean(state?.isAuthenticated);
     const isLoggingIn = Boolean(state?.isLoggingIn);
 
+    const setIsLoggingIn = () => {
+      dispatch({ type: ATTEMPT_LOGIN });
+    };
+
     const login = (props?: LoginProps) => {
       const {
         backendURL = '/api',
@@ -121,6 +125,7 @@ export const useSSO = (): AuthService => {
       login,
       logout,
       refreshToken,
+      setIsLoggingIn,
       state,
       isAuthenticated,
       isLoggingIn,
