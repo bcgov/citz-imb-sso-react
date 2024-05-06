@@ -15,16 +15,14 @@ This npm package offers an integration solution for connecting React application
     These packages complement, rather than replicate, Common Hosted Single Sign-On ([CSS]) or it's [example apps].  
     They allow our own applications to integrate with the Common Hosted Single Sign-On ([CSS]) Service, providing us access to it's user management capabilities.  
     They are developed and maintained by the [CITZ IMB Common Code] team, separate from the Common Hosted Single Sign-On ([CSS]) team.  
-    See why we made these packages at [Purpose and Benefits of This Package](purpose-and-benefits.md).
+    See why we made these packages at [Purpose and Benefits of This Package](./purpose-and-benefits.md).
 
 !!! tip "Tip"
-    If you don't have an SSO integration check out [SSO Integration Settings].
+    If you don't have an SSO integration check out [SSO Integration Settings](./getting-started/sso-integration-settings.md).
 
 <!-- Link References -->
 [CSS]: https://bcgov.github.io/sso-requests
 [@bcgov/citz-imb-sso-express]: https://github.com/bcgov/citz-imb-sso-express
-[GitHub Repository]: https://github.com/bcgov/citz-imb-sso-react
 [NPM Package]: https://www.npmjs.com/package/@bcgov/citz-imb-sso-react
 [example apps]: https://github.com/bcgov/keycloak-example-apps
 [CITZ IMB Common Code]: mailto:citz.codemvp@gov.bc.ca?subject=SSO%20Packages%20Support
-[SSO Integration Settings]: https://github.com/bcgov/citz-imb-sso-react/wiki/12-SSO-Integration-Settings
