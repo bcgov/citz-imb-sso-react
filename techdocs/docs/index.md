@@ -2,6 +2,8 @@
 <!-- This file is the homepage of your documentation. It is mandatory and must not be deleted. --->
 ## Overview
 
+<!---will this trigger new build?--->
+
 This npm package offers an integration solution for connecting React applications requiring authentication to the B.C. government's Single Sign-On ([CSS]) service. It abstracts the complexity of handling SSO protocols manually. By using this package, developers can quickly implement authentication and authorization in their React applications to meet B.C. government security standards.
 
 - Built for a NodeJS:20 React app.
