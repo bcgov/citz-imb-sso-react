@@ -18,6 +18,7 @@ nav:
       - Custom Session Expiry Function: using-the-package/custom-session-expiry-function.md
       - Module Exports: using-the-package/module-exports.md
       - TypeScript Types: using-the-package/typescript-types.md
+      - Troubleshooting: using-the-package/troubleshooting.md
   - Purpose and Benefits of this Package: purpose-and-benefits.md
   - Authentication Flow: authentication-flow.md
 
