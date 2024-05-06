@@ -20,7 +20,7 @@ nav:
       - TypeScript Types: using-the-package/typescript-types.md
       - Troubleshooting: using-the-package/troubleshooting.md
   - Purpose and Benefits of this Package: purpose-and-benefits.md
-  - Authentication Flow: authentication-flow.md
+  - Authentication Flow: ./authentication-flow.md
 
 plugins:
   - techdocs-core
