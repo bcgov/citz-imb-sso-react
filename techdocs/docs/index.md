@@ -8,7 +8,7 @@ This npm package offers an integration solution for connecting React application
 - For [CSS] Gold Standard with usecase set as `Browser Login and Service Account`.
 - Works with Vanilla JavaScript or TypeScript 5.
 - For use with an Express API using [@bcgov/citz-imb-sso-express]
-
+    
 <br />
 
 !!! warning "Important"
