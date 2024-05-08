@@ -4,6 +4,12 @@ on:
     workflow_dispatch:
     release:
       types: [released]
+    push:
+        branches: [ main ]
+        paths:
+            - "mkdocs.yml"
+            - "techdocs/docs/*"
+            - "catalog-info.yaml"
     pull_request:
         branches: [ main ]
         paths:
@@ -26,7 +32,7 @@ jobs:
                 id: build_and_publish
                 with:
                     publish: 'true' 
-                    production:  ${{ github.event_name == 'release' }} # example of only pushing to prod DevHub when changes that triggered the job are in main branch
+                    production:  ${{ github.ref == 'refs/heads/main' && 'true' || 'false' }}
                     bucket_name: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
                     s3_access_key_id: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
                     s3_secret_access_key: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
