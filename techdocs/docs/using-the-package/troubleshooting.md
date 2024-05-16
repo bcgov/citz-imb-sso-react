@@ -37,3 +37,8 @@ If you can't resolve the problem yourself, open a [Bug Report](https://github.co
 ### Login Doesn't Work in ________ OpenShift Environment
 
 Each SSO Environment has it's own `SSO_CLIENT_SECRET` and `SSO_AUTH_SERVER_URL` environment variables. If login works locally and in your DEV environment but not in TEST or PROD, it's likely that one of these values is incorrect.
+
+This may also show up as a `Invalid redirect_uri` error when trying to login. In this case, make sure you have set up the redirect uri's as specified in [SSO Integration Settings](../getting-started/sso-integration-settings.md) and that the `SSO_AUTH_SERVER_URL` is correct for Test and Prod environments.
+
+For `TEST` this is likely `https://test.loginproxy.gov.bc.ca/auth/realms/standard/protocol/openid-connect`  
+For `PROD` this is likely `https://loginproxy.gov.bc.ca/auth/realms/standard/protocol/openid-connect`
