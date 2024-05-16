@@ -5,7 +5,7 @@ import { SSOWrapperProps } from '../types';
 export const SSOWrapper = (props: SSOWrapperProps) => {
   const { children, backendURL, onRefreshExpiry = () => {}, refreshExpiresInOffset = 0 } = props;
 
-  const { refreshToken, setIsLoggingIn, isAuthenticated } = useSSO();
+  const { refreshToken, isAuthenticated, user } = useSSO();
 
   // Initialize token and userInfo state after login or refresh.
   useEffect(() => {
@@ -19,7 +19,8 @@ export const SSOWrapper = (props: SSOWrapperProps) => {
       const post_login_redirect_url = params.get('post_login_redirect_url');
       const refresh_expires_in = Number(params.get('refresh_expires_in'));
 
-      setIsLoggingIn();
+      // Set session state.
+      sessionStorage.setItem('citz-imb-sso-logging-in', 'true');
 
       // Update the URL.
       if (post_login_redirect_url?.startsWith('/')) {
@@ -44,7 +45,7 @@ export const SSOWrapper = (props: SSOWrapperProps) => {
       }
 
       // Call refreshToken if user is not authenticated.
-      if (!isAuthenticated) {
+      if (!isAuthenticated || !user) {
         console.info('SSO React: Retrieving user details.');
         refreshToken(backendURL);
       }

@@ -22,6 +22,26 @@ const mockedFetch = jest.fn().mockResolvedValue({
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (global as any).fetch = mockedFetch;
 
+// Mock sessionStorage
+const sessionStorageMock = (() => {
+  let store: { [key: string]: string } = {};
+  return {
+    getItem(key: string) {
+      return store[key] || null;
+    },
+    setItem(key: string, value: string) {
+      store[key] = value;
+    },
+    clear() {
+      store = {};
+    },
+    removeItem(key: string) {
+      delete store[key];
+    },
+  };
+})();
+Object.defineProperty(window, 'sessionStorage', { value: sessionStorageMock });
+
 // This component is used to test the useSSO hook by providing a context and UI elements for interaction.
 function TestComponent() {
   const ssoService = useSSO();
@@ -51,8 +71,6 @@ describe('useSSO', () => {
     jest.spyOn(React, 'useContext').mockImplementation(() =>
       createMockAuthContextValue({
         state: {
-          isAuthenticated: false,
-          isLoggingIn: false,
           accessToken: 'dummy_access_token',
           userInfo: mockOriginalSSOUserIDIR,
           idToken: 'dummy_id_token',
@@ -161,6 +179,8 @@ describe('useSSO', () => {
       writable: true,
     });
 
+    sessionStorage.setItem('citz-imb-sso-authenticated', 'true');
+
     const { getByText } = render(<TestComponent />);
     act(() => {
       getByText('Logout').click();
@@ -201,7 +221,7 @@ describe('useSSO', () => {
   });
 
   // Test case: refreshToken handles API error gracefully
-  it('handles API error gracefully', async () => {
+  it('refreshToken handles API error gracefully', async () => {
     jest.spyOn(global, 'fetch').mockImplementationOnce(() =>
       Promise.resolve({
         ok: false,
@@ -215,6 +235,27 @@ describe('useSSO', () => {
       result.current.refreshToken();
     });
 
-    expect(result.current.state.isAuthenticated).toBeFalsy();
+    expect(sessionStorage.getItem('citz-imb-sso-authenticated')).toBeNull();
+  });
+
+  // Test case: user has no roles
+  it('returns false when user has no roles', () => {
+    // Mock user without roles
+    mockDispatch = jest.fn();
+    const mockUserWithoutRoles = mockOriginalSSOUserIDIR;
+    mockUserWithoutRoles.client_roles = undefined as unknown as string[];
+    jest.spyOn(React, 'useContext').mockImplementation(() =>
+      createMockAuthContextValue({
+        state: {
+          accessToken: 'dummy_access_token',
+          userInfo: mockUserWithoutRoles,
+          idToken: 'dummy_id_token',
+        },
+        dispatch: mockDispatch,
+      }),
+    );
+
+    const { result } = renderHook(() => useSSO());
+    expect(result.current.hasRoles(['admin'])).toBe(false);
   });
 });

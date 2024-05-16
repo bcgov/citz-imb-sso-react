@@ -12,10 +12,7 @@ export const createUseSSOMock = (overrides: Partial<AuthService> = {}): AuthServ
   hasRoles: jest.fn(),
   getAuthorizationHeaderValue: jest.fn(),
   fetchProtectedRoute: jest.fn(),
-  setIsLoggingIn: jest.fn(),
   state: {
-    isAuthenticated: false,
-    isLoggingIn: false,
     accessToken: '',
     idToken: '',
     userInfo: mockOriginalSSOUserIDIR,
