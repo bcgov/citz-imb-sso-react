@@ -44,7 +44,7 @@ on:
     inputs:
       releaseTitle: # Release title shows in GitHub Releases tab.
         description: 'The title of the release'
-        required: true
+        required: false # Only required if versionTag === 'release'
       versionChange: # How much to increment the version number by.
         description: 'Increment version by...'
         required: true
@@ -69,6 +69,13 @@ jobs:
   version_change:
     runs-on: ubuntu-latest
     steps:
+      # Validate inputs
+      - name: Validate inputs
+        if: ${{ github.event.inputs.versionTag == 'release' && !github.event.inputs.releaseTitle }}
+        run: |
+          echo "Error: 'releaseTitle' is required when 'versionTag' == 'release'."
+          exit 1
+
       # Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
