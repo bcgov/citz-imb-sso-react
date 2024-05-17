@@ -81,31 +81,16 @@ jobs:
         uses: actions/checkout@v4
 
       # CONDITIONAL: Bump patch version
-      - name: Bump version in package.json by patch
-        if: ${{ github.event.inputs.versionChange == 'patch' }}
-        run: npm run bump:patch
-
-      # CONDITIONAL: Bump minor version
-      - name: Bump version in package.json by minor
-        if: ${{ github.event.inputs.versionChange == 'minor' }}
-        run: npm run bump:minor
-
-      # CONDITIONAL: Bump major version
-      - name: Bump version in package.json by major
-        if: ${{ github.event.inputs.versionChange == 'major' }}
-        run: npm run bump:major
+      - name: Bump version in package.json
+        if: ${{ github.event.inputs.versionChange != 'none' }}
+        run: npm run bump:${{ github.event.inputs.versionChange }}
 
       # If versionChnage === 'none', version will not be bumped.
 
-      # CONDITIONAL: Add or increment beta tag
-      - name: Add or increment beta tag in package.json
-        if: ${{ github.event.inputs.versionTag == 'beta' }}
-        run: npm run tag:beta
-
-      # CONDITIONAL: Add or increment rc tag
-      - name: Add or increment rc tag in package.json
-        if: ${{ github.event.inputs.versionTag == 'rc' }}
-        run: npm run tag:rc
+      # CONDITIONAL: Add or increment tag
+      - name: Add or increment tag in package.json
+        if: ${{ github.event.inputs.versionTag != 'release' }}
+        run: npm run tag:${{ github.event.inputs.versionTag }}
 
       # CONDITIONAL: Remove tag
       - name: Remove version tag in package.json
@@ -135,22 +120,13 @@ jobs:
       - name: Run npm pack
         run: npm run pack
 
-      # CONDITIONAL: Publish package to NPM with beta tag
-      - name: Publish to npm with beta tag
+      # CONDITIONAL: Publish package to NPM with tag
+      - name: Publish to npm with tag
         uses: JS-DevTools/npm-publish@v3
-        if: ${{ github.event.inputs.versionTag == 'beta' }}
+        if: ${{ github.event.inputs.versionTag != 'release' }}
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          tag: beta
-          access: public
-
-      # CONDITIONAL: Publish package to NPM with rc tag
-      - name: Publish to npm with rc tag
-        uses: JS-DevTools/npm-publish@v3
-        if: ${{ github.event.inputs.versionTag == 'rc' }}
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          tag: rc
+          tag: ${{ github.event.inputs.versionTag }}
           access: public
 
       # CONDITIONAL: Publish package to NPM without tag (official release)
