@@ -100,12 +100,12 @@ jobs:
       # CONDITIONAL: Add or increment beta tag
       - name: Add or increment beta tag in package.json
         if: ${{ github.event.inputs.versionTag == 'beta' }}
-        run: npm run add-tag:beta
+        run: npm run tag:beta
 
       # CONDITIONAL: Add or increment rc tag
       - name: Add or increment rc tag in package.json
         if: ${{ github.event.inputs.versionTag == 'rc' }}
-        run: npm run add-tag:rc
+        run: npm run tag:rc
 
       # CONDITIONAL: Remove tag
       - name: Remove version tag in package.json
