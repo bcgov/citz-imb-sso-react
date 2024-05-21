@@ -55,7 +55,6 @@ export type AuthService = {
   refreshToken: (backendURL?: string) => Promise<void>;
   login: (options?: LoginProps) => void;
   logout: (backendURL?: string) => void;
-  setIsLoggingIn: () => void;
 };
 
 export type AuthAction = {
@@ -68,8 +67,6 @@ export type AuthAction = {
 };
 
 export type AuthState = {
-  isLoggingIn: boolean;
-  isAuthenticated: boolean;
   accessToken?: string | undefined;
   idToken?: string | undefined;
   userInfo?: OriginalSSOUser | undefined;

@@ -4,7 +4,7 @@ import { decodeJWT, hasAllRoles, hasAtLeastOneRole, normalizeUser } from '../uti
 import { AuthService, CustomRequestInit, HasRolesOptions, LoginProps } from '../types';
 import { AuthActionType } from './reducer';
 
-const { ATTEMPT_LOGIN, LOGOUT, UNAUTHORIZED, REFRESH_TOKEN } = AuthActionType;
+const { LOGOUT, REFRESH_TOKEN } = AuthActionType;
 
 /**
  * A custom hook that provides authentication-related functionality to other components.
@@ -45,12 +45,9 @@ export const useSSO = (): AuthService => {
     };
 
     // Is the user authenticated
-    const isAuthenticated = Boolean(state?.isAuthenticated);
-    const isLoggingIn = Boolean(state?.isLoggingIn);
-
-    const setIsLoggingIn = () => {
-      dispatch({ type: ATTEMPT_LOGIN });
-    };
+    const isAuthenticated =
+      sessionStorage.getItem('citz-imb-sso-authenticated') === 'true' ? true : false;
+    const isLoggingIn = sessionStorage.getItem('citz-imb-sso-logging-in') === 'true' ? true : false;
 
     const login = (props?: LoginProps) => {
       const {
@@ -64,8 +61,8 @@ export const useSSO = (): AuthService => {
       queryParams.append('post_login_redirect_url', postLoginRedirectURL);
       if (idpHint) queryParams.append('idp', idpHint);
 
-      // Update state.
-      dispatch({ type: ATTEMPT_LOGIN });
+      // Update session state.
+      sessionStorage.setItem('citz-imb-sso-logging-in', 'true');
 
       // Redirect to login route.
       window.location.href = `${backendURL}/auth/login?${queryParams.toString()}`;
@@ -73,6 +70,9 @@ export const useSSO = (): AuthService => {
 
     const logout = (backendURL?: string) => {
       dispatch({ type: LOGOUT });
+
+      // Update session state.
+      sessionStorage.clear();
 
       // Redirect to logout route.
       window.location.href = `${backendURL ?? '/api'}/auth/logout?id_token=${state?.idToken}`;
@@ -93,7 +93,7 @@ export const useSSO = (): AuthService => {
 
         // Exit if response isn't 200.
         if (!response.ok) {
-          if (response.status === 401) dispatch({ type: UNAUTHORIZED });
+          sessionStorage.clear();
           return;
         }
 
@@ -105,6 +105,10 @@ export const useSSO = (): AuthService => {
         if (!access_token || !id_token || !expires_in) return;
 
         const userInfo = decodeJWT(access_token);
+
+        // Set session state.
+        sessionStorage.setItem('citz-imb-sso-authenticated', 'true');
+        sessionStorage.setItem('citz-imb-sso-logging-in', 'false');
 
         dispatch({
           type: REFRESH_TOKEN,
@@ -125,7 +129,6 @@ export const useSSO = (): AuthService => {
       login,
       logout,
       refreshToken,
-      setIsLoggingIn,
       state,
       isAuthenticated,
       isLoggingIn,
