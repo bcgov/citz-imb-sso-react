@@ -82,7 +82,7 @@ jobs:
         with:
           persist-credentials: false
 
-      # CONDITIONAL: Bump patch version
+      # CONDITIONAL: Bump version
       - name: Bump version in package.json
         if: ${{ github.event.inputs.versionChange != 'none' }}
         run: npm run bump:${{ github.event.inputs.versionChange }}
