@@ -79,6 +79,8 @@ jobs:
       # Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       # CONDITIONAL: Bump patch version
       - name: Bump version in package.json
@@ -99,13 +101,15 @@ jobs:
 
       # Commit changes to the package.json
       - name: Commit changes to repo
+        env:
+          PAT_TOKEN: ${{ secrets.GIT_PERSONAL_ACCESS_TOKEN }}
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
           git add .
           echo "Pushing changes to package version"
           git commit -m "Bumping version by ${{ github.event.inputs.versionChange }} and updating tag by ${{ github.event.inputs.versionTag }}"
-          git remote set-url origin https://x-access-token:${{ secrets.GIT_PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
+          git remote set-url origin https://x-access-token:${{ secrets.GIT_PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}
           git push origin main
 
   # UNPUBLISHING NOTE: 
