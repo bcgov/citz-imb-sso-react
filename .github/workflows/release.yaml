@@ -87,7 +87,7 @@ jobs:
         if: ${{ github.event.inputs.versionChange != 'none' }}
         run: npm run bump:${{ github.event.inputs.versionChange }}
 
-      # If versionChnage === 'none', version will not be bumped.
+      # If versionChange === 'none', version will not be bumped.
 
       # CONDITIONAL: Add or increment tag
       - name: Add or increment tag in package.json
