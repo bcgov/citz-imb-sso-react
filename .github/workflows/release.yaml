@@ -107,6 +107,7 @@ jobs:
           git add .
           echo "Pushing changes to package version"
           git commit -m "Bumping version by ${{ github.event.inputs.versionChange }} and updating tag by ${{ github.event.inputs.versionTag }}"
+          git pull --rebase origin main
           git push
 
   # UNPUBLISHING NOTE: 
