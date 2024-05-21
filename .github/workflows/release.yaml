@@ -99,15 +99,14 @@ jobs:
 
       # Commit changes to the package.json
       - name: Commit changes to repo
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_PERSONAL_ACCESS_TOKEN }}
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
           git add .
           echo "Pushing changes to package version"
           git commit -m "Bumping version by ${{ github.event.inputs.versionChange }} and updating tag by ${{ github.event.inputs.versionTag }}"
-          git push
+          git remote set-url origin https://x-access-token:${GIT_PERSONAL_ACCESS_TOKEN}@github.com/${{ github.repository }}.git
+          git push origin main
 
   # UNPUBLISHING NOTE: 
   # If you need to unpublish a package version for any reason, you must do so within 72 hours
