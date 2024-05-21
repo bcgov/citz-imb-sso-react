@@ -109,8 +109,15 @@ jobs:
           git commit -m "Bumping version by ${{ github.event.inputs.versionChange }} and updating tag by ${{ github.event.inputs.versionTag }}"
           git push
 
+  # UNPUBLISHING NOTE: 
+  # If you need to unpublish a package version for any reason, you must do so within 72 hours
+  # of the version being published. To do so, use 'npm login' to login to the 'citzcodemvp' account
+  # and then run 'npm unpublish @bcgov/<package-name>@<version>' where <package-name> and <version>
+  # have been replaced.
+
   npm_publish:
     runs-on: ubuntu-latest
+    needs: version_change
     steps:
       # Checkout code
       - name: Checkout repository
@@ -139,6 +146,7 @@ jobs:
           
   create_github_release:
     runs-on: ubuntu-latest
+    needs: npm_publish
     steps:
       # Checkout code
       - name: Checkout repository
