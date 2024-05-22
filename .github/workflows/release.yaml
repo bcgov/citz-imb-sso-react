@@ -69,8 +69,8 @@ jobs:
   version_change:
     runs-on: ubuntu-latest
     steps:
-      # Validate release input
-      - name: Validate release input
+      # Validate release input for release title
+      - name: Validate release input for release title
         if: ${{ github.event.inputs.versionTag == 'release' && !github.event.inputs.releaseTitle }}
         run: |
           echo "Error: 'releaseTitle' is required when 'versionTag' == 'release'."
@@ -82,12 +82,30 @@ jobs:
         with:
           persist-credentials: false
 
-      # CONDITIONAL: Bump version
+      # CONDITIONAL: Bump version (if versionChange === 'none', version will not be bumped)
       - name: Bump version in package.json
         if: ${{ github.event.inputs.versionChange != 'none' }}
         run: npm run bump:${{ github.event.inputs.versionChange }}
 
-      # If versionChange === 'none', version will not be bumped.
+      # Get new version number
+      - name: Get the version from package.json
+        id: package_version
+        run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
+
+      # Get package name
+      - name: Get the package name from package.json
+        id: package_name
+        run: echo "::set-output name=PACKAGE_NAME::$(node -p "require('./package.json').name")"
+
+      # CONDITIONAL: Validate rc input
+      - name: Validate rc input
+        if: ${{ github.event.inputs.versionTag == 'rc' }}
+        run: node .github/helpers/package-release/validate-for-rc-tag.cjs ${{ steps.package_name.outputs.PACKAGE_NAME }} ${{ steps.package_version.outputs.VERSION }}
+
+      # CONDITIONAL: Validate release input
+      - name: Validate release input
+        if: ${{ github.event.inputs.versionTag == 'release' }}
+        run: node .github/helpers/package-release/validate-for-release-tag.cjs ${{ steps.package_name.outputs.PACKAGE_NAME }} ${{ steps.package_version.outputs.VERSION }}
 
       # CONDITIONAL: Add or increment tag
       - name: Add or increment tag in package.json
@@ -129,16 +147,6 @@ jobs:
       # Get latest changes
       - name: Get latest changes
         run: git pull
-
-      # Get new version number
-      - name: Get the version from package.json
-        id: package_version
-        run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
-
-      # Validate rc input so it can only be used for major versions
-      - name: Validate rc input
-        if: ${{ github.event.inputs.versionTag == 'rc' }}
-        run: node .github/helpers/package-release/validate-for-rc-tag.cjs ${{ steps.package_version.outputs.VERSION }}
 
       # Package code
       - name: Run npm pack

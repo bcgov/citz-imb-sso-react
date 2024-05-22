@@ -1,9 +1,16 @@
+const { checkNPMForBetaVersion } = require('./check-npm-for-beta-version.cjs');
+
 /**
- * Validates version number when adding the rc tag so that
- * only major versions pass for use of the rc tag.
- * @param {string} version - Property of package.json
+ * Validates use of the rc tag input.
+ * - Checks if the beta version exists on npm registry before allowing rc release.
+ * - Checks if the version is a major version before allowing an rc release.
+ * @param {string} packageName - Property 'name' of package.json
+ * @param {string} version - Property 'version' of package.json
  */
-const validateForRcTag = (version) => {
+const validateForRcTag = (packageName, version) => {
+  // Beta version must exist on npm registry.
+  checkNPMForBetaVersion(packageName, version);
+
   // Split the version string by "."
   const versionParts = version.split('.');
 
@@ -14,13 +21,14 @@ const validateForRcTag = (version) => {
   }
 };
 
-// Retrieve the version from command line arguments
+// Retrieve the version and package name from command line arguments
 const args = process.argv.slice(2);
-if (args.length < 1) {
-  console.error('Error: Please provide the version from package.json as an argument.');
+if (args.length < 2) {
+  console.error('Error: Please provide both package name and version as arguments.');
   process.exit(1);
 }
 
-const version = args[0];
+const packageName = args[0];
+const version = args[1];
 
-validateForRcTag(version);
+validateForRcTag(packageName, version);
