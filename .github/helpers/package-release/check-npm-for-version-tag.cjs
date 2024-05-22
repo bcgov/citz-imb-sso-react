@@ -1,11 +1,12 @@
 /**
- * Checks that the beta version of a package exists in the NPM registry.
+ * Checks that the tagged version of a package exists in the NPM registry.
  * @param {string} packageName - Property 'name' of package.json
  * @param {string} version - Property 'version' of package.json
+ * @param {string} tag - Version tag such as 'beta' or 'rc'
  */
-export const checkNPMForBetaVersion = async (packageName, version) => {
+export const checkNPMForVersionTag = async (packageName, version, tag) => {
   const url = `https://registry.npmjs.org/${encodeURIComponent(packageName)}`;
-  const betaVersion = `${version}-beta`;
+  const taggedVersion = `${version}-${tag}`;
 
   try {
     const response = await fetch(url);
@@ -15,10 +16,10 @@ export const checkNPMForBetaVersion = async (packageName, version) => {
 
     const packageData = await response.json();
 
-    if (packageData.versions && packageData.versions[betaVersion]) {
-      console.log(`Success: ${betaVersion} exists for package ${packageName}.`);
+    if (packageData.versions && packageData.versions[taggedVersion]) {
+      console.log(`Success: ${taggedVersion} exists for package ${packageName}.`);
     } else {
-      console.error(`Error: ${betaVersion} does not exist for package ${packageName}.`);
+      console.error(`Error: ${taggedVersion} does not exist for package ${packageName}.`);
       process.exit(1);
     }
   } catch (error) {

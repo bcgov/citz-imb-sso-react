@@ -1,4 +1,4 @@
-const { checkNPMForBetaVersion } = require('./check-npm-for-beta-version.cjs');
+const { checkNPMForVersionTag } = require('./check-npm-for-version-tag.cjs');
 
 /**
  * Validates use of the rc tag input.
@@ -9,13 +9,14 @@ const { checkNPMForBetaVersion } = require('./check-npm-for-beta-version.cjs');
  */
 const validateForRcTag = (packageName, version) => {
   // Beta version must exist on npm registry.
-  checkNPMForBetaVersion(packageName, version);
+  checkNPMForVersionTag(packageName, version, 'beta');
 
   // Split the version string by "."
   const versionParts = version.split('.');
+  const isMajorVersion = versionParts[1] === '0' && versionParts[2].startsWith('0');
 
   // Check if the second and third parts are not zero
-  if (versionParts[1] !== '0' || (versionParts[2] && !versionParts[2].startsWith('0'))) {
+  if (!isMajorVersion) {
     console.error("Error: 'rc' versionTag can only be set for major versions.");
     process.exit(1);
   }
