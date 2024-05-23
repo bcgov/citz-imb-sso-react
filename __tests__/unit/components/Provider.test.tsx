@@ -4,6 +4,11 @@ import { SSOProvider } from '@/index';
 // Mocking the children component
 const MockChildComponent = () => <div>Mock Child Component</div>;
 
+jest.mock('@/utils', () => ({
+  ...jest.requireActual('@/utils'),
+  checkForUpdates: jest.fn(),
+}));
+
 // Test suite for SSOProvider component
 describe('SSOProvider', () => {
   beforeEach(() => {
