@@ -90,12 +90,12 @@ jobs:
       # Get new version number
       - name: Get the version from package.json
         id: package_version
-        run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
+        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
       # Get package name
       - name: Get the package name from package.json
         id: package_name
-        run: echo "::set-output name=PACKAGE_NAME::$(node -p "require('./package.json').name")"
+        run: echo "PACKAGE_NAME=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
 
       # CONDITIONAL: Validate rc input
       - name: Validate rc input
@@ -186,14 +186,14 @@ jobs:
       # Get new version number
       - name: Get the version from package.json
         id: package_version
-        run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
+        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
       # Get previous official version
       - name: Get previous official version
         id: previous_version
         run: |
           PREV_VERSION=$(git tag --sort=-creatordate | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1)
-          echo "::set-output name=PREV_VERSION::$PREV_VERSION"
+          echo "PREV_VERSION=$PREV_VERSION" >> $GITHUB_OUTPUT
 
       # Tag the version
       - name: Create GitHub Tag
