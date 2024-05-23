@@ -22,5 +22,13 @@ export default [
       postcss({ extensions: ['.css'] }),
       typescript({ tsconfig: './tsconfig.json', outputToFilesystem: true }),
     ],
+    onwarn: (warning, warn) => {
+      // Suppress false warning
+      if (warning.message.includes("package.json' is not listed within the file list of project"))
+        return;
+
+      // Use default for other warnings
+      warn(warning);
+    },
   },
 ];

@@ -1,10 +1,4 @@
-import path from 'path';
-
-const getPackageJson = async () => {
-  const packageJsonPath = path.resolve(__dirname, '../../package.json');
-  const packageJson = await import(packageJsonPath);
-  return packageJson;
-};
+import packageJson from '../../package.json';
 
 const getLatestVersion = async (packageName: string): Promise<string> => {
   const response = await fetch(`https://registry.npmjs.org/${packageName}`);
@@ -14,7 +8,7 @@ const getLatestVersion = async (packageName: string): Promise<string> => {
 
 // Console Colors
 const RESET = '\x1b[0m';
-const WHITE = '\x1b[37m';
+const WHITE = '\x1b[1m\x1b[37m';
 const BACKGROUND_RED = '\x1b[1m\x1b[41m';
 
 /**
@@ -23,7 +17,6 @@ const BACKGROUND_RED = '\x1b[1m\x1b[41m';
  */
 export const checkForUpdates = async () => {
   try {
-    const packageJson = await getPackageJson();
     const packageName = packageJson.name;
     const currentVersion = packageJson.version;
     const latestVersion = await getLatestVersion(packageName);
