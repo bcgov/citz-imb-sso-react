@@ -47,6 +47,7 @@ Use the links below to help you understand the codebase better.
 
 - [Directory Structure]
 - [Scripts]
+- [Package Management Plan]
 - [Publishing a New Release Version]
 
 <br />
@@ -63,6 +64,7 @@ Use the links below to help you understand the codebase better.
 [Purpose and Benefits of This Package]: https://developer.gov.bc.ca/docs/default/component/citz-imb-sso-react-npm-package/purpose-and-benefits/
 
 [Documentation]: https://developer.gov.bc.ca/docs/default/component/citz-imb-sso-react-npm-package
-[Directory Structure]: https://github.com/bcgov/citz-imb-sso-react/wiki/13-Directory-Structure
-[Scripts]: https://github.com/bcgov/citz-imb-sso-react/wiki/14-Scripts
-[Publishing a New Release Version]: https://github.com/bcgov/citz-imb-sso-react/wiki/15-Publishing-a-New-Release-Version
+[Directory Structure]: https://github.com/bcgov/citz-imb-sso-react/wiki/Directory-Structure
+[Scripts]: https://github.com/bcgov/citz-imb-sso-react/wiki/Scripts
+[Publishing a New Release Version]: https://citz-imb.atlassian.net/l/cp/rj2F0y2n
+[Package Management Plan]: https://citz-imb.atlassian.net/l/cp/jcxjEmBf
