@@ -71,7 +71,7 @@ const bumpVersion = (version, releaseType) => {
 
 // Add or remove beta/rc tag
 const updatePreReleaseTag = (version, tag) => {
-  let [mainVersion, preReleaseTag] = version.split('-');
+  const [mainVersion, preReleaseTag] = version.split('-');
 
   if (preReleaseTag && tag === 'rc' && preReleaseTag.startsWith('beta')) {
     // If the version already has a beta tag, remove it and add the rc tag
@@ -86,7 +86,7 @@ const updatePreReleaseTag = (version, tag) => {
   const match = preReleaseTag.match(tagPattern);
 
   if (match) {
-    let suffix = match[2] ? parseInt(match[2], 10) + 1 : 2;
+    const suffix = match[2] ? parseInt(match[2], 10) + 1 : 2;
     return `${mainVersion}-${tag}${suffix}`;
   }
 
