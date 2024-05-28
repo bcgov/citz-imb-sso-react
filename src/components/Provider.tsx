@@ -1,9 +1,10 @@
-import { useReducer, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { SSOProviderProps } from '../types';
 import { initialState, reducer } from '../state/reducer';
 import { SSOWrapper } from './Wrapper';
 import { RefreshExpiryDialog } from './RefreshExpiryDialog';
 import { AuthContext } from '../context';
+import { checkForUpdates } from 'src/utils';
 
 /**
  * Provides a sso authentication context to its children.
@@ -30,6 +31,11 @@ export const SSOProvider = (props: SSOProviderProps) => {
 
   // Initialize the authentication state and dispatch function using the reducer.
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    // Check for package updates
+    checkForUpdates();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>

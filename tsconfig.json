@@ -33,7 +33,8 @@
   },
   "include": [
     "src",
-    "__tests__"
+    "__tests__",
+    "package.json"
   ],
   "exclude": [
     "node_modules",

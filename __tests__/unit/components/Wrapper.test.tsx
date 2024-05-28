@@ -14,6 +14,11 @@ function TestComponent() {
   );
 }
 
+jest.mock('@/utils', () => ({
+  ...jest.requireActual('@/utils'),
+  checkForUpdates: jest.fn(),
+}));
+
 // Test suite for SSOWrapper component
 describe('SSOWrapper', () => {
   beforeEach(() => {

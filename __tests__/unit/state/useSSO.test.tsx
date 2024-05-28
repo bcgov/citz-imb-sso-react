@@ -2,7 +2,7 @@ import React from 'react';
 import { render, act, screen, renderHook } from '@testing-library/react';
 import { useSSO } from '@/state/useSSO';
 import { AuthAction } from '@/types';
-import * as utils from '@/utils';
+import { normalizeUser } from '@/utils';
 import { SSOProvider } from '@/index';
 import {
   createMockAuthContextValue,
@@ -60,6 +60,12 @@ function TestComponent() {
     </SSOProvider>
   );
 }
+
+jest.mock('@/utils', () => ({
+  ...jest.requireActual('@/utils'),
+  normalizeUser: jest.fn(),
+  checkForUpdates: jest.fn(),
+}));
 
 // Test suite for the useSSO hook, which provides authentication-related functionality
 describe('useSSO', () => {
@@ -139,7 +145,7 @@ describe('useSSO', () => {
 
   // Test case: normalizes user data
   it('normalizes user data correctly after refreshing token', () => {
-    jest.spyOn(utils, 'normalizeUser').mockReturnValue(mockSSOUserIDIR);
+    (normalizeUser as jest.Mock).mockReturnValue(mockSSOUserIDIR);
 
     render(<TestComponent />);
     expect(screen.getByTestId('user').textContent).toBe(JSON.stringify(mockSSOUserIDIR));
