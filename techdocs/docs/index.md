@@ -20,9 +20,14 @@ This npm package offers an integration solution for connecting React application
 !!! tip "Tip"
     If you don't have an SSO integration check out [SSO Integration Settings](./getting-started/sso-integration-settings.md).
 
+!!! info "Info"
+    You can view our [Package Management Plan] that outlines how we manage our suite of npm packages.  
+    This includes topics such as versioning strategy, support lifecycle, documentation standards and more.
+
 <!-- Link References -->
 [CSS]: https://bcgov.github.io/sso-requests
 [@bcgov/citz-imb-sso-express]: https://github.com/bcgov/citz-imb-sso-express
 [NPM Package]: https://www.npmjs.com/package/@bcgov/citz-imb-sso-react
 [example apps]: https://github.com/bcgov/keycloak-example-apps
 [CITZ IMB Common Code]: mailto:citz.codemvp@gov.bc.ca?subject=SSO%20Packages%20Support
+[Package Management Plan]: https://citz-imb.atlassian.net/wiki/x/EgB4CQ
