@@ -63,7 +63,7 @@ Use the links below to help you understand the codebase better.
 [CITZ IMB Common Code]: mailto:citz.codemvp@gov.bc.ca?subject=SSO%20Packages%20Support
 [Purpose and Benefits of This Package]: https://developer.gov.bc.ca/docs/default/component/citz-imb-sso-react-npm-package/purpose-and-benefits/
 
-[Documentation]: https://developer.gov.bc.ca/docs/default/component/citz-imb-sso-react-npm-package
+[Documentation]: <a href="https://developer.gov.bc.ca/docs/default/component/citz-imb-sso-react-npm-package" target="_blank">Documentation</a>
 [Directory Structure]: https://github.com/bcgov/citz-imb-sso-react/wiki/Directory-Structure
 [Scripts]: https://github.com/bcgov/citz-imb-sso-react/wiki/Scripts
 [Publishing a New Release Version]: https://citz-imb.atlassian.net/l/cp/rj2F0y2n
