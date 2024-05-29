@@ -27,13 +27,13 @@ type AuthState = {
 };
 
 type SSOProviderProps = { // Login related props are used by the default Refresh Expiry dialog.
-    backendURL?: string; // URL to the backend when not using a proxy pass, or different from /api
-    idpHint?: IdentityProvider; // Improves login process.
     children: ReactNode;
+    backendURL?: string; // URL to the backend when not using a proxy pass, or different from /api (Used by default refresh expiry modal).
+    idpHint?: IdentityProvider; // Improves login process by directing to a specific provider instead of having the user choose (Used by default refresh expiry modal).
     onRefreshExpiry?: Function; // Custom function to run when refresh token expires.
-    overrideShowRefreshExpiryDialog?: boolean; // Used for testing the refresh expiry dialog by forcing it to show.
-    postLoginRedirectURL?: string; // URL to redirect to after login.
-    refreshExpiresInOffset?: number; // Offset for when onRefreshExpiry is called (seconds).
+    postLoginRedirectURL?: string; // URL to redirect to after login (Used by default refresh expiry modal).
+    refreshExpiresInOffset?: number; // Offset for when onRefreshExpiry is called (seconds). (For testing only)
+    overrideShowRefreshExpiryDialog?: boolean; // Used for testing the refresh expiry dialog by forcing it to show. (For testing only)
 };
 
 type LoginProps = {

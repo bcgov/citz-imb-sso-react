@@ -63,7 +63,7 @@ The Name column starting with `*` means the prop is required.
       <td>backendURL</td>
       <td>string</td>
       <td>-</td>
-      <td>URL to the backend when not using a proxy pass, or different from `/api`. (Used by default refresh expiry modal)</td>
+      <td>URL to the backend when not using a proxy pass, or different from `/api`. (Used by default refresh expiry modal).</td>
     </tr>
     <tr>
       <td>idpHint</td>
@@ -87,13 +87,13 @@ The Name column starting with `*` means the prop is required.
       <td>overrideShowRefreshExpiryDialog</td>
       <td>boolean</td>
       <td>-</td>
-      <td>Used for testing the refresh expiry dialog by forcing it to show. (For testing only)</td>
+      <td>Used for testing the refresh expiry dialog by forcing it to show (For testing only).</td>
     </tr>
     <tr>
       <td>refreshExpiresInOffset</td>
       <td>number</td>
       <td>-</td>
-      <td>Offset for when onRefreshExpiry is called (seconds). (For testing only)</td>
+      <td>Offset for when onRefreshExpiry is called in seconds (For testing only).</td>
     </tr>
   </tbody>
 </table>
