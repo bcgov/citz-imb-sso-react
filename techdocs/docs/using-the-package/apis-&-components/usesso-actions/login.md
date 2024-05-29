@@ -4,7 +4,7 @@ The `login` action of the `useSSO` hook is a function that initiates the login p
 
 ## Usage
 
-A basic example of using the `useSSO` hook to provide a login button for IDIR users that redirects back to the `/post-login` route.
+A basic example of using the `login` function to provide a login button for IDIR users that redirects back to the `/post-login` route.
 
 ```JavaScript
 import { useSSO } from "@bcgov/citz-imb-sso-react";
