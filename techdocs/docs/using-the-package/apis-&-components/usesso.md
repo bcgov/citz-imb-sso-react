@@ -110,7 +110,7 @@ An API reference for the actions of the `useSSO` hook.
   <!-- Table rows -->
   <tbody>
   <tr>
-      <td>[login](./usesso-actions/login.md)</td>
+      <td><a href="./usesso-actions/login.md">login</a></td>
       <td>(options?: LoginProps) => void</td>
       <td>A function that starts the login process.</td>
     </tr>
