@@ -16,6 +16,8 @@ nav:
       - Calling a Protected Route: using-the-package/calling-a-protected-route.md
       - Getting User Information: using-the-package/getting-user-information.md
       - Custom Session Expiry Function: using-the-package/custom-session-expiry-function.md
+      - APIs & Components:
+          - SSOProvider: using-the-package/apis-&-components/provider.md
       - Module Exports: using-the-package/module-exports.md
       - TypeScript Types: using-the-package/typescript-types.md
       - Troubleshooting: using-the-package/troubleshooting.md
