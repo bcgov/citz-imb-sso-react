@@ -38,8 +38,8 @@ type SSOProviderProps = { // Login related props are used by the default Refresh
 
 type LoginProps = {
     backendURL?: string; // URL to the backend when not using a proxy pass, or different from /api
-    idpHint?: IdentityProvider; // Improves login process.
-    postLoginRedirectURL?: string; // URL to redirect to after login.
+    idpHint?: IdentityProvider; // Improves login process by directing to a specific provider instead of having the user choose.
+    postLoginRedirectURL?: string; // URL or path to redirect to after login.
 };
 
 type IdirIdentityProvider = 'idir';

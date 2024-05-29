@@ -63,7 +63,7 @@ The Name column starting with `*` means the prop is required.
       <td>backendURL</td>
       <td>string</td>
       <td>-</td>
-      <td>URL to the backend when not using a proxy pass, or different from `/api`. (Used by default refresh expiry modal).</td>
+      <td>URL to the backend when not using a proxy pass, or different from `/api` (Used by default refresh expiry modal).</td>
     </tr>
     <tr>
       <td>idpHint</td>
@@ -74,7 +74,7 @@ The Name column starting with `*` means the prop is required.
     <tr>
       <td>onRefreshExpiry</td>
       <td>Function</td>
-      <td>An internal function that opens a modal asking the user to re-log.</td>
+      <td>*An internal function that opens a modal asking the user to re-log.*</td>
       <td>Custom function to run when refresh token expires. Replaces the default behaviour.</td>
     </tr>
     <tr>
