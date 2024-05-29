@@ -1,4 +1,4 @@
-# useSSO login Action 
+# login Action 
 
 The `login` action of the `useSSO` hook is a function that initiates the login process.
 

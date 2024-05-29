@@ -115,7 +115,7 @@ An API reference for the actions of the `useSSO` hook.
       <td>A function that starts the login process.</td>
     </tr>
     <tr>
-      <td>logout</td>
+      <td><a href="../usesso-actions/logout">logout</a></td>
       <td>(backendURL?: string) => void</td>
       <td>A function that logs the user out.</td>
     </tr>
