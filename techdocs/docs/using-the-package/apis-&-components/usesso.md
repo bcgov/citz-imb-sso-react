@@ -120,7 +120,7 @@ An API reference for the actions of the `useSSO` hook.
       <td>A function that logs the user out.</td>
     </tr>
     <tr>
-      <td>isAuthenticated</td>
+      <td><a href="../usesso-actions/is-authenticated">isAuthenticated</a></td>
       <td>boolean</td>
       <td>State saying if the user is logged in and authenticated.</td>
     </tr>
