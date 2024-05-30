@@ -2,7 +2,8 @@
 
 The `getAuthorizationHeaderValue` action of the `useSSO` hook returns the value for the `Authorization` header so that requests can be made to protected routes on the backend.
 
-It is advised to use the [fetchProtectedRoute] function instead.
+!!! note "Note"
+    It is advised to use the [fetchProtectedRoute] function instead.
 
 ## Usage
 
