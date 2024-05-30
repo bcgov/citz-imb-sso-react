@@ -16,7 +16,7 @@ export const RoleMessage = () => {
   if (hasRoles(['Admin'])) 
     return <p>Admin's have access to moderation features.</p>;
 
-  // Users must have BOTH 'Member' and 'Commenter' roles.
+  // Users must have BOTH 'Member' and 'VIP' roles.
   // requireAllRoles option is true by default.
   if (hasRoles(['Member', 'VIP'])) 
     return <p>VIP's have access to more features.</p>;
