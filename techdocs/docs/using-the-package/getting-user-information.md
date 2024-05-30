@@ -2,7 +2,7 @@
 
 ## Checking if the user has a role
 
-You can check if the user has a role or roles with the `hasRoles` function which can be accessed from the `useSSO` hook.
+You can check if the user has a role or roles with the [hasRoles] function which can be accessed from the `useSSO` hook.
 
 ```JavaScript
 // Must be within a React functional component or hook.
@@ -29,7 +29,7 @@ if (hasRoles(['Member', 'Verified'], { requireAllRoles: false })) // Do Somethin
 
 ## Getting user data such as name and email
 
-Access user information from the `user` object (of type `SSOUser`) which can be accessed from the `useSSO` hook.
+Access user information from the [user] object (of type `SSOUser`) which can be accessed from the `useSSO` hook.
 
 ```JavaScript
 // Must be within a React functional component or hook.
@@ -61,4 +61,5 @@ const { user } = useSSO();
 
 <!-- Link References -->
 [SSO Keycloak Wiki - Identity Provider Attribute Mapping]: https://github.com/bcgov/sso-keycloak/wiki/Identity-Provider-Attribute-Mapping
-
+[hasRoles]: ../using-the-package/apis-&-components/usesso-actions/has-roles
+[user]: ../using-the-package/apis-&-components/usesso-actions/user

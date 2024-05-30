@@ -1,8 +1,8 @@
 # fetchProtectedRoute Action 
 
-The `fetchProtectedRoute` action of the `useSSO` hook is a wrapper for the native NodeJS fetch function that adds the `Authorization` header so the backend knows who the user making the request is.
+The `fetchProtectedRoute` action of the `useSSO` hook is a wrapper for the native JavaScript `fetch` function that adds the `Authorization` header so the backend knows who the user making the request is.
 
-For documentation on the underlying fetch function, visit [NodeJS Native Fetch].
+For documentation on the underlying fetch function, visit [JavaScript Native Fetch].
 
 ## Usage
 
@@ -120,4 +120,4 @@ The Name column starting with `*` means the prop is required.
 </table>
 
 <!-- Link References -->
-[NodeJS Native Fetch]: https://developer.mozilla.org/en-US/docs/Web/API/fetch
+[JavaScript Native Fetch]: https://developer.mozilla.org/en-US/docs/Web/API/fetch

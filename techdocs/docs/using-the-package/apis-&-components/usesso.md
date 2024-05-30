@@ -137,10 +137,10 @@ An API reference for the actions of the `useSSO` hook.
     <tr>
       <td><a href="../usesso-actions/fetch-protected-route">fetchProtectedRoute</a></td>
       <td>(url: string, options?: RequestInit) => Promise<Response></td>
-      <td>A wrapper for the native NodeJS fetch function that adds the `Authorization` header so the backend knows who the user making the request is.</td>
+      <td>A wrapper for the native JavaScript fetch function that adds the `Authorization` header so the backend knows who the user making the request is.</td>
     </tr>
     <tr>
-      <td>getAuthorizationHeaderValue</td>
+      <td><a href="../usesso-actions/get-auth-header-value">getAuthorizationHeaderValue</a></td>
       <td>() => string</td>
       <td>A function that returns the `Authorization` header value for making requests to the backend so it knows who the user making the request is.</td>
     </tr>
