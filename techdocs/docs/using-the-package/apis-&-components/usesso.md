@@ -130,17 +130,12 @@ An API reference for the actions of the `useSSO` hook.
       <td>State holding user information.</td>
     </tr>
     <tr>
-      <td>isLoggingIn</td>
-      <td>boolean</td>
-      <td>State saying if the user is currently in the login process.</td>
-    </tr>
-    <tr>
-      <td>hasRoles</td>
+      <td><a href="../usesso-actions/has-roles">hasRoles</a></td>
       <td>(roles: string[], options?: HasRolesOptions) => boolean</td>
       <td>A function to check if the logged in user has specific role(s).</td>
     </tr>
     <tr>
-      <td>fetchProtectedRoute</td>
+      <td><a href="../usesso-actions/fetch-protected-route">fetchProtectedRoute</a></td>
       <td>(url: string, options?: RequestInit) => Promise<Response></td>
       <td>A wrapper for the native NodeJS fetch function that adds the `Authorization` header so the backend knows who the user making the request is.</td>
     </tr>
@@ -148,6 +143,11 @@ An API reference for the actions of the `useSSO` hook.
       <td>getAuthorizationHeaderValue</td>
       <td>() => string</td>
       <td>A function that returns the `Authorization` header value for making requests to the backend so it knows who the user making the request is.</td>
+    </tr>
+    <tr>
+      <td>isLoggingIn</td>
+      <td>boolean</td>
+      <td>State saying if the user is currently in the login process.</td>
     </tr>
     <tr>
       <td>refreshToken</td>
