@@ -125,7 +125,7 @@ An API reference for the actions of the `useSSO` hook.
       <td>State saying if the user is logged in and authenticated.</td>
     </tr>
     <tr>
-      <td>user</td>
+      <td><a href="../usesso-actions/user">user</a></td>
       <td>SSOUser</td>
       <td>State holding user information.</td>
     </tr>
