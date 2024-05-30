@@ -78,6 +78,6 @@ To set up a proxy using `vite` and `nginx` see [Setting Up a Proxy Pass](./proxy
 To set up the package to work without a proxy pass or to work with a proxy pass different from `/api` see [Not Using a Proxy Pass](../getting-started/proxy-pass/not-using-a-proxy-pass.md).
 
 <!-- Link References -->
-[SSOProvider]: ../using-the-package/apis-&-components/provider
-[useSSO]: ../using-the-package/apis-&-components/usesso
-[login]: ../using-the-package/apis-&-components/usesso-actions/login
+[SSOProvider]: ../../using-the-package/apis-&-components/provider
+[useSSO]: ../../using-the-package/apis-&-components/usesso
+[login]: ../../using-the-package/apis-&-components/usesso-actions/login
