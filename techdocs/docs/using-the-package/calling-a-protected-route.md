@@ -98,5 +98,5 @@ export const TestData = () => {
 ```
 
 <!-- Link References -->
-[fetchProtectedRoute]: ../using-the-package/apis-&-components/usesso-actions/fetch-protected-route
-[getAuthorizationHeaderValue]: ../using-the-package/apis-&-components/usesso-actions/get-auth-header-value
+[fetchProtectedRoute]: ../apis-&-components/usesso-actions/fetch-protected-route
+[getAuthorizationHeaderValue]: ../apis-&-components/usesso-actions/get-auth-header-value

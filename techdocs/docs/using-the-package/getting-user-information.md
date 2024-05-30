@@ -61,5 +61,5 @@ const { user } = useSSO();
 
 <!-- Link References -->
 [SSO Keycloak Wiki - Identity Provider Attribute Mapping]: https://github.com/bcgov/sso-keycloak/wiki/Identity-Provider-Attribute-Mapping
-[hasRoles]: ../using-the-package/apis-&-components/usesso-actions/has-roles
-[user]: ../using-the-package/apis-&-components/usesso-actions/user
+[hasRoles]: ../apis-&-components/usesso-actions/has-roles
+[user]: ../apis-&-components/usesso-actions/user

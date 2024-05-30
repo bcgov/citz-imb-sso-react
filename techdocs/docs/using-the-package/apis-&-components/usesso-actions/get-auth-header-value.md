@@ -53,4 +53,4 @@ export const TestData = () => {
 ```
 
 <!-- Link References -->
-[fetchProtectedRoute]: ../usesso-actions/fetch-protected-route
+[fetchProtectedRoute]: ../fetch-protected-route
