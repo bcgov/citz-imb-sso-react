@@ -4,7 +4,7 @@ Set up in 3 steps.
 
 ### 1. Add SSO Provider
 
-Add import for `SSOProvider` and surround your react application code with it.
+Add import for [SSOProvider] and surround your react application code with it.
 
 #### `Example:`
 
@@ -25,7 +25,7 @@ root.render(
 ```
 
 !!! note "Note"
-    SSOProvider has optional props `backendURL`, `idpHint`, `onRefreshExpiry`, and `postLoginRedirectURL`.  
+    [SSOProvider] has optional props `backendURL`, `idpHint`, `onRefreshExpiry`, and `postLoginRedirectURL`.  
     See [TypeScript Type](../using-the-package/typescript-types.md) SSOProviderProps for more details on usage.
 
 ---
@@ -34,7 +34,7 @@ root.render(
 
 ### 2. Add Login and Logout
 
-Add import for `useSSO` then add the following to the top of your React functional component:
+Add import for [useSSO] then add the following to the top of your React functional component:
 
 ```JavaScript
 const {
@@ -59,7 +59,7 @@ Conditionally render a Login or Logout button:
 ```
 
 !!! note "Note"
-    login() has optional props `backendURL`, `idpHint`, and `postLoginRedirectURL`.  
+    [login] has optional props `backendURL`, `idpHint`, and `postLoginRedirectURL`.  
     See [TypeScript Type](../using-the-package/typescript-types.md) LoginProps for more details on usage.
 
 ---
@@ -77,3 +77,7 @@ To set up a proxy using `vite` and `nginx` see [Setting Up a Proxy Pass](./proxy
 
 To set up the package to work without a proxy pass or to work with a proxy pass different from `/api` see [Not Using a Proxy Pass](../getting-started/proxy-pass/not-using-a-proxy-pass.md).
 
+<!-- Link References -->
+[SSOProvider]: ../using-the-package/apis-&-components/provider
+[useSSO]: ../using-the-package/apis-&-components/usesso
+[login]: ../using-the-package/apis-&-components/usesso-actions/login
