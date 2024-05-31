@@ -33,6 +33,12 @@ export const RoleMessage = () => {
     By default, all roles in the array will be required.  
     If you wish to require only one of a list of roles, add the options parameter with `requireAllRoles` property set to `false`.
 
+## TypeScript Type
+
+```TypeScript
+(roles: string[], options?: HasRolesOptions) => boolean;
+```
+
 ## Parameters
 
 An API reference for the parameters of the `hasRoles` function.

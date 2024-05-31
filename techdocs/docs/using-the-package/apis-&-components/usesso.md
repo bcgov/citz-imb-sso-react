@@ -93,6 +93,12 @@ export const UserInfo = () => {
 }
 ```
 
+## TypeScript Type
+
+```TypeScript
+() => AuthService;
+```
+
 ## Hook Actions
 
 An API reference for the actions of the `useSSO` hook.

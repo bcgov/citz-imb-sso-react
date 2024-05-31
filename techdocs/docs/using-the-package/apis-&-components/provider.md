@@ -34,6 +34,12 @@ root.render(
 );
 ```
 
+## TypeScript Type
+
+```TypeScript
+(props: SSOProviderProps) => react_jsx_runtime.JSX.Element;
+```
+
 ## Props
 
 An API reference for the props of the `SSOProvider` component.
