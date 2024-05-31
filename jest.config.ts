@@ -17,7 +17,7 @@ const config: JestConfigWithTsJest = {
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.ts', 'src/**/*.tsx'],
   coveragePathIgnorePatterns: ['index.ts', 'config.ts'],
-  coverageReporters: [['lcov', { projectRoot: '..' }]],
+  coverageReporters: [['lcov', { projectRoot: '.' }]],
   coverageThreshold: {
     global: {
       branches: 80, // Possible paths the logic could follow
