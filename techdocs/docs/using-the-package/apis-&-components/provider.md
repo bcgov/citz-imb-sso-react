@@ -39,7 +39,7 @@ root.render(
 <!-- The following code block is auto generated when types in the package change. -->
 <!-- TYPE: SSOProvider -->
 ```TypeScript
-(props: SSOProviderProps) => react_jsx_runtime.JSX.Element;
+const SSOProvider: (props: SSOProviderProps) => react_jsx_runtime.JSX.Element;
 ```
 
 ## Props

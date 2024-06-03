@@ -27,7 +27,7 @@ export const LoginButton = () => {
 <!-- The following code block is auto generated when types in the package change. -->
 <!-- TYPE: AuthService.login -->
 ```TypeScript
-(options?: LoginProps) => void;
+login: (options?: LoginProps) => void;logout: (backendURL?: string) => void;
 ```
 
 ## Parameters
