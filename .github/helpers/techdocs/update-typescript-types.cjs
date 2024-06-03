@@ -141,21 +141,26 @@ const getNestedTypeDefinition = (typeDefinition, typeParts) => {
   const typeLines = typeDefinition.split('\n');
   let nestedTypeDefinition = '';
   let capture = false;
-  const regex = new RegExp(`^\\s*${typeParts.join('\\.')}:\\s*([^;{]+|\\{[^]*?\\});`);
-
+  let braceStack = 0;
+  const regex = new RegExp(`^\\s*${typeParts.join('\\.')}:\\s*(.*?)(;|{)`);
   for (const line of typeLines) {
-    if (capture && line.trim().endsWith(';')) {
-      nestedTypeDefinition += line.trim();
-      break;
-    }
     if (capture) {
-      nestedTypeDefinition += line.trim() + '\n';
-    }
-    if (regex.test(line)) {
-      nestedTypeDefinition = line.trim();
+      nestedTypeDefinition += line + '\n';
+      braceStack += (line.match(/{/g) || []).length;
+      braceStack -= (line.match(/}/g) || []).length;
+      if (braceStack === 0) {
+        break;
+      }
+    } else if (regex.test(line)) {
+      nestedTypeDefinition = line.trim() + '\n';
       capture = true;
+      braceStack += (line.match(/{/g) || []).length;
+      braceStack -= (line.match(/}/g) || []).length;
+      if (braceStack === 0 && line.trim().endsWith(';')) {
+        break;
+      }
     }
   }
 
-  return nestedTypeDefinition || typeDefinition;
+  return nestedTypeDefinition.trim();
 };

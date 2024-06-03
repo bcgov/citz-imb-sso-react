@@ -38,7 +38,7 @@ export const RoleMessage = () => {
 <!-- The following code block is auto generated when types in the package change. -->
 <!-- TYPE: AuthService.hasRoles -->
 ```TypeScript
-hasRoles: (roles: string[], options?: HasRolesOptions) => boolean;refreshToken: (backendURL?: string) => Promise<void>;
+hasRoles: (roles: string[], options?: HasRolesOptions) => boolean;
 ```
 
 ## Parameters

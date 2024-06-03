@@ -27,8 +27,7 @@ export const LogoutButton = () => {
 <!-- The following code block is auto generated when types in the package change. -->
 <!-- TYPE: AuthService.logout -->
 ```TypeScript
-logout: (backendURL?: string) => void;}
-
+logout: (backendURL?: string) => void;
 ```
 
 ## Parameters
