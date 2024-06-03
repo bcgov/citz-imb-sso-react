@@ -22,6 +22,12 @@ export const LogoutButton = () => {
 }
 ```
 
+## TypeScript Type
+
+```TypeScript
+(backendURL?: string) => void;
+```
+
 ## Parameters
 
 An API reference for the parameters of the `logout` function.

@@ -24,11 +24,30 @@ export const UserInfo = () => {
 }
 ```
 
+## TypeScript Type
+
+Type is `SSOUser`.
+
+```TypeScript
+{
+  guid: string;
+  preferred_username: string; // Use as unique identifier for user.
+  username: string;
+  first_name: string;
+  last_name: string;
+  display_name: string;
+  email: string;
+  identity_provider: IdentityProvider;
+  client_roles?: string[];
+  scope?: string;
+  name?: string;
+  originalData: OriginalSSOUser;
+};
+```
+
 ## Properties
 
 An API reference for the properties of the `user` state.
-
-`user` is of type `SSOUser`.
 
 <table>
   <!-- Table columns -->
@@ -42,7 +61,7 @@ An API reference for the properties of the `user` state.
 
   <!-- Table rows -->
   <tbody>
-  <tr>
+    <tr>
       <td>guid</td>
       <td>string</td>
       <td>Unique user identifier string.</td>

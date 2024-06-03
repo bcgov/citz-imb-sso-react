@@ -22,6 +22,12 @@ export const LoginButton = () => {
 }
 ```
 
+## TypeScript Type
+
+```TypeScript
+(options?: LoginProps) => void;
+```
+
 ## Parameters
 
 An API reference for the parameters of the `login` function.
