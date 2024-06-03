@@ -35,6 +35,8 @@ export const RoleMessage = () => {
 
 ## TypeScript Type
 
+<!-- The following code block is auto generated when types in the package change. -->
+<!-- TYPE: AuthService.hasRoles -->
 ```TypeScript
 (roles: string[], options?: HasRolesOptions) => boolean;
 ```

@@ -28,6 +28,8 @@ export const UserInfo = () => {
 
 Type is `SSOUser`.
 
+<!-- The following code block is auto generated when types in the package change. -->
+<!-- TYPE: SSOUser -->
 ```TypeScript
 {
   guid: string;
@@ -43,6 +45,22 @@ Type is `SSOUser`.
   name?: string;
   originalData: OriginalSSOUser;
 };
+```
+
+The type `BaseSSOUser`:
+
+<!-- The following code block is auto generated when types in the package change. -->
+<!-- TYPE: BaseSSOUser -->
+```TypeScript
+{
+    name?: string;
+    preferred_username: string;
+    email: string;
+    display_name: string;
+    client_roles?: string[];
+    scope?: string;
+    identity_provider: IdirIdentityProvider | BceidIdentityProvider | GithubIdentityProvider;
+}
 ```
 
 ## Properties
