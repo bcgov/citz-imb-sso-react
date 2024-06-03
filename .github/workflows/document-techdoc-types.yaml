@@ -10,8 +10,7 @@ name: Update TechDoc Types
 #    -> Examples include "SSOUser", "useSSO", or "AuthService.hasRoles".
 
 on:
-  pull_request:
-    types: [opened, synchronize, ready_for_review] # Triggered by opened or changed pull requests.
+  push:
     branches: [ main ]
     paths: [ src/** ] # Triggered by changes to the src code
   workflow_dispatch:
