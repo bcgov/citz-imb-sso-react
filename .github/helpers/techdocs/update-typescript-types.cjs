@@ -12,8 +12,14 @@ fs.readFile(declarationFilePath, 'utf8', (error, declarationData) => {
     return;
   }
 
-  // Extract types from the declaration file
-  const typeDefinitions = extractTypeDefinitions(declarationData);
+  // Remove export lines
+  const filteredDeclarationData = declarationData
+    .split('\n')
+    .filter((line) => !line.startsWith('export '))
+    .join('\n');
+
+  // Extract types from the filtered declaration file
+  const typeDefinitions = extractTypeDefinitions(filteredDeclarationData);
 
   // Recursively process markdown files
   processMarkdownFiles(docsDirectoryPath, typeDefinitions);
