@@ -9,7 +9,7 @@ Release 1.0.0 is the first stable release of the package. It offers an integrati
 
 - NodeJS 20
 - React 18
-- `@bcgov/citz-imb-sso-express` 1.x.x
+- [@bcgov/citz-imb-sso-express] 1.x.x
 
 ## Features
 
@@ -18,3 +18,7 @@ Release 1.0.0 is the first stable release of the package. It offers an integrati
 - Automatic token refresh in the background of your app.
 - Default pop up when refresh token expires, or option for custom solution.
 - Type safety.
+
+<!-- Link References -->
+[CSS]: https://bcgov.github.io/sso-requests
+[@bcgov/citz-imb-sso-express]: https://github.com/bcgov/citz-imb-sso-express
