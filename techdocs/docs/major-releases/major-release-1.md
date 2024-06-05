@@ -9,7 +9,7 @@ Release 1.0.0 is the first stable release of the package. It offers an integrati
 
 - NodeJS 20
 - React 18
-- [@bcgov/citz-imb-sso-express] 1.x.x
+- Backend with [@bcgov/citz-imb-sso-express] 1.x.x
 
 ## Features
 
