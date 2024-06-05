@@ -95,8 +95,10 @@ export const UserInfo = () => {
 
 ## TypeScript Type
 
+<!-- The following code block is auto generated when types in the package change. -->
+<!-- TYPE: useSSO -->
 ```TypeScript
-() => AuthService;
+const useSSO: () => AuthService;
 ```
 
 ## Hook Actions
