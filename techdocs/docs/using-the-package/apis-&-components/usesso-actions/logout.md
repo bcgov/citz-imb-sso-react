@@ -34,7 +34,8 @@ logout: (backendURL?: string) => void;
 
 An API reference for the parameters of the `logout` function.
 
-The Name column starting with `*` means the prop is required.
+!!! note "Note"
+    The Name column starting with `*` means the parameter is required.
 
 <table>
   <!-- Table columns -->

@@ -45,7 +45,8 @@ hasRoles: (roles: string[], options?: HasRolesOptions) => boolean;
 
 An API reference for the parameters of the `hasRoles` function.
 
-The Name column starting with `*` means the prop is required.
+!!! note "Note"
+    The Name column starting with `*` means the parameter is required.
 
 <table>
   <!-- Table columns -->
