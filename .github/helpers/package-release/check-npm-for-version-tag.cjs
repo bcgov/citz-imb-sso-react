@@ -6,7 +6,8 @@
  */
 const checkNPMForVersionTag = async (packageName, version, tag) => {
   const url = `https://registry.npmjs.org/${encodeURIComponent(packageName)}`;
-  const taggedVersion = `${version}-${tag}`;
+  const versionStrippedOfTag = version.replace(/-\w+$/, '');
+  const taggedVersion = `${versionStrippedOfTag}-${tag}`;
 
   try {
     const response = await fetch(url);
