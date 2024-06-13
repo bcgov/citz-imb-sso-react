@@ -1,6 +1,6 @@
 {
   "name": "@bcgov/citz-imb-sso-react",
-  "version": "1.0.0-beta2",
+  "version": "1.0.0-rc",
   "description": "BCGov SSO integration for React",
   "author": "CITZ IMB Common Code <citz.codemvp@gov.bc.ca>",
   "license": "Apache-2.0",
