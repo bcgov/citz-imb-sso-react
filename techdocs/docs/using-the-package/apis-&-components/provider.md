@@ -46,7 +46,8 @@ const SSOProvider: (props: SSOProviderProps) => react_jsx_runtime.JSX.Element;
 
 An API reference for the props of the `SSOProvider` component.
 
-The Name column starting with `*` means the prop is required.
+!!! note "Note"
+    The Name column starting with `*` means the prop is required.
 
 <table>
   <!-- Table columns -->
