@@ -4,19 +4,19 @@ const outputText = require(path.resolve(__dirname, `../../../outputText.json`));
 
 /**
  * THIS FILE DOES NOT REQUIRE ANY EDITING.
- * Place within .github/helpers/npm-deps/
+ * Place within .github/helpers/npm-audit/
  */
 
-// Get package.json paths from env.
-const packageJsonPaths = JSON.parse(process.env.packageJsonPaths);
+// Get directory paths from env.
+const directoryPaths = JSON.parse(process.env.directoryPaths);
 
 (async () => {
-  // Create an array of promises for each packageJsonPath.
-  const promises = packageJsonPaths.map(async (packagePath) => {
+  // Create an array of promises for each directory.
+  const promises = directoryPaths.map(async (dirPath) => {
     const issueTitle =
-      packagePath !== '.' ? `${packagePath} NPM Dependency Report` : 'NPM Dependency Report';
+      dirPath !== '.' ? `${dirPath} NPM Vulnerability Report` : 'NPM Vulnerability Report';
     // Await the completion of create and close existing issue.
-    await createAndCloseExistingIssue(issueTitle, outputText[packagePath]);
+    await createAndCloseExistingIssue(issueTitle, outputText[dirPath]);
   });
 
   // Wait for all issues to be created.
