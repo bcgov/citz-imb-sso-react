@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Runs runNpmAudit and adds parent dependencies if they can be found in the package-lock.json
-const findIndirectVulnerableDependencies = async (auditResult) => {
+const findIndirectVulnerableDependencies = async (auditResult, directoryPath) => {
   try {
     const { vulnerabilities } = auditResult;
 
@@ -11,7 +11,7 @@ const findIndirectVulnerableDependencies = async (auditResult) => {
       return { ...auditResult, parentDependencies: {} };
     }
 
-    const packageLockPath = path.join(process.cwd(), 'package-lock.json');
+    const packageLockPath = path.join(process.cwd(), `${directoryPath}/package-lock.json`);
     if (!fs.existsSync(packageLockPath)) {
       throw new Error('package-lock.json not found in the current directory.');
     }

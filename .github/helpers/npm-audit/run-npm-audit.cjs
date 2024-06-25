@@ -1,11 +1,12 @@
 const { execSync } = require('child_process');
 
 // Runs 'npm audit --json' command and returns a modified output.
-const runNpmAudit = async () => {
+const runNpmAudit = async (directoryPath) => {
   try {
     const stdout = execSync('npm audit --json', {
       encoding: 'utf-8',
       stdio: ['pipe', 'pipe', 'ignore'],
+      cwd: `${directoryPath}`,
     });
     const auditData = JSON.parse(stdout);
 
