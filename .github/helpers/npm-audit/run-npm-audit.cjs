@@ -4,7 +4,8 @@ const path = require('path');
 // Runs 'npm audit --json' command and returns a modified output.
 const runNpmAudit = async (directoryPath) => {
   try {
-    const stdout = execSync('npm i && npm audit --json', {
+    execSync('npm i', { cwd: path.resolve(__dirname, `../../../${directoryPath}`) });
+    const stdout = execSync('npm audit --json', {
       encoding: 'utf-8',
       stdio: ['pipe', 'pipe', 'ignore'],
       cwd: path.resolve(__dirname, `../../../${directoryPath}`),
