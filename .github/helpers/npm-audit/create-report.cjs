@@ -178,8 +178,8 @@ const escapeForGitHubActions = (str) =>
 
     // Read the vulnerabilities file.
     const vulnerabilitiesArray = vulnerabilities[dirPath].vulnerabilities ?? [];
-    const metadata = vulnerabilities[dirPath].metadata ?? { total: 0 };
-    const { info, low, moderate, high, critical, total } = metadata.vulnerabilities;
+    const metadata = vulnerabilities[dirPath].metadata ?? { vulnerabilities: 0 };
+    const { info, low, moderate, high, critical, total, vulnerabilities } = metadata.vulnerabilities;
 
     // Output title.
     results[dirPath] += `${heading(title, 2)}`;
@@ -196,7 +196,7 @@ const escapeForGitHubActions = (str) =>
     else if (highestSeverity === 'moderate') highestSeverityColor = yellow; // Moderate
 
     // Output summary.
-    if (total === 0) {
+    if (total ? total === 0 : vulnerabilities === 0) {
       results[dirPath] += `${line(noVulnerabilities)}`;
     } else {
       // Output highest severity.
