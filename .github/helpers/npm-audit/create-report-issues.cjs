@@ -1,5 +1,5 @@
 const path = require('path');
-const createAndCloseExistingIssue = require('../../github-api/create-and-close-existing-issue.cjs');
+const createAndCloseExistingIssue = require('../github-api/create-and-close-existing-issue.cjs');
 const outputText = require(path.resolve(__dirname, `../../../outputText.json`));
 
 /**
