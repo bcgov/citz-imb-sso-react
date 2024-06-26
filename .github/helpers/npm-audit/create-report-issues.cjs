@@ -10,7 +10,8 @@ const outputText = require(path.resolve(__dirname, `../../../outputText.json`));
 const directoryPaths = JSON.parse(process.env.directoryPaths);
 
 (async () => {
-  const createAndCloseExistingIssue = await import('../github-api/create-and-close-existing-issue.mjs');
+  const module = await import('../github-api/create-and-close-existing-issue.mjs');
+  const createAndCloseExistingIssue = module.default;
   // Create an array of promises for each directory.
   const promises = directoryPaths.map(async (dirPath) => {
     const issueTitle =
