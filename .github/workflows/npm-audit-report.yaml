@@ -68,9 +68,7 @@ jobs:
       - name: Run NPM DEP Check Node.js script
         id: check_versions
         run: |
-          node -v
-          npm -v
-          npm cache clean --force
+          npm audit --json
           npm i -D semver
           node .github/helpers/npm-audit/parse-npm-vulnerabilities.cjs > vulnerabilities.json
           cat vulnerabilities.json
