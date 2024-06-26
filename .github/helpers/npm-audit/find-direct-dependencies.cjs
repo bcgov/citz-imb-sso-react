@@ -1,9 +1,10 @@
 const fs = require('fs');
+const path = require('path');
 
 // Function to find direct dependencies of a specified dependency
 const findDirectDependencies = (dependencyName) => {
   // Read and parse the package-lock.json file
-  const packageLock = JSON.parse(fs.readFileSync('package-lock.json', 'utf-8'));
+  const packageLock = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../package-lock.json', 'utf-8')));
 
   const packages = packageLock.packages || {};
   const directDependencies = new Set();
