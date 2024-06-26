@@ -4,6 +4,7 @@ const path = require('path');
 // Runs 'npm audit --json' command and returns a modified output.
 const runNpmAudit = async (directoryPath) => {
   try {
+    const dir = path.resolve(__dirname, `../../../${directoryPath}`);
     execSync('npm i', { cwd: path.resolve(__dirname, `../../../${directoryPath}`) });
     const stdout = execSync('npm audit --json', {
       encoding: 'utf-8',
@@ -39,6 +40,7 @@ const runNpmAudit = async (directoryPath) => {
         vulnerabilities: vulnerabilities.length,
       },
       highestSeverity,
+      dir,
     };
   } catch (error) {
     if (error.stdout) {
