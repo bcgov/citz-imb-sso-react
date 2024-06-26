@@ -1,5 +1,5 @@
 const path = require('path');
-const vulnerabilities = require(path.resolve(__dirname, `../../../vulnerabilities.json`));
+const vulnerabilities = require(path.resolve(__dirname, `./vulnerabilities.json`));
 
 const LOCAL_TEST = false;
 const TEST_DIR_PATHS = ['.'];
