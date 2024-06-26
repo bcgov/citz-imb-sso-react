@@ -63,13 +63,14 @@ jobs:
       # Checkout branch.
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       # Run NodeJS script to check for latest npm dependency versions and capture output.
       - name: Run NPM DEP Check Node.js script
         id: check_versions
         run: |
+          node -v
+          npm -v
+          npm cache clean --force
           npm i -D semver
           node .github/helpers/npm-audit/parse-npm-vulnerabilities.cjs > vulnerabilities.json
           cat vulnerabilities.json
