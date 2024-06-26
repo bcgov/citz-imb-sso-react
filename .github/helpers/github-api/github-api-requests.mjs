@@ -54,7 +54,7 @@ const octokit = new Octokit({ auth: GITHUB_TOKEN });
  * @example
  * createIssue('My Issue', 'An example issue');
  */
-async function createIssue(title, body) {
+export async function createIssue(title, body) {
   const request = await octokit.rest.issues.create({
     owner: GITHUB_OWNER,
     repo: GITHUB_REPO,
@@ -72,7 +72,7 @@ async function createIssue(title, body) {
  * @example
  * closeIssue(1044);
  */
-async function closeIssue(issue_number) {
+export async function closeIssue(issue_number) {
   const request = await octokit.rest.issues.update({
     owner: GITHUB_OWNER,
     repo: GITHUB_REPO,
@@ -91,7 +91,7 @@ async function closeIssue(issue_number) {
  * @example
  * findIssueByTitle('My Issue');
  */
-async function findIssueByTitle(title, state = 'open') {
+export async function findIssueByTitle(title, state = 'open') {
   const { data: issues } = await octokit.rest.issues.listForRepo({
     owner: GITHUB_OWNER,
     repo: GITHUB_REPO,
