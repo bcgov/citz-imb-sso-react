@@ -68,10 +68,8 @@ jobs:
       - name: Run NPM DEP Check Node.js script
         id: check_versions
         run: |
-          npm audit --json
           npm i -D semver
           node .github/helpers/npm-audit/parse-npm-vulnerabilities.cjs > vulnerabilities.json
-          cat vulnerabilities.json
 
       # Upload the output as an artifact.
       - name: Upload output
