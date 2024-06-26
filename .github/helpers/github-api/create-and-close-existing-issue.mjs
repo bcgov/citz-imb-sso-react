@@ -1,4 +1,4 @@
-const { createIssue, closeIssue, findIssueByTitle } = require('./github-api-requests.cjs');
+import { createIssue, closeIssue, findIssueByTitle } from './github-api-requests.cjs';
 
 /**
  * FILE DOES NOT NEED TO BE EDITED.
@@ -18,4 +18,4 @@ const createAndCloseExistingIssue = async (issueTitle, issueBody) => {
   await createIssue(issueTitle, decodeURIComponent(issueBody));
 };
 
-module.exports = createAndCloseExistingIssue;
+export default createAndCloseExistingIssue;
