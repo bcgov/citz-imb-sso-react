@@ -11,7 +11,7 @@ const findIndirectVulnerableDependencies = async (auditResult, directoryPath) =>
       return { ...auditResult, parentDependencies: {} };
     }
 
-    const packageLockPath = path.join(process.cwd(), path.resolve(__dirname, `../../${directoryPath}/package-lock.json`));
+    const packageLockPath = path.join(process.cwd(), path.resolve(__dirname, `../../../${directoryPath}/package-lock.json`));
     if (!fs.existsSync(packageLockPath)) {
       throw new Error('package-lock.json not found in the current directory.');
     }
