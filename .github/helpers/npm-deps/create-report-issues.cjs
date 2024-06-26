@@ -1,5 +1,4 @@
 const path = require('path');
-const createAndCloseExistingIssue = require('../github-api/create-and-close-existing-issue.mjs');
 const outputText = require(path.resolve(__dirname, `../../../outputText.json`));
 
 /**
@@ -11,6 +10,7 @@ const outputText = require(path.resolve(__dirname, `../../../outputText.json`));
 const packageJsonPaths = JSON.parse(process.env.packageJsonPaths);
 
 (async () => {
+  const createAndCloseExistingIssue = await import('../github-api/create-and-close-existing-issue.mjs');
   // Create an array of promises for each packageJsonPath.
   const promises = packageJsonPaths.map(async (packagePath) => {
     const issueTitle =
