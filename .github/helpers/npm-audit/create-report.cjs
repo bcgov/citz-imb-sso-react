@@ -178,7 +178,7 @@ const escapeForGitHubActions = (str) =>
 
     // Read the vulnerabilities file.
     const vulnerabilitiesArray = vulnerabilities[dirPath].vulnerabilities ?? [];
-    const metadata = vulnerabilities[dirPath].metadata ?? {};
+    const metadata = vulnerabilities[dirPath].metadata ?? { total: 0 };
     const { info, low, moderate, high, critical, total } = metadata.vulnerabilities;
 
     // Output title.
