@@ -1,20 +1,11 @@
-const {
-  createIssue,
-  closeIssue,
-  findIssueByTitle,
-} = require("./github-api-requests.cjs");
+const { createIssue, closeIssue, findIssueByTitle } = require('./github-api-requests.cjs');
 
 /**
  * FILE DOES NOT NEED TO BE EDITED.
  * Place within .github/helpers/github-api/
  */
 
-const createAndCloseExistingIssue = async (packageJsonPath, issueBody) => {
-  const issueTitle =
-    packageJsonPath !== "."
-      ? `${packageJsonPath} NPM Dependency Report`
-      : "NPM Dependency Report";
-
+const createAndCloseExistingIssue = async (issueTitle, issueBody) => {
   // Check for existing Issue.
   const existingIssueNumber = await findIssueByTitle(issueTitle);
 
