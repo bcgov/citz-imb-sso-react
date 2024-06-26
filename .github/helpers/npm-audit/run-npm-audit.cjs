@@ -7,7 +7,7 @@ const runNpmAudit = async (directoryPath) => {
     const stdout = execSync('npm audit --json', {
       encoding: 'utf-8',
       stdio: ['pipe', 'pipe', 'ignore'],
-      cwd: path.resolve(__dirname, `../../${directoryPath}`),
+      cwd: path.resolve(__dirname, `../../../${directoryPath}`),
     });
     const auditData = JSON.parse(stdout);
 
