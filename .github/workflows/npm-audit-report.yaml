@@ -146,4 +146,4 @@ jobs:
       # Run Node Script to Create GitHub Issue.
       - name: Create GitHub Issues
         run: |
-          node .github/helpers/npm-audit/create-report-issues.cjs
+          node .github/helpers/npm-audit/create-report-issues.mjs
