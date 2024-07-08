@@ -27,10 +27,13 @@ const parseDetails = (auditData) => {
     };
   });
 
-  const highestSeverity = vulnerabilities.reduce((max, vuln) => {
-    const severities = ['low', 'moderate', 'high', 'critical'];
-    return severities.indexOf(vuln.severity) > severities.indexOf(max) ? vuln.severity : max;
-  }, 'low');
+  const highestSeverity =
+    vulnerabilities.length === 0
+      ? null
+      : vulnerabilities.reduce((max, vuln) => {
+          const severities = ['low', 'moderate', 'high', 'critical'];
+          return severities.indexOf(vuln.severity) > severities.indexOf(max) ? vuln.severity : max;
+        }, 'low');
 
   return {
     vulnerabilities,
