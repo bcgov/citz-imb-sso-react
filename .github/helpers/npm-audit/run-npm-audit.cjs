@@ -14,12 +14,12 @@ const parseDetails = (auditData) => {
       isDirect: vuln.isDirect,
       via: vuln.via.map((v) => {
         return {
-          title: v.title,
-          severity: v.severity,
-          range: v.range,
-          url: v.url,
-          cwe: v.cwe,
-          cvss: v.cvss.score,
+          title: v?.title,
+          severity: v?.severity,
+          range: v?.range,
+          url: v?.url,
+          cwe: v?.cwe,
+          cvss: v?.cvss?.score,
         };
       }),
       range: vuln.range,
