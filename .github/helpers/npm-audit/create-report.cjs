@@ -199,7 +199,7 @@ const escapeForGitHubActions = (str) =>
     else if (highestSeverity === 'moderate') highestSeverityColor = yellow; // Moderate
 
     // Output summary.
-    if (total ? total === 0 : metadata.vulnerabilities === 0) {
+    if ((total && total === 0) || metadata.vulnerabilities === 0) {
       results[dirPath] += `${line(noVulnerabilities)}`;
     } else {
       // Output highest severity.
