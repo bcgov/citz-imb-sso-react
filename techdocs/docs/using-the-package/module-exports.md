@@ -15,6 +15,7 @@ import {
   IdirIdentityProvider, // Used for more efficient login.
   GithubIdentityProvider, // Used for more efficient login.
   BceidIdentityProvider, // Used for more efficient login.
+  // BC Services Card has no fixed identity provider. It uses SSO_CLIENT_ID.
   IdentityProvider, // Combined type for identity providers.
   HasRolesOptions, // Optional options parameter for hasRoles function of useSSO().
   AuthService, // Type for useSSO().
@@ -24,5 +25,6 @@ import {
   SSOIdirUser, // User types specific to Idir users.
   SSOBCeIDUser, // User types specific to BCeID users.
   SSOGithubUser, // User types specific to Github users.
+  SSOBcServicesCardUser, // User types specific to BC Services Card users.
 } from '@bcgov/citz-imb-sso-react';
 ```
