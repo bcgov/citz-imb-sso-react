@@ -115,10 +115,14 @@ export type SSOGithubUser = {
 export type SSOBcServicesCardUser = {
   given_name?: string;
   family_name?: string;
-  first_name?: string;
 }
 
-export type OriginalSSOUser = BaseSSOUser & SSOIdirUser & SSOBCeIDUser & SSOGithubUser & SSOBcServicesCardUser;
+export type OriginalSSOUser = 
+  & BaseSSOUser 
+  & SSOIdirUser 
+  & SSOBCeIDUser 
+  & SSOGithubUser 
+  & SSOBcServicesCardUser;
 
 export type SSOUser = BaseSSOUser & {
   guid: string;
