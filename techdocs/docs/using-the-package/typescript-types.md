@@ -43,7 +43,7 @@ type RefreshExpiryDialogProps = {
     isVisible: boolean;
     loginProps?: LoginProps;
 };
-type IdirIdentityProvider = 'idir';
+type IdirIdentityProvider = 'idir' | 'azureidir';
 type GithubIdentityProvider = 'githubbcgov' | 'githubpublic';
 type BceidIdentityProvider = 'bceidbasic' | 'bceidbusiness' | 'bceidboth';
 type IdentityProvider = IdirIdentityProvider | BceidIdentityProvider | GithubIdentityProvider;
@@ -111,7 +111,11 @@ type SSOGithubUser = {
     first_name?: string;
     last_name?: string;
 };
-type OriginalSSOUser = BaseSSOUser & SSOIdirUser & SSOBCeIDUser & SSOGithubUser;
+type SSOBcServicesCardUser = {
+    given_name?: string;
+    family_name?: string;
+};
+type OriginalSSOUser = BaseSSOUser & SSOIdirUser & SSOBCeIDUser & SSOGithubUser & SSOBcServicesCardUser;
 type SSOUser = BaseSSOUser & {
     guid: string;
     username: string;
@@ -139,5 +143,5 @@ declare const checkForUpdates: () => Promise<void>;
 
 declare const RefreshExpiryDialog: (props: RefreshExpiryDialogProps) => react_jsx_runtime.JSX.Element | null;
 
-export { type AuthAction, AuthActionType, AuthContext, type AuthService, type AuthState, type AuthStateWithDispatch, type BaseSSOUser, type BceidIdentityProvider, type CustomRequestInit, type GithubIdentityProvider, type HasRolesOptions, type IdentityProvider, type IdirIdentityProvider, type LoginProps, type OriginalSSOUser, RefreshExpiryDialog, type RefreshExpiryDialogProps, type SSOBCeIDUser, type SSOGithubUser, type SSOIdirUser, SSOProvider, type SSOProviderProps, type SSOUser, SSOWrapper, type SSOWrapperProps, checkForUpdates, decodeJWT, hasAllRoles, hasAtLeastOneRole, initialState, normalizeUser, reducer, useSSO };
+export { type AuthAction, AuthActionType, AuthContext, type AuthService, type AuthState, type AuthStateWithDispatch, type BaseSSOUser, type BceidIdentityProvider, type CustomRequestInit, type GithubIdentityProvider, type HasRolesOptions, type IdentityProvider, type IdirIdentityProvider, type LoginProps, type OriginalSSOUser, RefreshExpiryDialog, type RefreshExpiryDialogProps, type SSOBCeIDUser, type SSOBcServicesCardUser, type SSOGithubUser, type SSOIdirUser, SSOProvider, type SSOProviderProps, type SSOUser, SSOWrapper, type SSOWrapperProps, checkForUpdates, decodeJWT, hasAllRoles, hasAtLeastOneRole, initialState, normalizeUser, reducer, useSSO };
 ```
