@@ -2,9 +2,11 @@ import { SSOUser } from '@/types';
 import { normalizeUser } from '@/utils';
 import {
   mockOriginalSSOUserBCeID,
+  mockOriginalSSOUserBcServicesCard,
   mockOriginalSSOUserGitHub,
   mockOriginalSSOUserIDIR,
   mockSSOUserBCeID,
+  mockSSOUserBcServicesCard,
   mockSSOUserGitHub,
   mockSSOUserIDIR,
 } from '__tests__/__mocks__';
@@ -31,6 +33,12 @@ describe('User Normalization', () => {
   it('normalizes user data correctly for GitHub', () => {
     const normalizedUser: SSOUser = normalizeUser(mockOriginalSSOUserGitHub);
     expect(normalizedUser).toEqual(mockSSOUserGitHub);
+  });
+
+  // Test case: normalizes user data correctly for BC Services Card
+  it('normalizes user data correctly for BC Services Card', () => {
+    const normalizedUser: SSOUser = normalizeUser(mockOriginalSSOUserBcServicesCard);
+    expect(normalizedUser).toEqual(mockSSOUserBcServicesCard);
   });
 
   // Test case: normalizes user data correctly when userInfo properties are undefined

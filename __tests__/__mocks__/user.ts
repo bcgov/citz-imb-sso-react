@@ -1,4 +1,4 @@
-import { OriginalSSOUser, SSOBCeIDUser, SSOGithubUser, SSOIdirUser, SSOUser } from '@/types';
+import { IdentityProvider, OriginalSSOUser, SSOBCeIDUser, SSOGithubUser, SSOIdirUser, SSOUser } from '@/types';
 
 // IDIR
 
@@ -105,4 +105,29 @@ export const mockSSOUserGitHub: SSOUser = {
   first_name: 'Composite',
   last_name: 'User',
   originalData: mockOriginalSSOUserGitHub,
+};
+
+export const mockOriginalSSOUserBcServicesCard: OriginalSSOUser = {
+  preferred_username: 'username@clientID',
+  email: 'composite@example.com',
+  display_name: 'Composite User',
+  scope: 'full',
+  identity_provider: 'clientID' as IdentityProvider,
+  given_name: 'Composite',
+  family_name: 'User',
+}
+
+export const mockSSOUserBcServicesCard: SSOUser = {
+  preferred_username: 'username@clientID',
+  email: 'composite@example.com',
+  display_name: 'Composite User',
+  scope: 'full',
+  identity_provider: 'clientID' as IdentityProvider,
+  guid: 'username',
+  username: 'username@clientID',
+  first_name: 'Composite',
+  last_name: 'User',
+  originalData: mockOriginalSSOUserBcServicesCard,
+  client_roles: [],
+  name: '',
 };
