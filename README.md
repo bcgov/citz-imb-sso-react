@@ -1,6 +1,6 @@
 # BCGov SSO Integration for React
 
-[![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](Redirect-URL)
+![Deprecated](https://img.shields.io/badge/status-deprecated-red)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/c625456456fb8a9120ad/maintainability)](https://codeclimate.com/github/bcgov/citz-imb-sso-react/maintainability)
